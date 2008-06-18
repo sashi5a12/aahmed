@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="helloworld" namespace="/helloworld"	extends="struts-default">
+		<action name="inputname">
+			<result>/jsps/helloworld/inputname.jsp</result>
+		</action>
+		<action name="helloworld" class="helloworld.HelloWorldAction">
+			<result name="SUCCESS">/jsps/helloworld/helloworld.jsp</result>
+			<result name="ERROR">/jsps/helloworld/inputname.jsp</result>
+		</action>
+	</package>
+</struts>
