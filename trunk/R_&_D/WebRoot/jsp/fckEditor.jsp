@@ -5,7 +5,7 @@
 		<title>FCKeditor - Sample</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<!--<link href="../sample.css" rel="stylesheet" type="text/css" /> -->
-		<script type="text/javascript" src="/R_&_D/js/fckeditor/fckeditor.js"></script>
+		<script type="text/javascript" src="/R_&_D/fckeditor/fckeditor.js"></script>
 		<script type="text/javascript">
 			/*function FCKeditor_OnComplete( editorInstance )
 			{
