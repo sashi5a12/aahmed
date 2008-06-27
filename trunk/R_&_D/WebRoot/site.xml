@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+	<publishDate position="left" format="yyyy-MM-dd" />
+	<version position="left" />
+
+	<bannerLeft>
+		<name>fckeditor</name>
+		<src>../images/fckeditor-logo.gif</src>
+		<href>http://www.fckeditor.net</href>
+	</bannerLeft>
+
+	<body>
+		<head>
+			<link rel="shortcut icon" href="../images/favicon.ico"
+				type="image/x-icon"
+			/>
+		</head>
+		<menu name="Introduction">
+			<item name="About" href="../index.html" />
+			<item name="What's new" href="../whatsnew.html" />
+			<item name="Demo" href="../demo.html" />
+			<item name="Installation" href="../installation.html" />
+		</menu>
+		<menu name="Integration">
+			<item name="Overview" href="../overview.html" />
+			<item name="Tag library"
+				href="../taglibrary.html"
+			/>
+			<item name="Connector" href="../connector.html" />
+		</menu>
+		<menu name="Reference">
+			<item name="Tag library"
+				href="../java-core/tagreference.html"
+			/>
+			<item name="Configuration"
+				href="../properties.html"
+			/>
+		</menu>
+		<!--<menu name="Developers">-->
+		<menu name="Project Documentation">
+			<!-- Postponed to beyond 2.4 -->
+			<!--<item name="Changes Report" href="../changes-report.html" />-->
+			<item name="Dependencies" href="../dependencies.html" />
+			<item name="Issue Tracking" href="../issue-tracking.html" />
+			<item name="Mailing Lists" href="../mail-lists.html" />
+			<item name="Project License" href="../license.html" />
+			<item name="Project Summary" href="../project-summary.html" />
+			<item name="Project Team" href="../team-list.html" />
+			<item name="Source Repository"
+				href="../source-repository.html"
+			/>
+		</menu>
+		<menu name="Modules Documentation">
+			<item name="Integration Pack" collapse="false">
+				<item name="Dependencies"
+					href="../java-core/dependencies.html"
+				/>
+				<item name="Module Summary"
+					href="../java-core/project-summary.html"
+				/>
+				<item name="Module Reports"
+					href="../java-core/project-reports.html" collapse="true"
+				>
+					<item name="Cobertura Test Coverage"
+						href="../java-core/cobertura/index.html"
+					/>
+					<item name="CPD Report"
+						href="../java-core/cpd.html"
+					/>
+					<item name="JavaDoc"
+						href="../java-core/apidocs/index.html"
+					/>
+					<item name="Maven Surefire Report"
+						href="../java-core/surefire-report.html"
+					/>
+					<item name="PMD Report"
+						href="../java-core/pmd.html"
+					/>
+					<item name="Source Xref"
+						href="../java-core/xref/index.html"
+					/>
+					<item name="Taglibdoc documentation"
+						href="../java-core/tlddoc/index.html"
+					/>
+					<item name="Tag library validation"
+						href="../java-core/taglibvalidation.html"
+					/>
+					<item name="Tag List"
+						href="../java-core/taglist.html"
+					/>
+					<!--<item name="Tag reference" href="../java-core/tagreference.html" />-->
+					<item name="Test JavaDocs"
+						href="../java-core/testapidocs/index.html"
+					/>
+					<item name="Test Source Xref"
+						href="../java-core/xref-test/index.html"
+					/>
+				</item>
+			</item>
+			<item name="Integration Demo" collapse="false">
+				<item name="Dependencies"
+					href="dependencies.html"
+				/>
+				<item name="Module Summary"
+					href="project-summary.html"
+				/>
+			</item>
+		</menu>
+	</body>
+
+	<poweredBy>
+		<logo name="Maven" href="http://maven.apache.org/"
+			img="http://maven.apache.org/images/logos/maven-inside.png"
+		/>
+	</poweredBy>
+
+</project>
