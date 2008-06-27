@@ -3,6 +3,6 @@
 <html>
   <body>
     <a href="/R_&_D/jsp/fckEditor.jsp">FCK Editor Sample</a><br/>
-	<a href="/R_&_D/js/fckeditor/_samples/default.html">Default Samples</a><br/>
+	<a href="/R_&_D/fckeditor/_samples/default.html">Default Samples</a><br/>
   </body>
 </html>
