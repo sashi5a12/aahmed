@@ -48,7 +48,7 @@ public class ImageChunks {
             // step 3: we open the document
             document.open();
             // step 4: we create a table and add it to the document
-            Image img = Image.getInstance("pngnow.png");
+            Image img = Image.getInstance("title_shot.gif");
             img.scalePercent(70);
             Chunk ck = new Chunk(img, 0, -5);
             PdfPTable table = new PdfPTable(3);
