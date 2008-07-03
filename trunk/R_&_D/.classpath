@@ -5,5 +5,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/j2sdk1.4.2_11"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/FCKeditor-2.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/crimson.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iText-2.1.2u.jar" sourcepath="C:/Downloads/iText-src-2.1.2u/src"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/iText-rtf-2.1.2u.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/Tidy.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
