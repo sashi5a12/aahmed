@@ -53,10 +53,13 @@ public class CellAlignment {
 			table.addCell("default alignment");
 			cell = new PdfPCell(p);
 			table.addCell(cell);
+			
 			table.addCell("centered alignment");
 			cell = new PdfPCell(p);
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(cell);
+			
+			
 			table.addCell("right alignment");
 			cell = new PdfPCell(p);
 			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);

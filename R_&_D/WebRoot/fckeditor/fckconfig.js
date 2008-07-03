@@ -32,7 +32,7 @@ FCKConfig.ToolbarComboPreviewCSS = '' ;
 
 FCKConfig.DocType = '' ;
 
-FCKConfig.BaseHref = '' ;
+FCKConfig.BaseHref = '/R_&_D/fckeditor/' ;
 
 FCKConfig.FullPage = false ;
 
@@ -77,11 +77,11 @@ FCKConfig.FormatOutput		= true ;
 FCKConfig.FormatIndentator	= '    ' ;
 
 FCKConfig.StartupFocus	= false ;
-FCKConfig.ForcePasteAsPlainText	= false ;
-FCKConfig.AutoDetectPasteFromWord = true ;	// IE only.
+FCKConfig.ForcePasteAsPlainText	= true ;
+FCKConfig.AutoDetectPasteFromWord = false ;	// IE only.
 FCKConfig.ShowDropDialog = true ;
 FCKConfig.ForceSimpleAmpersand	= false ;
-FCKConfig.TabSpaces		= 0 ;
+FCKConfig.TabSpaces		= 8 ;
 FCKConfig.ShowBorders	= true ;
 FCKConfig.SourcePopup	= false ;
 FCKConfig.ToolbarStartExpanded	= true ;
@@ -117,15 +117,7 @@ FCKConfig.ToolbarSets["Basic"] = [
 ] ;
 
 FCKConfig.ToolbarSets["aims"] = [
-		['Source'],
-	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
-	['Undo','Redo','-','Find','Replace'],
-	'/',
-	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
-	['OrderedList','UnorderedList','-','Outdent','Indent'],
-	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
-	['Link','Unlink'],
-	['Image','Table','Rule','SpecialChar','FitWindow']
+	['Source','Cut','Copy','Paste','-','Undo','Redo','-','Bold','Italic','Underline','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull','-','OrderedList','UnorderedList','-','Outdent','Indent','-','Table']		
 ] ;
 
 FCKConfig.EnterMode = 'p' ;			// p | div | br
