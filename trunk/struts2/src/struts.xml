@@ -11,4 +11,5 @@
 	<include file="javabean/transferData.xml"/>
 	<include file="modeldriven/modeldriven.xml"/>
 	<include file="fileupload/fileupload.xml"/>
+	<include file="interceptor/interceptor.xml"/>
 </struts>

@@ -14,6 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="validation/InputRegister.action"/>Validation Example</a>   How workflow interceptor (DefaultWorkflowInterceptor) and ActionSupport work together and provides the way of validation. ValidationWare Interface is use to store and retrieve errors. Workflow interceptor uses this interface to know about the error may occured for this request.<br/>
     <a href="javabean/InputRegister.action"/>Transfer of data using javabean properties method</a><br/>
     <a href="modeldriven/InputRegister.action"/>Transfer of data using ModelDriven method</a><br/>
-    <a href="fileupload/AddFile.action">Add Single File</a>
+    <a href="fileupload/AddFile.action">Add Single File</a><br/>
+    <a href="interceptor/show.action">Interceptor Map to action</a><br/>
+    <a href="secure/profile.action">Show Profile (Without Login)</a><br/>
+    <a href="login/login.action">Login</a><br/>
   </body>
 </html>
