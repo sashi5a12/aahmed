@@ -12,4 +12,5 @@
 	<include file="modeldriven/modeldriven.xml"/>
 	<include file="fileupload/fileupload.xml"/>
 	<include file="interceptor/interceptor.xml"/>
+	<include file="transferAndconversion/transferAndconversion.xml"/>	
 </struts>
