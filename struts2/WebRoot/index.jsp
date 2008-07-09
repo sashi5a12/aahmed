@@ -18,5 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="interceptor/show.action">Interceptor Map to action</a><br/>
     <a href="secure/profile.action">Show Profile (Without Login)</a><br/>
     <a href="login/login.action">Login</a><br/>
+    <a href="conversion/ArrayDataTransfer.action">Array Data Transfer</a><br/>
+    <a href="conversion/ListDataTransfer.action">List Data Transfer</a><br/>
+    <a href="conversion/UserDataTransfer.action">User Data Transfer</a><br/>
   </body>
 </html>
