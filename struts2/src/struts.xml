@@ -6,11 +6,12 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<include file="helloworld/helloworld.xml"/>	
-	<include file="defaultnamespace/defaultnamespace.xml"></include>
-	<include file="validation/validation.xml"></include>
+	<include file="defaultnamespace/defaultnamespace.xml"/>
+	<include file="validation/validation.xml"/>
 	<include file="javabean/transferData.xml"/>
 	<include file="modeldriven/modeldriven.xml"/>
 	<include file="fileupload/fileupload.xml"/>
 	<include file="interceptor/interceptor.xml"/>
 	<include file="transferAndconversion/transferAndconversion.xml"/>	
+	<include file="tagdemo/tagdemo.xml"/>
 </struts>

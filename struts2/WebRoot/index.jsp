@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,5 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="conversion/ArrayDataTransfer.action">Array Data Transfer</a><br/>
     <a href="conversion/ListDataTransfer.action">List Data Transfer</a><br/>
     <a href="conversion/UserDataTransfer.action">User Data Transfer</a><br/>
+    <a href="tagdemo/TagDemo.action">Tag Demo</a><br/>
   </body>
 </html>
