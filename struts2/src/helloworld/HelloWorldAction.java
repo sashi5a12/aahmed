@@ -26,4 +26,11 @@ public class HelloWorldAction {
 			return "ERROR";
 		}
 	}
+	
+	public int add(int a, int b){
+		return a+b;
+	}
+	public int addition(){
+		return 5+5;
+	}
 }

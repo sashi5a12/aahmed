@@ -36,6 +36,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			User user=new User();
 			user.setName("Adnan Ahmed");
 			session.put("USER",user);
+			session.put("TEST","To test OGNL when selecting session as root object.");
 			return SUCCESS;
 		}
 		else {

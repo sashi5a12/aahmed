@@ -1,23 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<base href="<%=basePath%>">
 		<title>helloworld.jsp</title>
-		<meta http-equiv="pragma" content="no-cache">
-		<meta http-equiv="cache-control" content="no-cache">
-		<meta http-equiv="expires" content="0">
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-		<meta http-equiv="description" content="This is my page">
-		<!--<link rel="stylesheet" type="text/css" href="styles.css">-->
+		<s:head/>
 	</head>
 
 	<body>
@@ -30,5 +17,10 @@
 		<s:iterator value="#counter">
 			<li><s:property /></li>
 		</s:iterator>
+		<s:bean name="helloworld.HelloWorldAction"  id="hello">
+			
+		</s:bean>
+		<s:property value="#hello.add(10,10)"/>
+		<s:property value="#hello.addition()"/>
 	</body>
 </html>
