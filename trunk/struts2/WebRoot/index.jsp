@@ -22,5 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="conversion/ListDataTransfer.action">List Data Transfer</a><br/>
     <a href="conversion/UserDataTransfer.action">User Data Transfer</a><br/>
     <a href="tagdemo/TagDemo.action">Tag Demo</a><br/>
+    <a href="htmltags/setup.action">Html Tag Demo</a><br/>
   </body>
 </html>
