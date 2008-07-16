@@ -1,6 +1,8 @@
 package helloworld;
 
-public class HelloWorldAction {
+import com.opensymphony.xwork2.ActionSupport;
+
+public class HelloWorldAction extends ActionSupport{
 	private String name;
 	private String customGreeting;
 	
@@ -20,10 +22,10 @@ public class HelloWorldAction {
 	public String execute(){
 		if (this.name != null && this.name.length()>0){
 			this.setCustomGreeting("Hello "+this.name);
-			return "SUCCESS";
+			return SUCCESS;
 		}
 		else {
-			return "ERROR";
+			return ERROR;
 		}
 	}
 	

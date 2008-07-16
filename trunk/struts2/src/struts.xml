@@ -15,4 +15,6 @@
 	<include file="transferAndconversion/transferAndconversion.xml"/>	
 	<include file="tagdemo/tagdemo.xml"/>
 	<include file="htmltagdemo/htmltagdemo.xml"/>
+	<include file="tutorial/tutorial.xml"/>
+	<include file="validationFramework/validationFramework.xml"></include>
 </struts>
