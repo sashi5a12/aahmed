@@ -13,6 +13,7 @@
     	<s:textfield name="email" required="true" label="Email"/>
     	<s:textfield name="firstName" required="true" label="First Name"/>
     	<s:textfield name="lastName" required="true" label="Last Name"/>
+    	<s:textfield name="age" label="Age"/>
     	<s:submit/>
     </s:form>
   </body>
