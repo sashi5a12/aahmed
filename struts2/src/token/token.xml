@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="token" namespace="/token"	extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="tokenStack">
+				<interceptor-ref name="token"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<action name="Show">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/jsps/token/Show.jsp</result>
+		</action>
+		<action name="Token_*" method="{1}" class="token.TokenAction">
+			<interceptor-ref name="tokenStack"></interceptor-ref>
+			<result>/jsps/token/Success.jsp</result>
+			<result name="invalid.token">/jsps/token/Duplicate.jsp</result>
+		</action>
+	</package>
+</struts>
