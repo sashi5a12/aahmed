@@ -10,7 +10,7 @@
   	<h3>Commands</h3>
   	<ul>
   		<li><a href="<s:url action="Register"/>">Register</a> </li>
-  		<li><a href="<s:url action="Logon"/>">Sign On</a>
+  		<li><a href="<s:url action="Logon_input"/>">Sign On</a>
   	</ul>
   </body>
 </html>
