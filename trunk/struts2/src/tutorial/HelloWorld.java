@@ -3,7 +3,7 @@ package tutorial;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class HelloWorld extends ActionSupport{
-	private static final String MESSAGE="Struts is up and running ...";
+	private static final String MESSAGE="HelloWorld.message";
 	private String message;
 	
 	public String getMessage() {
@@ -15,7 +15,7 @@ public class HelloWorld extends ActionSupport{
 	}
 
 	public String execute(){
-		setMessage(MESSAGE);
+		setMessage(getText(MESSAGE));
 		return SUCCESS;
 	}
 }

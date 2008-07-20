@@ -2,7 +2,7 @@ package tutorial;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Logon extends ActionSupport{
+public class LogonAction extends ActionSupport{
 	private String username;
 	private String password;
 	public String getUsername() {
@@ -18,11 +18,6 @@ public class Logon extends ActionSupport{
 		this.password = password;
 	}
 	public String execute(){
-		if(isInvalid(username))return INPUT;
-		if(isInvalid(password))return INPUT;
 		return SUCCESS;
-	}
-	private boolean isInvalid(String value){
-		return ((value == null) || value.length() == 0);
 	}
 }
