@@ -9,7 +9,9 @@
 
 	<servlet>
 		<servlet-name>Connector</servlet-name>
-		<servlet-class>com.fredck.FCKeditor.connector.ConnectorServlet</servlet-class>
+		<servlet-class>
+			com.fredck.FCKeditor.connector.ConnectorServlet
+		</servlet-class>
 		<init-param>
 			<param-name>baseDir</param-name>
 			<param-value>/UserFiles/</param-value>
@@ -23,7 +25,9 @@
 
 	<servlet>
 		<servlet-name>SimpleUploader</servlet-name>
-		<servlet-class>com.fredck.FCKeditor.uploader.SimpleUploaderServlet</servlet-class>
+		<servlet-class>
+			com.fredck.FCKeditor.uploader.SimpleUploaderServlet
+		</servlet-class>
 		<init-param>
 			<param-name>baseDir</param-name>
 			<param-value>/UserFiles/</param-value>
@@ -42,7 +46,9 @@
 		</init-param>
 		<init-param>
 			<param-name>DeniedExtensionsFile</param-name>
-			<param-value>php|php3|php5|phtml|asp|aspx|ascx|jsp|cfm|cfc|pl|bat|exe|dll|reg|cgi</param-value>
+			<param-value>
+				php|php3|php5|phtml|asp|aspx|ascx|jsp|cfm|cfc|pl|bat|exe|dll|reg|cgi
+			</param-value>
 		</init-param>
 		<init-param>
 			<param-name>AllowedExtensionsImage</param-name>
@@ -63,14 +69,37 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<!-- Standard Action Servlet Configuration -->
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>
+			org.apache.struts.action.ActionServlet
+		</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>Connector</servlet-name>
-		<url-pattern>fckeditor/editor/filemanager/browser/default/connectors/jsp/connector</url-pattern>
+		<url-pattern>
+			fckeditor/editor/filemanager/browser/default/connectors/jsp/connector
+		</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>SimpleUploader</servlet-name>
-		<url-pattern>fckeditor/editor/filemanager/upload/simpleuploader</url-pattern>
+		<url-pattern>
+			fckeditor/editor/filemanager/upload/simpleuploader
+		</url-pattern>
+	</servlet-mapping>
+
+	<!-- Standard Action Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
 </web-app>
