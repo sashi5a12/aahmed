@@ -19,4 +19,5 @@
 	<include file="validationFramework/validationFramework.xml"></include>
 	<include file="token/token.xml"></include>
 	<include file="execAndWait/execAndWait.xml"></include>
+	<include file="tiles/tiles.xml"></include>
 </struts>
