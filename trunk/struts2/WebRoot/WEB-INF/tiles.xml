@@ -1,0 +1,21 @@
+<tiles-definitions>
+	<!-- Base Tiles Definition -->
+	<definition name="base.definition" template="/jsps/tiles/layout/siteLayout.jsp">
+		<put-attribute name="header" value="/jsps/tiles/common/header.jsp" />
+		<!--<put-attribute name="navigation" value="/tiles/navigation.action" />-->
+		<put-attribute name="navigation" value="/jsps/tiles/common/callNavigation.jsp" />
+		<put-attribute name="footer" value="/jsps/tiles/common/footer.jsp" />
+	</definition>
+	
+	<!-- Tiles Definition of welcome page -->
+	<definition name="page.welcome" extends="base.definition">
+		<put-attribute name="title" value="Welcome page" />
+		<put-attribute name="body" value="/jsps/tiles/index.jsp" />
+	</definition>
+	
+	<!-- Tiles Definition of BookList -->
+	<definition name="page.booklist" extends="base.definition">
+		<put-attribute name="title" value="Book list page" />
+		<put-attribute name="body" value="/jsps/tiles/bookList.jsp" />
+	</definition>	
+</tiles-definitions>
