@@ -27,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="<s:url action="validationFramework/Registration"/>">Validation Framework</a><br/>
     <a href="<s:url action="token/Show"/>">Token Test</a><br/> 
     <a href="<s:url action="execAndWait/Show"/>">ExecAndWait Test</a><br/> 
+    <a href="<s:url action="tiles/welcome"/>">Tiles Example</a><br/> 
     <hr/>
     <h1>Tutorial Demos</h1>
     <a href="<s:url action="tutorial/HelloWorld"/>">HelloWorld!</a><br/> 
