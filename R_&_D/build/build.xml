@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="test" default="compile" basedir=".">
+
+	<property name="src" value="${basedir}/../src"/>
+	<property name="build" value="build"/>
+	
+	<target name="init">
+		<mkdir dir="${build}"/>
+	</target>
+	
+	<target name="compile">
+		<javac srcdir="${src}" destdir="${build}"/>
+	</target>
+</project>
