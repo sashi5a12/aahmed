@@ -9,5 +9,6 @@
     	<s:password  name="pwd" label="Password"></s:password><br/>
     	<s:submit/>
     </s:form>
+    
   </body>
 </html>
