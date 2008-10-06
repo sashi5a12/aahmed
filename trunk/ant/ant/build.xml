@@ -8,13 +8,6 @@
 			<fileset dir="${lib.dir}"  includes="jsp-api.jar"></fileset>
 	</path>
 	
-	<fileset  dir="${root.dir}">
-		<patternset id="exclude.jar">
-			<include name="servlet-api.jar"/>
-			<include name="jsp-api.jar"/>
-		</patternset>
-	</fileset>
-	
 	<target name="clean">
 		<echo>Cleaning the ${build.dir}</echo>
 		<delete dir="${build.dir}"></delete>
