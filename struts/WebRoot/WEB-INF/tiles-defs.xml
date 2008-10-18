@@ -22,4 +22,30 @@
 		<put name="title" value="Book list page" />
 		<put name="body" value="/jsp/bookList.jsp" />
 	</definition>
+
+	<definition name="page.item" extends="base.definition">
+		<put name="title" value="Item page" />
+		<put name="body" value="/jsp/item.jsp" />
+	</definition>
+
+	<definition name="page.addUpdateItem" extends="base.definition">
+		<put name="title" value="Add Update Item page" />
+		<put name="body" value="/jsp/addUpdateItem.jsp" />
+	</definition>
+
+	<definition name="page.viewItem" extends="base.definition">
+		<put name="title" value="View Item page" />
+		<put name="body" value="/jsp/viewItem.jsp" />
+	</definition>
+
+	<definition name="page.admin" extends="base.definition">
+		<put name="title" value="Item page" />
+		<put name="body" value="/jsp/admin.jsp" />
+	</definition>
+
+	<definition name="page.addAdmin" extends="base.definition">
+		<put name="title" value="Add Admin page" />
+		<put name="body" value="/jsp/addAdmin.jsp" />
+	</definition>
+
 </tiles-definitions>
