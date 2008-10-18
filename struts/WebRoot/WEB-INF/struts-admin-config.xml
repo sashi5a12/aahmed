@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+	"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="adminForm" type="actions.form.AdminForm" />
+	</form-beans>
+
+	<action-mappings>
+				
+		<action path="/admin"
+				input="admin.page"
+				name="adminForm" 
+				scope="request" 
+				type="action.AdminAction"
+				validate="false" 
+				parameter="method">
+			<forward name="allAdmin" path="page.admin" />
+			<forward name="addAdmin" path="page.addAdmin" />
+		</action>
+
+	</action-mappings>
+
+</struts-config>
+
