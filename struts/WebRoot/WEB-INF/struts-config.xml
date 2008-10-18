@@ -4,28 +4,88 @@
 	"http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
-   <global-forwards >
-      <forward name="welcome" path="/welcome.do" redirect="true" />
-   </global-forwards>
+	<form-beans>
+		<form-bean name="userRegistrationForm" 
+				   type="strutsTutorial.UserRegistrationForm" />
+		<form-bean name="itemForm" 
+				   type="actions.form.ItemForm" />
+	</form-beans>
 
-   <action-mappings >
-      <action path="/welcome" type="action.WelcomeAction">
-         <forward name="showWelcome" path="page.welcome" />
-      </action>
-      <action path="/bookList" type="action.BookListAction">
-         <forward name="showBookList" path="page.booklist" />
-      </action>
-      <action path="/navigation" type="action.NavigationAction">
-         <forward name="showNavigation" path="/jsp/common/navigation.jsp" />
-      </action>
-   </action-mappings>
+	<global-forwards>
+		<forward name="welcome" 
+				 path="/welcome.do" 
+				 redirect="true" />
+	</global-forwards>
 
+	<action-mappings>
+		<action path="/welcome" 
+				type="action.WelcomeAction">
+			<forward name="showWelcome" path="page.welcome" />
+		</action>
+		<action path="/bookList" 
+				type="action.BookListAction">
+			<forward name="showBookList" path="page.booklist" />
+		</action>
+		<action path="/navigation" 
+				type="action.NavigationAction">
+			<forward name="showNavigation" path="/jsp/common/navigation.jsp" />
+		</action>
+		<action path="/userRegistration"
+				input="/jsp/strutsTutorial/userRegistration.jsp"
+				name="userRegistrationForm" 
+				scope="request"
+				type="strutsTutorial.UserRegistrationAction">
+
+			<exception type="java.sql.SQLException"
+				key="userRegistration.sql.exception"
+				path="/userRegistrationException.jsp" />
+
+			<forward name="success" path="/jsp/strutsTutorial/regSuccess.jsp" />
+			<forward name="cancel" path="/welcome" />
+		</action>
+
+		<action path="/MyFileDownloadHandler"
+				type="strutsTutorial.MyDownloadAction" />
+
+		<!-- <action forward="/jsp/Default.jsp" path="/default" />-->
+
+		<action path="/default" 
+				parameter="/Default.jsp"
+				type="org.apache.struts.actions.ForwardAction" 
+				scope="request"
+				validate="false" 
+				unknown="true" />
+				
+		<action path="/item"
+				input="item.page"
+				name="itemForm" 
+				scope="request" 
+				type="action.ItemAction"
+				validate="false" 
+				parameter="method">
+			<forward name="allItems" path="page.item" />
+			<forward name="addItem" path="page.addUpdateItem" />
+			<forward name="updateItem" path="page.addUpdateItem" />
+			<forward name="viewItem" path="page.viewItem" />
+		</action>
+
+	</action-mappings>
+	<controller processorClass="action.MyRequestProcessor"></controller>
 	<message-resources parameter="ApplicationResources" />
 
+	<message-resources key="ERROR_MESSAGES" parameter="ErrorMessages"></message-resources>
+
 	<plug-in className="org.apache.struts.tiles.TilesPlugin">
-		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="definitions-config"
+			value="/WEB-INF/tiles-defs.xml" />
 		<set-property property="moduleAware" value="true" />
-		<set-property property="definitions-parser-validate" value="true" />
+		<set-property property="definitions-parser-validate"
+			value="true" />
+	</plug-in>
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/org/apache/struts/validator/validator-rules.xml, /WEB-INF/validation.xml" />
 	</plug-in>
 
 </struts-config>
