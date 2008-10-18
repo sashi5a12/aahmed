@@ -3,10 +3,14 @@
   <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
-    <init-param>
+    <init-param> 
       <param-name>config</param-name>
       <param-value>/WEB-INF/struts-config.xml</param-value>
     </init-param>
+    <init-param>
+      <param-name>config/admin</param-name>
+      <param-value>/WEB-INF/struts-admin-config.xml</param-value>
+    </init-param> 
     <init-param>
       <param-name>debug</param-name>
       <param-value>3</param-value>
