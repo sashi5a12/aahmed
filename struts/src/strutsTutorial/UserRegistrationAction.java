@@ -16,7 +16,7 @@ public class UserRegistrationAction extends Action {
 			HttpServletRequest request, HttpServletResponse response) {
 		UserRegistrationForm userRegistrationForm = (UserRegistrationForm) form;
 		if (isCancelled(request)){
-			return mapping.findForward("welcome");
+			return mapping.findForward("cancel");
 		}
 		return mapping.findForward("success");
 	}
