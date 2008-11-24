@@ -14,6 +14,9 @@
   <StrutsActivity path="/jsp/strutsTutorial/regSuccess.jsp" location="950,350" dimension="191,49" />
   <StrutsActivity path="/welcome" location="650,450" dimension="74,49" />
   <StrutsActivity path="/jsp/strutsTutorial/userRegistration.jsp" location="350,450" dimension="216,49" />
+  <StrutsActivity path="page.addUpdateItem" location="1250,250" dimension="132,49" />
+  <StrutsActivity path="page.item" location="1250,350" dimension="77,49" />
+  <StrutsActivity path="page.viewItem" location="1250,450" dimension="101,49" />
   <StrutsActivity path="item.page" location="950,650" dimension="77,49" />
   <StrutsActivity path="/jsp/item.jsp" location="350,650" dimension="89,49" />
   <StrutsActivity path="/jsp/navigation.jsp" location="650,250" dimension="119,49" />
@@ -22,16 +25,18 @@
   <StrutsActivity path="/jsp/Default.jsp" location="350,550" dimension="104,49" />
   <StrutsActivity path="addUpdateItem.page" location="50,750" dimension="132,49" />
   <StrutsActivity path="viewItem.page" location="350,750" dimension="101,49" />
-  <StrutsActivity path="page.addUpdateItem" />
-  <StrutsActivity path="page.item" />
-  <StrutsActivity path="page.viewItem" />
-  <StrutsTransition id="/item.do,updateItem,page.addUpdateItem,1" routingType="0">
+  <StrutsActivity path="/DisplayOrderIndexed.do" location="1250,550" dimension="251,88" />
+  <StrutsActivity path="/SaveOrderIndexed.do" location="650,750" dimension="270,88" />
+  <StrutsActivity path="/jsp/indexed/order_indexed.jsp" location="1250,750" dimension="181,49" />
+  <StrutsTransition id="/DisplayOrderIndexed.do,null,/SaveOrderIndexed.do,2" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="712,594" />
-      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="1250,594" />
+      <AbsolutePoint location="1102,594" />
+      <AbsolutePoint location="1102,784" />
+      <AbsolutePoint location="920,784" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/item.do,allItems,page.item,1" routingType="0">
+  <StrutsTransition id="/item.do,updateItem,page.addUpdateItem,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="712,594" />
       <AbsolutePoint location="0,0" />
@@ -43,25 +48,10 @@
       <AbsolutePoint location="122,250" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/jsp/item.jsp,null,/item.do,2" routingType="0">
+  <StrutsTransition id="/item.do,allItems,page.item,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="394,650" />
-      <AbsolutePoint location="394,627" />
-      <AbsolutePoint location="650,627" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/item.do,viewItem,item.page,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="712,638" />
-      <AbsolutePoint location="712,674" />
-      <AbsolutePoint location="950,674" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/item.do,viewItem,viewItem.page,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="712,638" />
-      <AbsolutePoint location="712,774" />
-      <AbsolutePoint location="451,774" />
+      <AbsolutePoint location="712,594" />
+      <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="welcome;6,null,/welcome.do,1" routingType="0">
@@ -79,14 +69,6 @@
       <AbsolutePoint location="774,594" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/item.do,updateItem,addUpdateItem.page,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="742,638" />
-      <AbsolutePoint location="742,874" />
-      <AbsolutePoint location="116,874" />
-      <AbsolutePoint location="116,799" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/item.do,viewItem,page.viewItem,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="712,594" />
@@ -100,32 +82,11 @@
       <AbsolutePoint location="188,438" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/item.do,sucess,item.page,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="712,594" />
-      <AbsolutePoint location="0,0" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/userRegistration.do,success,/jsp/strutsTutorial/regSuccess.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="267,414" />
       <AbsolutePoint location="1045,414" />
       <AbsolutePoint location="1045,399" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/item.do,allItems,item.page,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="774,624" />
-      <AbsolutePoint location="958,624" />
-      <AbsolutePoint location="958,650" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/item.do,addItem,addUpdateItem.page,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="682,638" />
-      <AbsolutePoint location="682,714" />
-      <AbsolutePoint location="112,714" />
-      <AbsolutePoint location="112,750" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/navigation.do,showNavigation,/jsp/common/navigation.jsp,1" routingType="0">
@@ -134,24 +95,23 @@
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/item.do,updateItem,item.page,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="774,594" />
-      <AbsolutePoint location="988,594" />
-      <AbsolutePoint location="988,650" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/item.do,addItem,page.addUpdateItem,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="712,594" />
       <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/item.do,addItem,item.page,1" routingType="0">
+  <StrutsTransition id="/SaveOrderIndexed.do,success,/DisplayOrderIndexed.do,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="774,564" />
-      <AbsolutePoint location="1018,564" />
-      <AbsolutePoint location="1018,650" />
+      <AbsolutePoint location="795,750" />
+      <AbsolutePoint location="795,624" />
+      <AbsolutePoint location="1250,624" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/DisplayOrderIndexed.do,success,/jsp/indexed/order_indexed.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1375,638" />
+      <AbsolutePoint location="1375,750" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/bookList.do,showBookList,page.booklist,1" routingType="0">
