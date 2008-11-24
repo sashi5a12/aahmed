@@ -9,6 +9,9 @@
 				   type="strutsTutorial.UserRegistrationForm" />
 		<form-bean name="itemForm" 
 				   type="actions.form.ItemForm" />
+		<form-bean name="OrderIndexedForm" 
+				   type="forms.indexed.OrderIndexedForm" />
+				   
 	</form-beans>
 
 	<global-forwards>
@@ -67,6 +70,22 @@
 			<forward name="addItem" path="page.addUpdateItem" />
 			<forward name="updateItem" path="page.addUpdateItem" />
 			<forward name="viewItem" path="page.viewItem" />
+		</action>
+
+		<action path="/DisplayOrderIndexed"
+				type="actions.indexed.DisplayOrderIndexedAction"
+				name="OrderIndexedForm" 
+				validate="false" 
+				scope="request">
+			<forward name="success" path="/jsp/indexed/order_indexed.jsp" />
+		</action>
+		<action path="/SaveOrderIndexed"
+				type="actions.indexed.SaveOrderIndexedAction"
+				name="OrderIndexedForm" 
+				validate="true"
+				input="/DisplayOrderIndexed.do" 
+				scope="request">
+			<forward name="success" path="/DisplayOrderIndexed.do" redirect="true" />
 		</action>
 
 	</action-mappings>
