@@ -10,11 +10,13 @@ import java.util.Date;
 public class Message  implements java.io.Serializable {
 
 
-	private static final long serialVersionUID = -8614051923119723288L;
-	private Integer id;
-	private Message nextMessage;
-	private String text;
-	private Date dateModified;
+    // Fields    
+
+     private Integer id;
+     private Message nextMessage;
+     private String text;
+     private Date dateModified;
+     private String defaultMessage;
 
 
     // Constructors
@@ -25,10 +27,11 @@ public class Message  implements java.io.Serializable {
 
     
     /** full constructor */
-    public Message(Message nextMessage, String text, Date dateModified) {
+    public Message(Message nextMessage, String text, Date dateModified, String defaultMessage) {
         this.nextMessage = nextMessage;
         this.text = text;
         this.dateModified = dateModified;
+        this.defaultMessage = defaultMessage;
     }
 
    
@@ -38,9 +41,9 @@ public class Message  implements java.io.Serializable {
     	this.text=text;
 	}
 
-	public Message(String text, Date dateModified) {
-		this.text = text;
-		this.dateModified = dateModified;
+	public Message(String text, Date modifiedDate) {
+		this.text=text;
+		this.dateModified=modifiedDate;
 	}
 
 	public Integer getId() {
@@ -73,6 +76,14 @@ public class Message  implements java.io.Serializable {
     
     public void setDateModified(Date dateModified) {
         this.dateModified = dateModified;
+    }
+
+    public String getDefaultMessage() {
+        return this.defaultMessage;
+    }
+    
+    public void setDefaultMessage(String defaultMessage) {
+        this.defaultMessage = defaultMessage;
     }
    
 

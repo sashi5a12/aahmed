@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"
-[<!ENTITY datemodified SYSTEM "classpath://model/DateModified.hbm.xml">]>
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
-    <class name="model.Message" table="message">
+<hibernate-mapping auto-import="true" package="model">
+    <class name="Message" table="message" dynamic-insert="true" dynamic-update="true" >
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one class="model.Message" name="nextMessage" cascade="all" column="nextMessage"/> 
-        <property name="text" type="java.lang.String">
+        <many-to-one class="Message" name="nextMessage" cascade="all" column="nextMessage"/> 
+        <property name="text" type="java.lang.String" >
             <column name="text" length="255"/>
         </property>
-        &datemodified;
+		<property name="dateModified" column="DATE_MOD" type="timestamp"/>
+		<property name="defaultMessage" type="java.lang.String" insert="false" update="false" generated="always">
+            <column name="DEFAULT_MESSAGE" length="25"/>
+        </property>
         <!--<set name="messages" inverse="true">
             <key>
                 <column name="id" not-null="true" unique="true" />
             </key>
-            <one-to-many class="model.Message" />
+            <one-to-many class="Message" />
         </set>-->
     </class>
 </hibernate-mapping>
