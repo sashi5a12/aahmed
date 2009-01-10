@@ -22,8 +22,8 @@
 		<property name="format_sql">true</property>
 
 		<!--<property name="hibernate.connection.provider_class">conf.DBCPConnectionProvider</property>
-			<property name="hibernate.dbcp.maxActive">8</property>
-			<property name="hibernate.dbcp.maxIdle">8</property>
+			<property name="hibernate.dbcp.maxActive">1</property>
+			<property name="hibernate.dbcp.maxIdle">1</property>
 			<property name="hibernate.dbcp.maxWait">100</property>
 			<property name="hibernate.dbcp.whenExhaustedAction">1</property>
 			<property name="hibernate.dbcp.testOnBorrow">true</property>
@@ -32,6 +32,11 @@
 		-->
 		<mapping resource="model/Message.hbm.xml" />
 		<mapping resource="model/Category.hbm.xml" />
+		<mapping resource="model/BillingDetails.hbm.xml" />
+		<mapping resource="model/Users.hbm.xml" />
+		<mapping resource="model/UnionBillingDetails.hbm.xml" />
+		<mapping resource="model/SubClassBillingDetails.hbm.xml"></mapping>
+		<mapping resource="model/JoinedBillingDetails.hbm.xml" />
 
 	</session-factory>
 
