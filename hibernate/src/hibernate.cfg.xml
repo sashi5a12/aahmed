@@ -35,9 +35,13 @@
 		<mapping resource="model/BillingDetails.hbm.xml" />
 		<mapping resource="model/Users.hbm.xml" />
 		<mapping resource="model/UnionBillingDetails.hbm.xml" />
-		<mapping resource="model/SubClassBillingDetails.hbm.xml"></mapping>
+		<mapping resource="model/SubClassBillingDetails.hbm.xml" />
 		<mapping resource="model/JoinedBillingDetails.hbm.xml" />
-
+		<mapping resource="model/ValueTypeSetItem.hbm.xml" />
+		<mapping resource="model/ValueTypeBagItem.hbm.xml" />
+		<mapping resource="model/ValueTypeListItem.hbm.xml" />
+		<mapping resource="model/ValueTypeMapItem.hbm.xml" />
+		<!--<mapping resource="model/ValueTypeClistItem.hbm.xml" />-->
 	</session-factory>
 
 </hibernate-configuration>
