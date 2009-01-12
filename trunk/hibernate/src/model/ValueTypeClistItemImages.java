@@ -17,6 +17,10 @@ public class ValueTypeClistItemImages implements java.io.Serializable {
 	public ValueTypeClistItemImages() {
 	}
 
+	public ValueTypeClistItemImages(String imageName) {
+		this.imageName = imageName;
+	}
+
 	public String getImageName() {
 		return this.imageName;
 	}
