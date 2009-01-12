@@ -17,7 +17,10 @@ public class MessageTest {
 
 	public static void main(String[] args) {
 		MessageDAO dao = new MessageDAO();
-
+		/*Query q = session.createQuery(
+				"from User u where :bid in elements(u.bids)"
+				);
+				q.setParameter("bid", bid);*/
 		// First unit of work
 		Session session = dao.getSession();
 		Transaction trx = session.beginTransaction();
