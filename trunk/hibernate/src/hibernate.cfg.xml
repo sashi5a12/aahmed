@@ -42,6 +42,8 @@
 		<mapping resource="model/ValueTypeListItem.hbm.xml" />
 		<mapping resource="model/ValueTypeMapItem.hbm.xml" />
 		<mapping resource="model/ValueTypeClistItem.hbm.xml" />
+		<mapping resource="model/Item.hbm.xml" />
+		<mapping resource="model/Bid.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
