@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Users entity. @author MyEclipse Persistence Tools
@@ -23,6 +25,7 @@ public class Users implements java.io.Serializable {
 	private Timestamp created;
 	private HomeAddress homeAddress;
 	private Address shippingAddress;
+	private Set boughtItems=new HashSet(0);
 
 	// Constructors
 
@@ -150,4 +153,16 @@ public class Users implements java.io.Serializable {
 		this.shippingAddress = shippingAddress;
 	}
 
+	public Set getBoughtItems() {
+		return boughtItems;
+	}
+
+	public void setBoughtItems(Set boughtItems) {
+		this.boughtItems = boughtItems;
+	}
+	
+	public void addItem(Item item){
+		item.setBuyer(this);
+		this.boughtItems.add(item);
+	}
 }

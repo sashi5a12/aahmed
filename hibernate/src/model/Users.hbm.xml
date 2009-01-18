@@ -53,5 +53,9 @@
 	            <column name="HOME_CITY" />
 	        </property>
         </component>
+        <set name="boughtItems" table="ITEM_BUYER">
+        	<key column="USER_ID"/>
+        	<many-to-many class="Item" column="ITEM_ID" unique="true"/>
+        </set>
     </class>
 </hibernate-mapping>

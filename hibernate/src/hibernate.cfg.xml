@@ -31,8 +31,8 @@
 			name="hibernate.dbcp.testOnBorrow">true</property> <property
 			name="hibernate.dbcp.testOnReturn">true</property>
 		-->
-		
-			
+
+
 		<mapping resource="model/Message.hbm.xml" />
 		<mapping resource="model/Category.hbm.xml" />
 		<mapping resource="model/UnionBillingDetails.hbm.xml" />
@@ -42,14 +42,16 @@
 		<mapping resource="model/ValueTypeBagItem.hbm.xml" />
 		<mapping resource="model/ValueTypeListItem.hbm.xml" />
 		<mapping resource="model/ValueTypeMapItem.hbm.xml" />
-		<mapping resource="model/ValueTypeClistItem.hbm.xml" /><!--
-		<mapping resource="model/Item.hbm.xml" />
-		<mapping resource="model/Bid.hbm.xml" />
-		--><mapping resource="model/BillingDetails.hbm.xml" />
+		<mapping resource="model/ValueTypeClistItem.hbm.xml" />
+		<mapping resource="model/BillingDetails.hbm.xml" />
 		<mapping resource="model/Users.hbm.xml" />
 		<mapping resource="model/Address.hbm.xml" />
 		<mapping resource="model/OtoFkaUsers.hbm.xml"></mapping>
 		<mapping resource="model/OtoFkaAddress.hbm.xml"></mapping>
+		<mapping resource="model/OtoJtaShipment.hbm.xml"></mapping>
+		<mapping resource="model/OtoJtaItem.hbm.xml"></mapping>
+		<mapping resource="model/Item.hbm.xml" />
+		<mapping resource="model/Bid.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
