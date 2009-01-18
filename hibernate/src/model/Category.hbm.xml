@@ -22,11 +22,11 @@
         <property name="created" type="java.sql.Timestamp">
             <column name="CREATED" length="0" not-null="true" />
         </property>        
-        <set name="childCategories" inverse="true">
+        <!--<set name="childCategories" inverse="true">
             <key>
                 <column name="PARENT_CATEGORY_ID" />
             </key>
             <one-to-many class="Category" />
         </set>
-    </class>
+    --></class>
 </hibernate-mapping>
