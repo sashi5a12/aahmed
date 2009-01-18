@@ -21,19 +21,20 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 
-		<!--<property name="hibernate.connection.provider_class">conf.DBCPConnectionProvider</property>
-			<property name="hibernate.dbcp.maxActive">1</property>
-			<property name="hibernate.dbcp.maxIdle">1</property>
-			<property name="hibernate.dbcp.maxWait">100</property>
-			<property name="hibernate.dbcp.whenExhaustedAction">1</property>
-			<property name="hibernate.dbcp.testOnBorrow">true</property>
-			<property name="hibernate.dbcp.testOnReturn">true</property>
-			
+		<!--
+			<property
+			name="hibernate.connection.provider_class">conf.DBCPConnectionProvider</property>
+			<property name="hibernate.dbcp.maxActive">1</property> <property
+			name="hibernate.dbcp.maxIdle">1</property> <property
+			name="hibernate.dbcp.maxWait">100</property> <property
+			name="hibernate.dbcp.whenExhaustedAction">1</property> <property
+			name="hibernate.dbcp.testOnBorrow">true</property> <property
+			name="hibernate.dbcp.testOnReturn">true</property>
 		-->
+		
+			
 		<mapping resource="model/Message.hbm.xml" />
 		<mapping resource="model/Category.hbm.xml" />
-		<mapping resource="model/BillingDetails.hbm.xml" />
-		<mapping resource="model/Users.hbm.xml" />
 		<mapping resource="model/UnionBillingDetails.hbm.xml" />
 		<mapping resource="model/SubClassBillingDetails.hbm.xml" />
 		<mapping resource="model/JoinedBillingDetails.hbm.xml" />
@@ -41,9 +42,14 @@
 		<mapping resource="model/ValueTypeBagItem.hbm.xml" />
 		<mapping resource="model/ValueTypeListItem.hbm.xml" />
 		<mapping resource="model/ValueTypeMapItem.hbm.xml" />
-		<mapping resource="model/ValueTypeClistItem.hbm.xml" />
+		<mapping resource="model/ValueTypeClistItem.hbm.xml" /><!--
 		<mapping resource="model/Item.hbm.xml" />
 		<mapping resource="model/Bid.hbm.xml" />
+		--><mapping resource="model/BillingDetails.hbm.xml" />
+		<mapping resource="model/Users.hbm.xml" />
+		<mapping resource="model/Address.hbm.xml" />
+		<mapping resource="model/OtoFkaUsers.hbm.xml"></mapping>
+		<mapping resource="model/OtoFkaAddress.hbm.xml"></mapping>
 	</session-factory>
 
 </hibernate-configuration>
