@@ -1,16 +1,15 @@
 package model;
 
 /**
- * Address entity. @author MyEclipse Persistence Tools
+ * OtoFkaAddress entity. @author MyEclipse Persistence Tools
  */
 
-public class Address implements java.io.Serializable {
+public class OtoFkaAddress implements java.io.Serializable {
 
 	// Fields
 
 	private Long addressId;
-	private Users user;
-	private Integer objVersion;
+	private OtoFkaUsers user;
 	private String street;
 	private String zipcode;
 	private String city;
@@ -18,20 +17,13 @@ public class Address implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Address() {
-	}
-
-	/** minimal constructor */
-	public Address(Users user, Integer objVersion) {
-		this.user = user;
-		this.objVersion = objVersion;
+	public OtoFkaAddress() {
 	}
 
 	/** full constructor */
-	public Address(Users user, Integer objVersion, String street,
-			String zipcode, String city) {
+	public OtoFkaAddress(OtoFkaUsers user, String street, String zipcode,
+			String city) {
 		this.user = user;
-		this.objVersion = objVersion;
 		this.street = street;
 		this.zipcode = zipcode;
 		this.city = city;
@@ -47,20 +39,12 @@ public class Address implements java.io.Serializable {
 		this.addressId = addressId;
 	}
 
-	public Users getUser() {
+	public OtoFkaUsers getUser() {
 		return this.user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(OtoFkaUsers user) {
 		this.user = user;
-	}
-
-	public Integer getObjVersion() {
-		return this.objVersion;
-	}
-
-	public void setObjVersion(Integer objVersion) {
-		this.objVersion = objVersion;
 	}
 
 	public String getStreet() {

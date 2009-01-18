@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class Users implements java.io.Serializable {
 
 	// Fields
-	private static final long serialVersionUID = -7095403186715330718L;
+
 	private Long userId;
 	private BillingDetails billingDetails;
 	private Integer objVersion;
@@ -21,7 +21,8 @@ public class Users implements java.io.Serializable {
 	private Integer rank;
 	private Boolean isAdmin;
 	private Timestamp created;
-	private Address homeAddress;
+	private HomeAddress homeAddress;
+	private Address shippingAddress;
 
 	// Constructors
 
@@ -29,11 +30,12 @@ public class Users implements java.io.Serializable {
 	public Users() {
 	}
 
-	public Users(Long userId) {
-		this.userId = userId;
+	// Property accessors
+
+	public Long getUserId() {
+		return this.userId;
 	}
 
-	/** minimal constructor */
 	public Users(Integer objVersion, String firstname, String lastname,
 			String username, String password, String email, Integer rank,
 			Boolean isAdmin, Timestamp created) {
@@ -46,30 +48,6 @@ public class Users implements java.io.Serializable {
 		this.rank = rank;
 		this.isAdmin = isAdmin;
 		this.created = created;
-	}
-
-	/** full constructor */
-	public Users(BillingDetails billingDetails, Integer objVersion,
-			String firstname, String lastname, String username,
-			String password, String email, Integer rank, Boolean isAdmin,
-			Timestamp created, Address homeAddress) {
-		this.billingDetails = billingDetails;
-		this.objVersion = objVersion;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.rank = rank;
-		this.isAdmin = isAdmin;
-		this.created = created;
-		this.homeAddress = homeAddress;
-	}
-
-	// Property accessors
-
-	public Long getUserId() {
-		return this.userId;
 	}
 
 	public void setUserId(Long userId) {
@@ -156,12 +134,20 @@ public class Users implements java.io.Serializable {
 		this.created = created;
 	}
 
-	public Address getHomeAddress() {
+	public HomeAddress getHomeAddress() {
 		return this.homeAddress;
 	}
 
-	public void setHomeAddress(Address homeAddress) {
+	public void setHomeAddress(HomeAddress homeAddress) {
 		this.homeAddress = homeAddress;
+	}
+
+	public Address getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(Address shippingAddress) {
+		this.shippingAddress = shippingAddress;
 	}
 
 }

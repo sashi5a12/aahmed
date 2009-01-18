@@ -30,12 +30,6 @@
         </property>
         <property name="baSwift" type="java.lang.String">
             <column name="BA_SWIFT" length="15" />
-        </property>        
-        <set name="userses" inverse="true">
-            <key>
-                <column name="DEFAULT_BILLING_DETAILS_ID" />
-            </key>
-            <one-to-many class="Users" />
-        </set>
+        </property>
     </class>
 </hibernate-mapping>
