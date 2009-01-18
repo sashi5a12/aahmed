@@ -1,10 +1,9 @@
 package test;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
-import model.Address;
 import model.BillingDetails;
+import model.HomeAddress;
 import model.Users;
 
 import org.hibernate.Session;
@@ -23,7 +22,7 @@ public class Component {
 		Transaction trx=session.beginTransaction();
 		Users user=new Users(1, "Adnan", "Ahmed", "aahmed", "aahmed", "leo_adnan@hotmail.com", 1, true, new Timestamp(System.currentTimeMillis()));
 		BillingDetails billingDetails=new BillingDetails("CC",1,"aahmed", new Timestamp(System.currentTimeMillis()));
-		Address address=new Address();
+		HomeAddress address=new HomeAddress();
 		address.setCity("city");
 		address.setStreet("street");
 		address.setZipcode("zipcode");
