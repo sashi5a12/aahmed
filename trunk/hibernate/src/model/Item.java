@@ -1,8 +1,9 @@
 package model;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Item entity. @author MyEclipse Persistence Tools
@@ -12,13 +13,7 @@ public class Item implements java.io.Serializable {
 
 	// Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8469030983225738060L;
 	private Long itemId;
-	private Integer sellerId;
-	private Integer approvedBy;
 	private Integer objVersion;
 	private String itemName;
 	private String description;
@@ -31,7 +26,9 @@ public class Item implements java.io.Serializable {
 	private String itemState;
 	private Timestamp approvalDatetime;
 	private Timestamp created;
-	private Set<Bid> bids = new HashSet<Bid>(0);
+	private List bids = new ArrayList(0);
+	private Collection images = new ArrayList(0);
+	private Users buyer;
 
 	// Constructors
 
@@ -44,6 +41,29 @@ public class Item implements java.io.Serializable {
 		this.itemName = itemName;
 	}
 
+	/** full constructor */
+	public Item(Integer objVersion, String itemName, String description,
+			Double initialPrice, String initialPriceCurrency,
+			Double reservePrice, String reservePriceCurrency,
+			Timestamp startDate, Timestamp endDate, String itemState,
+			Timestamp approvalDatetime, Timestamp created, List bids,
+			Collection images) {
+		this.objVersion = objVersion;
+		this.itemName = itemName;
+		this.description = description;
+		this.initialPrice = initialPrice;
+		this.initialPriceCurrency = initialPriceCurrency;
+		this.reservePrice = reservePrice;
+		this.reservePriceCurrency = reservePriceCurrency;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.itemState = itemState;
+		this.approvalDatetime = approvalDatetime;
+		this.created = created;
+		this.bids = bids;
+		this.images = images;
+	}
+
 	// Property accessors
 
 	public Long getItemId() {
@@ -52,22 +72,6 @@ public class Item implements java.io.Serializable {
 
 	public void setItemId(Long itemId) {
 		this.itemId = itemId;
-	}
-
-	public Integer getSellerId() {
-		return this.sellerId;
-	}
-
-	public void setSellerId(Integer sellerId) {
-		this.sellerId = sellerId;
-	}
-
-	public Integer getApprovedBy() {
-		return this.approvedBy;
-	}
-
-	public void setApprovedBy(Integer approvedBy) {
-		this.approvedBy = approvedBy;
 	}
 
 	public Integer getObjVersion() {
@@ -166,16 +170,49 @@ public class Item implements java.io.Serializable {
 		this.created = created;
 	}
 
-	public Set<Bid> getBids() {
+	public List getBids() {
 		return this.bids;
 	}
 
-	public void setBids(Set<Bid> bids) {
+	public void setBids(List bids) {
 		this.bids = bids;
 	}
-	
-	public void addBid(Bid bid){
+
+	public Collection getImages() {
+		return this.images;
+	}
+
+	public void setImages(Collection images) {
+		this.images = images;
+	}
+
+	/**
+	 * toString
+	 * 
+	 * @return String
+	 */
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
+		buffer.append("itemId").append("='").append(getItemId()).append("' ");
+		buffer.append("itemName").append("='").append(getItemName()).append("' ");
+		buffer.append("]");
+
+		return buffer.toString();
+	}
+
+	public void addBid(Bid bid) {
 		bid.setItem(this);
 		this.bids.add(bid);
 	}
+
+	public Users getBuyer() {
+		return buyer;
+	}
+
+	public void setBuyer(Users buyer) {
+		this.buyer = buyer;
+	}
+
 }
