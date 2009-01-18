@@ -1,4 +1,4 @@
-package test;
+package test.parentchild;
 
 import model.Bid;
 import model.Item;
@@ -23,7 +23,7 @@ public class Cascade {
 		item.addBid(new Bid());
 		dao.save(item);*/
 		
-		//Delete parent record with children cascade="delete" in mapping file
+		//Delete parent record with all children cascade="delete" in mapping file
 		/*Item item=dao.findById(new Long(1));
 		dao.delete(item);*/
 		
@@ -31,15 +31,6 @@ public class Cascade {
 		/*Item item=dao.findById(2L);
 		Bid bid =item.getBids().iterator().next();
 		item.getBids().remove(bid);*/
-		
-		Item item=new Item("Item-2");
-		dao.save(item);
-		
-		Bid bid=new Bid();
-		bid.setItem(item);
-		String str=null;
-		str.length();
-		bidDao.save(bid);
 		
 		trx.commit();
 	}
