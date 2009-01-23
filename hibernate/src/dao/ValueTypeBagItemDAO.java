@@ -11,7 +11,7 @@ import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 
-import test.ValueTypeBag;
+import test.valuetypecollection.ValueTypeBag;
 
 /**
  * A data access object (DAO) providing persistence and search support for

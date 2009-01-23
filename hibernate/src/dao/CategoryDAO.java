@@ -1,6 +1,8 @@
 package dao;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 import model.Category;
 
@@ -53,7 +55,8 @@ public class CategoryDAO extends BaseHibernateDAO {
 	public Category findById(java.lang.Long id) {
 		log.debug("getting Category instance with id: " + id);
 		try {
-			Category instance = (Category) getSession().get("model.Category", id);
+			Category instance = (Category) getSession().get("model.Category",
+					id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -61,11 +64,13 @@ public class CategoryDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<Category> findByExample(Category instance) {
+	public List findByExample(Category instance) {
 		log.debug("finding Category instance by example");
 		try {
-			List<Category> results = getSession().createCriteria("model.Category").add(Example.create(instance)).list();
-			log.debug("find by example successful, result size: " + results.size());
+			List results = getSession().createCriteria("model.Category").add(
+					Example.create(instance)).list();
+			log.debug("find by example successful, result size: "
+					+ results.size());
 			return results;
 		} catch (RuntimeException re) {
 			log.error("find by example failed", re);
@@ -73,10 +78,12 @@ public class CategoryDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<Category> findByProperty(String propertyName, Object value) {
-		log.debug("finding Category instance with property: " + propertyName + ", value: " + value);
+	public List findByProperty(String propertyName, Object value) {
+		log.debug("finding Category instance with property: " + propertyName
+				+ ", value: " + value);
 		try {
-			String queryString = "from Category as model where model."+ propertyName + "= ?";
+			String queryString = "from Category as model where model."
+					+ propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();
@@ -86,15 +93,15 @@ public class CategoryDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<Category> findByObjVersion(Object objVersion) {
+	public List findByObjVersion(Object objVersion) {
 		return findByProperty(OBJ_VERSION, objVersion);
 	}
 
-	public List<Category> findByCategoryName(Object categoryName) {
+	public List findByCategoryName(Object categoryName) {
 		return findByProperty(CATEGORY_NAME, categoryName);
 	}
 
-	public List<Category> findAll() {
+	public List findAll() {
 		log.debug("finding all Category instances");
 		try {
 			String queryString = "from Category";
