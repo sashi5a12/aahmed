@@ -84,9 +84,14 @@
             </key>
             <element column="FILENAME" not-null="true" type="java.lang.String"/>
         </idbag>
+		<bag name="categories" table="CATEGORY_ITEM" inverse="true" cascade="save-update">
+        	<key column="ITEM_ID"/>
+        	<many-to-many class="Category" column="CATEGORY_ID"/>
+        </bag>        
         <join table="ITEM_BUYER" optional="true" inverse="true">
         	<key column="ITEM_ID" unique="true" not-null="true" />
         	<many-to-one name="buyer" column="USER_ID"/>     
         </join>
+       
     </class>
 </hibernate-mapping>

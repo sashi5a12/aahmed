@@ -28,6 +28,7 @@ public class Item implements java.io.Serializable {
 	private Timestamp created;
 	private List bids = new ArrayList(0);
 	private Collection images = new ArrayList(0);
+	private Collection categories = new ArrayList(0);
 	private Users buyer;
 
 	// Constructors
@@ -47,7 +48,7 @@ public class Item implements java.io.Serializable {
 			Double reservePrice, String reservePriceCurrency,
 			Timestamp startDate, Timestamp endDate, String itemState,
 			Timestamp approvalDatetime, Timestamp created, List bids,
-			Collection images) {
+			Collection images, Collection categories, Users buyer) {
 		this.objVersion = objVersion;
 		this.itemName = itemName;
 		this.description = description;
@@ -62,6 +63,8 @@ public class Item implements java.io.Serializable {
 		this.created = created;
 		this.bids = bids;
 		this.images = images;
+		this.categories = categories;
+		this.buyer = buyer;
 	}
 
 	// Property accessors
@@ -186,6 +189,22 @@ public class Item implements java.io.Serializable {
 		this.images = images;
 	}
 
+	public Collection getCategories() {
+		return this.categories;
+	}
+
+	public void setCategories(Collection categories) {
+		this.categories = categories;
+	}
+
+	public Users getBuyer() {
+		return this.buyer;
+	}
+
+	public void setBuyer(Users buyer) {
+		this.buyer = buyer;
+	}
+
 	/**
 	 * toString
 	 * 
@@ -194,25 +213,23 @@ public class Item implements java.io.Serializable {
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
 
-		buffer.append(getClass().getName()).append("@").append(Integer.toHexString(hashCode())).append(" [");
+		buffer.append(getClass().getName()).append("@").append(
+				Integer.toHexString(hashCode())).append(" [");
 		buffer.append("itemId").append("='").append(getItemId()).append("' ");
-		buffer.append("itemName").append("='").append(getItemName()).append("' ");
+		buffer.append("itemName").append("='").append(getItemName()).append(
+				"' ");
 		buffer.append("]");
 
 		return buffer.toString();
 	}
+
+	// The following is extra code specified in the hbm.xml files
 
 	public void addBid(Bid bid) {
 		bid.setItem(this);
 		this.bids.add(bid);
 	}
 
-	public Users getBuyer() {
-		return buyer;
-	}
-
-	public void setBuyer(Users buyer) {
-		this.buyer = buyer;
-	}
+	// end of extra code specified in the hbm.xml files
 
 }
