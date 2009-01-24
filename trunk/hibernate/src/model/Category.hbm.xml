@@ -20,13 +20,13 @@
             <column name="PARENT_CATEGORY_ID" />
         </many-to-one>
         <property name="objVersion" type="java.lang.Integer">
-            <column name="OBJ_VERSION" not-null="true" />
+            <column name="OBJ_VERSION"  />
         </property>
         <property name="categoryName" type="java.lang.String">
-            <column name="CATEGORY_NAME" not-null="true" />
+            <column name="CATEGORY_NAME" />
         </property>
         <property name="created" type="java.sql.Timestamp">
-            <column name="CREATED" length="0" not-null="true" />
+            <column name="CREATED" length="0" />
         </property>       
         <set name="childCategories" inverse="true">
             <key>
@@ -39,5 +39,9 @@
         	<list-index column="DISPLAY_POSITION"/>
         	<many-to-many class="Item" column="ITEM_ID"/>
         </list>
+        <set name="categorizedItems" inverse="true">
+        	<key column="CATEGORY_ID"/>
+        	<one-to-many class="CategorizedItem"/>
+    	</set> 
     </class>
 </hibernate-mapping>

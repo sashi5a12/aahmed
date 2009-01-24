@@ -21,7 +21,7 @@ public class Category implements java.io.Serializable {
 	private Timestamp created;
 	private Set childCategories = new HashSet(0);
 	private List items = new ArrayList(0);
-
+	private Set categorizedItems=new HashSet(0);
 	// Constructors
 
 	/** default constructor */
@@ -109,4 +109,13 @@ public class Category implements java.io.Serializable {
 		items.add(item);
 		item.getCategories().add(item);
 	}
+
+	public Set getCategorizedItems() {
+		return categorizedItems;
+	}
+
+	public void setCategorizedItems(Set categorizedItems) {
+		this.categorizedItems = categorizedItems;
+	}
+	
 }

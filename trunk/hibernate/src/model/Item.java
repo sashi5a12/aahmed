@@ -3,7 +3,9 @@ package model;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Item entity. @author MyEclipse Persistence Tools
@@ -30,7 +32,8 @@ public class Item implements java.io.Serializable {
 	private Collection images = new ArrayList(0);
 	private Collection categories = new ArrayList(0);
 	private Users buyer;
-
+	private Set categorizedItems=new HashSet(0);
+	
 	// Constructors
 
 	/** default constructor */
@@ -203,6 +206,14 @@ public class Item implements java.io.Serializable {
 
 	public void setBuyer(Users buyer) {
 		this.buyer = buyer;
+	}
+
+	public Set getCategorizedItems() {
+		return categorizedItems;
+	}
+
+	public void setCategorizedItems(Set categorizedItems) {
+		this.categorizedItems = categorizedItems;
 	}
 
 	/**
