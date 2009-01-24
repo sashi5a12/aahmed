@@ -70,6 +70,10 @@
             <one-to-many class="Bid" />
         </bag>
         -->
+	    <set name="categorizedItems" inverse="true">
+	        <key column="CATEGORY_ID"/>
+	        <one-to-many class="CategorizedItem"/>
+	    </set>        
         <list name="bids" cascade="save-update">
         	<key column="ITEM_ID"/>
         	<list-index column="BID_POSITION"/>
@@ -92,6 +96,5 @@
         	<key column="ITEM_ID" unique="true" not-null="true" />
         	<many-to-one name="buyer" column="USER_ID"/>     
         </join>
-       
     </class>
 </hibernate-mapping>
