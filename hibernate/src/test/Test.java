@@ -29,7 +29,6 @@ public class Test {
 		categoryDao.attachDirty(c1);
 		Category c2=categoryDao.findById(2L);
 		c2.setObjVersion(4);
-		
 		trx.commit();
 	}
 

@@ -35,6 +35,10 @@ public class Category implements java.io.Serializable {
 		this.created = created;
 	}
 
+	public Category(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 	/** full constructor */
 	public Category(Category parentCategory, Integer objVersion,
 			String categoryName, Timestamp created, Set childCategories,
@@ -117,5 +121,8 @@ public class Category implements java.io.Serializable {
 	public void setCategorizedItems(Set categorizedItems) {
 		this.categorizedItems = categorizedItems;
 	}
-	
+	public void addChildCategory(Category category){
+		category.setParentCategory(this);
+		childCategories.add(category);
+	}
 }
