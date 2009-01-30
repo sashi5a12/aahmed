@@ -14,9 +14,9 @@
     	 </meta>
         <id name="categoryId" type="java.lang.Long">
             <column name="CATEGORY_ID" />
-            <generator class="identity" />
+            <generator class="native" />
         </id>
-        <many-to-one name="parentCategory" class="Category" fetch="select">
+        <many-to-one name="parentCategory" class="Category" fetch="select" lazy="false">
             <column name="PARENT_CATEGORY_ID" />
         </many-to-one>
         <property name="objVersion" type="java.lang.Integer">
@@ -28,7 +28,7 @@
         <property name="created" type="java.sql.Timestamp">
             <column name="CREATED" length="0" />
         </property>       
-        <set name="childCategories" inverse="true" cascade="save-update, delete-orphan" lazy="false">
+        <set name="childCategories" inverse="true" cascade="save-update, delete-orphan">
             <key>
                 <column name="PARENT_CATEGORY_ID" />
             </key>
