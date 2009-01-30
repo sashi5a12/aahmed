@@ -10,8 +10,11 @@
             <column name="BID_ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="item" class="Item" fetch="select" insert="false" update="false" not-null="true">
+        <many-to-one name="item" class="Item">
             <column name="ITEM_ID" />
+        </many-to-one>
+        <many-to-one name="bidder" class="Users" fetch="join">
+        	<column name="BIDDER_ID"></column>
         </many-to-one>
         <property name="bidAmount" type="java.lang.Double">
             <column name="BID_AMOUNT" />

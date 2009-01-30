@@ -10,6 +10,22 @@ public class CategorizedItem {
 
 		public Id() {
 		}
+		
+		public Long getCategoryId() {
+			return categoryId;
+		}
+
+		public void setCategoryId(Long categoryId) {
+			this.categoryId = categoryId;
+		}
+
+		public Long getItemId() {
+			return itemId;
+		}
+
+		public void setItemId(Long itemId) {
+			this.itemId = itemId;
+		}
 
 		public Id(Long categoryId, Long itemId) {
 			this.categoryId = categoryId;

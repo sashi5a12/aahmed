@@ -14,6 +14,7 @@ public class Bid  implements java.io.Serializable {
 
      private Long bidId;
      private Item item;
+     private Users bidder;
      private Double bidAmount;
      private String bidAmountCurrency;
      private Timestamp created;
@@ -29,8 +30,9 @@ public class Bid  implements java.io.Serializable {
 
     
     /** full constructor */
-    public Bid(Item item, Double bidAmount, String bidAmountCurrency, Timestamp created, String isSuccessful, Integer bidPosition) {
+    public Bid(Item item, Users bidder, Double bidAmount, String bidAmountCurrency, Timestamp created, String isSuccessful, Integer bidPosition) {
         this.item = item;
+        this.bidder = bidder;
         this.bidAmount = bidAmount;
         this.bidAmountCurrency = bidAmountCurrency;
         this.created = created;
@@ -55,6 +57,14 @@ public class Bid  implements java.io.Serializable {
     
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public Users getBidder() {
+        return this.bidder;
+    }
+    
+    public void setBidder(Users bidder) {
+        this.bidder = bidder;
     }
 
     public Double getBidAmount() {
