@@ -24,12 +24,19 @@ public class Test {
 		c1.setCategoryName("Category-1");
 		
 		CategoryDAO categoryDao=new CategoryDAO();
-		Session session=categoryDao.getSession();
-		Transaction trx=session.beginTransaction();
-		categoryDao.attachDirty(c1);
-		Category c2=categoryDao.findById(2L);
-		c2.setObjVersion(4);
-		trx.commit();
+		ItemDAO itemDao=new ItemDAO();
+		
+		Session session=itemDao.getSession();
+		Category c2=categoryDao.findById(1L);
+		Category c3=categoryDao.findById(3L);
+		session.close();
+		Item i1=itemDao.findById(2L);
+//		Session session=categoryDao.getSession();
+//		Transaction trx=session.beginTransaction();
+//		categoryDao.attachDirty(c1);
+//		Category c2=categoryDao.findById(2L);
+//		c2.setObjVersion(4);
+//		trx.commit();
 	}
 
 }

@@ -12,6 +12,7 @@
 				this.bids.add(bid);
 			}    	 	
     	 </meta>
+    	 <cache usage="read-write"/>
         <id name="itemId" type="java.lang.Long">
         	<meta attribute="use-in-tostring">true</meta>
             <column name="ITEM_ID" />
@@ -77,6 +78,7 @@
 	        <one-to-many class="CategorizedItem"/>
 	    </set>        
         <list name="bids" cascade="save-update, delete-orphan">
+        	<cache usage="read-only"/>
         	<key column="ITEM_ID"/>
         	<list-index column="BID_POSITION"/>
         	<one-to-many class="Bid"/>
