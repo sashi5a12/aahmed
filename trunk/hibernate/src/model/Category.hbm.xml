@@ -12,11 +12,12 @@
 				item.getCategories().add(item);
 			}
     	 </meta>
+     	<cache usage="read-write"/>
         <id name="categoryId" type="java.lang.Long">
             <column name="CATEGORY_ID" />
             <generator class="native" />
         </id>
-        <many-to-one name="parentCategory" class="Category" fetch="select" lazy="false">
+        <many-to-one name="parentCategory" class="Category" fetch="join">
             <column name="PARENT_CATEGORY_ID" />
         </many-to-one>
         <property name="objVersion" type="java.lang.Integer">
@@ -35,6 +36,7 @@
             <one-to-many class="Category" />
         </set>
         <list name="items" table="CATEGORY_ITEM" cascade="save-update">
+        	<cache usage="read-write"/>
         	<key column="CATEGORY_ID"/>
         	<list-index column="DISPLAY_POSITION"/>
         	<many-to-many class="Item" column="ITEM_ID"/>
