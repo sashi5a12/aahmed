@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Enumerable#detect</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  	<script type="text/javascript" src="../js/prototype-1.6.0.3.js"></script>
+	<script type="text/javascript">
+	function test() {
+		var num=[1,2,3,4,5,6,7,8,9,10].detect(function(num){
+			return num % 2 == 0;
+		});
+		alert(num);
+	}
+	</script>  
+  </head>
+  
+  <body>
+  	<button onclick="test()">Click Here!</button>
+  </body>
+</html>
