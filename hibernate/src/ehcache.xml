@@ -91,6 +91,13 @@
             timeToLiveSeconds="100000"
             overflowToDisk="false"/>
 
+	<cache name="model.Item"
+            maxElementsInMemory="50000"
+            eternal="false"
+            timeToIdleSeconds="1800"
+            timeToLiveSeconds="100000"
+            overflowToDisk="false"/>
+
     <cache name="model.Country"
         maxElementsInMemory="300"
         eternal="true"
