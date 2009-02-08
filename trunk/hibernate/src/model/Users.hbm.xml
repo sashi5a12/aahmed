@@ -6,11 +6,23 @@
 -->
 <hibernate-mapping package="model">
     <class name="Users" table="users" catalog="auction" dynamic-insert="true" dynamic-update="true"  batch-size="10">
+	   	 <meta attribute="class-code">
+			public String toString() {
+				StringBuilder sb=new StringBuilder();
+				sb.append("userId: "+this.userId+"\t");
+				sb.append("firstname: "+this.firstname+"\t");
+				sb.append("lastname: "+this.lastname+"\t");
+				sb.append("username: "+this.username+"\t");
+				sb.append("email: "+this.email+"\t");
+				sb.append("isAdmin: "+this.isAdmin+"\t");
+				return sb.toString();
+			}
+	   	 </meta>    
         <id name="userId" type="java.lang.Long">
             <column name="USER_ID" />
             <generator class="identity" />
         </id>
-        <one-to-one name="shippingAddress" class="Address" cascade="save-update" fetch="join" />
+        <one-to-one name="shippingAddress" class="Address" cascade="save-update" fetch="join"  />
         
         <many-to-one name="billingDetails" class="BillingDetails" fetch="select" cascade="all">
             <column name="DEFAULT_BILLING_DETAILS_ID" />

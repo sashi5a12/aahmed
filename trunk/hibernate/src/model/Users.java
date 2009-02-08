@@ -165,4 +165,17 @@ public class Users implements java.io.Serializable {
 		item.setBuyer(this);
 		this.boughtItems.add(item);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb=new StringBuilder();
+		sb.append("userId: "+this.userId+"\t");
+		sb.append("firstname: "+this.firstname+"\t");
+		sb.append("lastname: "+this.lastname+"\t");
+		sb.append("username: "+this.username+"\t");
+		sb.append("email: "+this.email+"\t");
+		sb.append("isAdmin: "+this.isAdmin+"\t");
+		return sb.toString();
+	}
+	
 }
