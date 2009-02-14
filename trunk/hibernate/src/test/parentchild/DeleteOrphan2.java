@@ -16,7 +16,7 @@ public class DeleteOrphan2 {
 	public static void main(String[] args) {
 		CategoryDAO dao=new CategoryDAO();
 		Session s1=dao.getSession();
-		Category c=dao.findById(22L);
+		Category c=dao.findById(3L);
 		Category ch1=(Category)dao.findByCategoryName("Child-1").get(0);
 		Category ch2=(Category)dao.findByCategoryName("Child-3").get(0);
 		s1.close();
