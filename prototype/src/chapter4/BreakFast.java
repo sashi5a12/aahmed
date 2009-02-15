@@ -20,7 +20,7 @@ public class BreakFast extends HttpServlet {
 		String taste=request.getParameter("taste");
 		PrintWriter writer=response.getWriter();
 		if (foodType==null || taste==null){
-			response.sendError(419, "invalid submission");
+//			response.sendError(419, "invalid submission");
 			writer.write("<li>At <strong>"+date+"</strong>: Whoa! Be more descriptive.</li>");
 		}
 		else {
