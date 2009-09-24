@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:envProps.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="contextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+		<property name="url" value="ldap://sjsssoapp1.netpace.com:2389" />
+		<property name="base" value="ou=People,dc=netpace,dc=com" />
+		<property name="userDn" value="cn=Directory Manager" />
+		<property name="password" value="12657alcosta" />					
+		<property name="pooled" value="true"/>
+	</bean>
+	<bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+		<constructor-arg ref="contextSource" />
+	</bean>
+	<bean id="ldapContact" class="com.javaworld.sample.LDAPContactDAO">
+		<property name="ldapTemplate" ref="ldapTemplate" />
+	</bean>
+</beans>
