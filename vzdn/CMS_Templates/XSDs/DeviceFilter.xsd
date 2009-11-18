@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:vzdn="http://www.netpace.com/vzdn"
+			xmlns:alf="http://www.alfresco.org"
+			targetNamespace="http://www.netpace.com/vzdn"
+			elementFormDefault="qualified"			
+			>
+
+	<xs:complexType name="sub_menu">
+		<xs:sequence>
+			<xs:element name="name" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${deviceFilter.label.subMenuName}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${deviceFilter.label.subMenuLink}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="root">
+		<xs:annotation>
+			<xs:appinfo>
+				<alf:label>${deviceFilter.label}</alf:label>
+			</xs:appinfo>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence>				
+				<xs:element name="page_title" type="xs:normalizedString">			
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.pageTitle}</alf:label>
+				            <alf:alert>${common.required.error.pageTitle}</alf:alert>
+				        </xs:appinfo>
+				    </xs:annotation>				
+				</xs:element>			
+				<xs:element name="heading" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.heading}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+			
+				<xs:element name="filters" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${deviceFilter.label.filters}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="main_menu" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${deviceFilter.label.mainMenu}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="sub_menus" type="vzdn:sub_menu" minOccurs="0" maxOccurs="unbounded">
+							    <xs:annotation>
+							        <xs:appinfo>
+							            <alf:label>${deviceFilter.label.subMenus}</alf:label>
+							        </xs:appinfo>
+							    </xs:annotation>				
+							</xs:element>
+							
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

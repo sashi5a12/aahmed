@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:vzdn="http://www.netpace.com/vzdn"
+			xmlns:alf="http://www.alfresco.org"
+			targetNamespace="http://www.netpace.com/vzdn"
+			elementFormDefault="qualified"			
+			>
+	<xs:complexType name="deviceSliderImages">
+		<xs:sequence>
+			<xs:element name="deviceDisplayName" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>Display Name</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>
+			</xs:element>
+			<xs:element name="deviceImage" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>Device Image</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>
+			</xs:element>
+			<xs:element name="deviceImageAlt" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>Device Image Alt Text</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>
+			</xs:element>
+			<xs:element name="link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${common.label.link}</alf:label>
+			            <alf:appearance>image_file_picker</alf:appearance>
+			        </xs:appinfo>
+			    </xs:annotation>
+			</xs:element>
+			<xs:element name="target" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+			            <alf:label>${common.label.linkTarget}</alf:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="logged_in" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+			            <alf:label>${common.label.linkLoggedIn}</alf:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="root">
+		<xs:annotation>
+			<xs:appinfo>
+				<alf:label>${wireless.label}</alf:label>
+			</xs:appinfo>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence>				
+				<xs:element name="page_title" type="xs:normalizedString">			
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.pageTitle}</alf:label>
+				            <alf:alert>${common.required.error.pageTitle}</alf:alert>
+				        </xs:appinfo>
+				    </xs:annotation>				
+				</xs:element>			
+				<xs:element name="keywords" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.keywords}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				<xs:element name="version" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.version}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				<xs:element name="heading" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.heading}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				<xs:element name="spotlight_html" type="xs:anyURI" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+				            <alf:label>${common.label.spotlightHtml}</alf:label>
+				            <alf:appearance>vzdn_html_file_picker</alf:appearance>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				
+				<xs:element name="soft_dev_contents" minOccurs="0"  maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${wireless.label.softDevContents}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="title_text" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.title_text}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+					
+							<xs:element name="image" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.image}</alf:label>
+										<alf:appearance>image_file_picker</alf:appearance>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="image_alt_text" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.imageAltText}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dev_center_link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.devCenterLink}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="dev_center_target" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkTarget}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="dev_center_logged_in" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkLoggedIn}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="short_description" type="xs:string" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.shortDesc}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learn_more_text" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+							    <xs:annotation>
+							        <xs:appinfo>
+							            <alf:label>${common.label.learnMoreText}</alf:label>
+							        </xs:appinfo>
+							    </xs:annotation>				
+							</xs:element>							
+							<xs:element name="learn_more_link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.learnMoreLink}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learn_more_target" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkTarget}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="learn_more_logged_in" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkLoggedIn}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="get_sdk_text" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.getSdktext}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="get_sdk_link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${wireless.label.getSdkLink}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="target" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkTarget}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="logged_in" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkLoggedIn}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<xs:element name="deviceSliderPod" minOccurs="0" maxOccurs="4">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${gotoMarket.label.deviceSlidertPod}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="device_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${gotoMarket.label.deviceTitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="images" type="vzdn:deviceSliderImages" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${gotoMarket.label.images}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

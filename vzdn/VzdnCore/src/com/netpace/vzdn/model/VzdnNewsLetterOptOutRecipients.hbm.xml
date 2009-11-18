@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.netpace.vzdn.model">
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+	<class name="VzdnNewsLetterOptOutRecipients" table="vzdn_newsletter_optout_users">
+	
+	<id name="optOutId" type="java.lang.Integer">
+            
+            <column name="opt_out_id" />
+            
+            <generator class="native"/>
+    </id>
+    
+    <property name="lastUpdateBy" type="java.lang.String" column="last_updated_by" />
+     
+	<property name="lastUpdateDate" type="java.sql.Timestamp" column="last_updated_date"/>
+	
+	<many-to-one name="vzdnUser" class="VzdnUsers">
+	
+		<column name="user_id"></column>
+		
+	</many-to-one>		
+	
+</class>
+</hibernate-mapping>

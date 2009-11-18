@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+
+<project name="alfrescoFSR" default="war" basedir=".">
+
+	<!-- USER'S DEFINED PATH IS PICKED FROM THIS PROPERTY FILE -->
+	<property file="${basedir}/../build.properties" />
+	<property file="build.properties" />
+
+	<property name="conf.dir" value="${basedir}/conf" />
+	<property name="environment.dir" value="${conf.dir}/environment/${deploy.env}" />
+
+	<property name="app.name" value="alfrescoFSR" />
+	<property name="lib.dir" value="${basedir}/lib" />
+
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="deploy.dir" value="${tomcat.base}/webapps" />
+    
+	<!-- =================================================================== -->
+	<!-- Define all the required paths here                                  -->
+	<!-- =================================================================== -->
+
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- =================================================================== -->
+	<!-- Cleans up the current build                                         -->
+	<!-- =================================================================== -->
+
+	<target name="clean-local">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compile the source                                                  -->
+	<!-- =================================================================== -->
+
+	<target name="compile">
+		<echo>Compiling for: ${deploy.env}</echo>
+		<mkdir dir="${build.dir}/classes" />
+		<!-- Copy resources files to the classes folder -->
+		<copy todir="${build.dir}/classes">			
+			<fileset file="${environment.dir}/deployment.properties"  />
+			<fileset dir="${conf.dir}/log4j" />
+		</copy>		
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Package - create a war file                                         -->
+	<!-- =================================================================== -->
+
+	<target name="war" depends="clean-local,compile" description="Package WAR">
+		<war destfile="${build.dir}/${app.name}.war" webxml="${conf.dir}/web/web.xml">
+			<webinf file="${environment.dir}/deployment-config.xml"/>
+			<webinf file="${conf.dir}/spring/deployment-servlet.xml"/>
+			<classes dir="${build.dir}/classes" />
+			<lib dir="${lib.dir}">
+				<include name="*.jar" />
+			</lib>
+		</war>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Deploy - Deploy to tomcat                                           -->
+	<!-- =================================================================== -->
+
+	<target name="cleanDeployedFolder">
+        <delete dir="${deploy.dir}/${app.name}"/>    	
+    </target>
+	
+	<target name="deploy" depends="cleanDeployedFolder,war">
+		<copy file="${build.dir}/${app.name}.war" todir="${deploy.dir}" overwrite="true" />
+	</target>
+       
+	<!-- =================================================================== -->
+	<!-- Help - Ant Tasks                                                    -->
+	<!-- =================================================================== -->
+
+	<target name="help">
+		<echo message=" ****************************************************   " />
+		<echo message="                   FSR Help Menu                        " />
+		<echo message=" ****************************************************   " />
+		<echo message="                                                        " />
+		<echo message="                                                        " />
+		<echo message=" ant help      - Shows FSR ant help menu                " />		
+	</target>
+</project>
