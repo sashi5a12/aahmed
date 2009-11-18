@@ -1,0 +1,348 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">Verizon Deck Change Request Schema.  filename:dcr.xsd. Copyright 2004 Infospace.com. All rights reserved. </xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="DeckChangeRequest" type="DCRType"/>
+	<xsd:complexType name="DCRType">
+		<xsd:sequence>
+			<xsd:element name="VendorData" type="VendorDataType"/>
+			<xsd:element name="ProductData" type="ProductDataType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VendorDataType">
+		<xsd:sequence>
+			<xsd:element name="VendorLoginID" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Used to generate a access control ID for premium content.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,200}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VendorName">
+				<xsd:annotation>
+					<xsd:documentation>Vendors business (dba) name.  May be used to present in end-user presentation.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,80}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VendorId">
+				<xsd:annotation>
+					<xsd:documentation>Created by VZW Programming Team.  (Will match the SCM Vendor_Id to be associated with this vendor in PricePlan updates.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,6}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VendorLogoURL" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Graphic representation of Vendors business logo.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,256}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VendorBusinessContact" type="ContactType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>required the first time a dcr is submitted</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VendorTechnicalContact" type="ContactType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>required the first time a dcr is submitted</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VendorEscalationContact" type="EscalationContactType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>required the first time a dcr is submitted</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CustomerContact" type="CustomerContactType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>required the first time a dcr is submitted.  Verizon business contact, responsible for this content Vendor relationship</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+    	<xsd:attribute name="Action" type="ActionType" use="optional" default="Update" >
+			<xsd:annotation>
+				<xsd:documentation>Reserved: Action to be taken with regard to this Vendor.</xsd:documentation>
+			</xsd:annotation>
+    	</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ProductDataType">
+		<xsd:sequence>
+			<xsd:element name="VendorProductCode">
+				<xsd:annotation>
+					<xsd:documentation>Provided by vendor.  (Will be stored in the SCM).</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,20}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="VendorProductVersion">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor (This will be stored in the SCM) for their product.  If not applicable, the value should be 1.0</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,10}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ProductPresentationNameLargeScreens" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Provided by the Vendor.  Displayed to user several places for larger devices.  (Will match the SCM item_Display_Name).</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,20}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ProductPresentationNameSmallScreens">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. Displayed to user several places for smaller devices.  Most likely 10 characters will be used; however, up to 13 may be accommodated depending on the letters in the name.  A 10-character name is mandatory.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,13}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ProductIconURL" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor.  Image file that can be used as a display icon next to the products link in the Deck/Catalog.  Image must comply with UI guidelines.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,256}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ProductImageURL" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. Image file that may replace the text name for a products link in the Deck/Catalog. Image must comply with UI guidelines</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,256}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="LongDescription">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor.  Used to describe the product in detail.  Presented to user on the More Info page associate with the product. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,500}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ShortDescription">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor.  This is a short description used in a catalog and presented on the sign-up page.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,200}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="DemoURL" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. URL used to promote content, this is a URI for a sample xhtml site used to promote the products capabilities.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,256}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="TestURL">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. Testing environment URL for WAP 2.0 application. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,256}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AvailabilityDateForTestURL" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. This date is the earliest the URL can be tested.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ProductionURL">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. Production environment URL for WAP 2.0 application.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,256}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="AvailabilityDateForProductionURL" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. This date is the earliest the URL can go into Production (i.e. will be production ready.)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DesktopURL" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Provided by Vendor. Provide desktop url if a desktop website is available to enhance or customize the WAP 2.0 experience.  .   Please also provide a description of what can be customized.  This url may be presented on the Verizon Wireless companion website.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,256}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="UserProfile" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>MDN Passed if this field is answered Yes. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="MDN"/>
+						<xsd:enumeration value="Zip"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="PremiumIndicator" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>Provided by VZW Programming Team. Indicator as to whether the product will be offered as a premium product.  </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="InitialPortalPlacement" type="InitialPortalPlacementType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Category, Subcategories and position where the content application should be displayed in both the standard and premium areas of the portal.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+    	<xsd:attribute name="Action" type="ActionType" use="optional" default="Update" >
+			<xsd:annotation>
+				<xsd:documentation>Reserved: Action to be taken with regard to this Product.</xsd:documentation>
+			</xsd:annotation>
+    	</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ContactType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string"/>
+			<xsd:element name="Title" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+			<xsd:element name="OfficePhone" type="PhoneType" minOccurs="0"/>
+			<xsd:element name="MobilePhone" type="PhoneType" minOccurs="0"/>
+			<xsd:element name="Email" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">f@boy.com</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,1024}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EscalationContactType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string"/>
+			<xsd:element name="Title" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Address" type="AddressType" minOccurs="0"/>
+			<xsd:element name="OfficePhone" type="PhoneType" minOccurs="0"/>
+			<xsd:element name="MobilePhone" type="PhoneType" minOccurs="0"/>
+			<xsd:element name="Email" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">f@boy.com</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,1024}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="EscalationPhone" type="PhoneType" minOccurs="0"/>
+			<xsd:element name="EscalationInstructions" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,1024}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CustomerContactType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string"/>
+			<xsd:element name="Email" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:annotation>
+						<xsd:documentation xml:lang="en">f@boy.com</xsd:documentation>
+					</xsd:annotation>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,1024}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddressType">
+		<xsd:sequence>
+			<xsd:element name="Street" type="xsd:string"/>
+			<xsd:element name="City" type="xsd:string"/>
+			<xsd:element name="State" type="xsd:string"/>
+			<xsd:element name="Zip" type="xsd:decimal"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PhoneType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">free form text phone representation.  suggested format (999)999-9999x1234</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Phone" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InitialPortalPlacementType">
+		<xsd:sequence>
+			<xsd:element name="Category">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,20}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Subcategory" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value=".{0,20}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Position">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:positiveInteger"/>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ActionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Update"/>
+			<xsd:enumeration value="Remove"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

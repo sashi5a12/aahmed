@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+
+	<bean id="myPasswordCallback" class="com.netpace.aims.ws.appinfo.client.ClientPasswordCallback" >
+		<property name="password" value="pAsS2vErIz0N" />
+	</bean>
+
+	<!-- The SOAP client bean -->
+	<jaxws:client 
+		id="client" 
+		serviceClass="com.netpace.aims.ws.appinfo.ApplicationInfoSoap"
+		address="https://gtmstage.netpace.com/zonws/ApplicationInfo">
+		
+		<jaxws:outInterceptors>
+			<!--
+			SAAJ Interceptor needs to be explicitly declared only in CXF 2.0.x
+			-->
+			<bean class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor"/>
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken" />
+						<entry key="user" value="vdsApiUser" />
+						<entry key="passwordType" value="PasswordDigest" />
+						<entry key="passwordCallbackRef">
+							<ref bean="myPasswordCallback" />
+						</entry>
+					</map>
+				</constructor-arg>
+			</bean>
+		</jaxws:outInterceptors>
+
+	</jaxws:client>
+
+</beans>
+
+
+
+
+
+

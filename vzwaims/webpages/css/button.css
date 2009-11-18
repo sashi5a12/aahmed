@@ -1,0 +1,28 @@
+DIV.btnTopLine {border-top:solid 1px black}
+
+DIV.redBtn {height:21px;}
+DIV.redBtn div {background-image:url(../images/buttons/button_red_right.gif); background-repeat:no-repeat; background-position:right top; height:21px; float:left;}
+DIV.redBtn div div{background-image:url(../images/buttons/button_red_left.gif); background-repeat:no-repeat; background-position:top left; height:21px;}
+DIV.redBtn div div div {FONT: bold 11px arial,sans-serif; color:#ffffff; text-decoration:none; padding-left:10px; padding-right:10px; line-height:20px; cursor:pointer;}
+DIV.redBtn div div a {FONT: bold 11px arial,sans-serif; color:#ffffff; text-decoration:none; padding-left:10px; padding-right:10px; line-height:20px;}
+DIV.redBtn div div a:visited {FONT: bold 11px arial,sans-serif; color:#ffffff; text-decoration:none; padding-left:10px; padding-right:10px; line-height:20px;}
+
+DIV.redSmallBtn {height:21px;}
+DIV.redSmallBtn div {background-image:url(../images/buttons/button_red_right.gif); background-repeat:no-repeat; background-position:right top; height:21px; float:left;}
+DIV.redSmallBtn div div{background-image:url(../images/buttons/button_red_left.gif); background-repeat:no-repeat; background-position:top left; height:21px;}
+DIV.redSmallBtn div div div {FONT:bold 11px arial; color:#ffffff; text-decoration:none; padding-left:5px; padding-right:5px; line-height:20px; cursor:pointer;}
+
+DIV.blackBtn {height:21px;}
+DIV.blackBtn div {background-image:url(../images/buttons/button_black_right.gif); background-repeat:no-repeat; background-position:right top; height:21px; float:left;}
+DIV.blackBtn div div{background-image:url(../images/buttons/button_black_left.gif); background-repeat:no-repeat; background-position:top left; height:21px;}
+DIV.blackBtn div div div {FONT: bold 11px arial,sans-serif; color:#ffffff; text-decoration:none; padding-left:10px; padding-right:10px; line-height:20px; cursor:pointer;}
+DIV.blackBtn div div a {FONT: bold 11px arial,sans-serif; color:#ffffff; text-decoration:none; padding-left:10px; padding-right:10px; line-height:20px;}
+DIV.blackBtn div div a:visited {FONT: bold 11px arial,sans-serif; color:#ffffff; text-decoration:none; padding-left:10px; padding-right:10px; line-height:20px;}
+
+DIV.blackSmallBtn {height:21px;}
+DIV.blackSmallBtn div {background-image:url(../images/buttons/button_black_right.gif); background-repeat:no-repeat; background-position:right top; height:21px; float:left;}
+DIV.blackSmallBtn div div {background-image:url(../images/buttons/button_black_left.gif); background-repeat:no-repeat; background-position:top left; height:21px;}
+DIV.blackSmallBtn div div div {FONT: bold 11px arial; color:#ffffff; text-decoration:none; padding-left:5px; padding-right:5px; line-height:20px; cursor:pointer;}
+
+DIV.divButtons div.redBtn  {    margin-left:10px;   }
+DIV.divButtons div.blackBtn  {    margin-left:10px;   }

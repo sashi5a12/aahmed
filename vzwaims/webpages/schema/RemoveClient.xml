@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientProv xmlns="http://www.autodesk.com/lbs/wsg/schemas/clientProv">
+	<reqHdr ver="1.0.1">
+		<client>
+			<id>xxx</id>
+			<pwd>xxxxxx</pwd>
+		</client>
+	</reqHdr>
+	<removeClientReq requestID="xxx">
+		<clientId>xxxxx</clientId>
+	</removeClientReq>
+</clientProv>
+
