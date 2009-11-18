@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.tools.AimsToolFiles" 
+    table="AIMS_TOOLS"
+>
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta> 
+    <id
+        name="toolId"
+        type="java.lang.Long"
+        column="TOOL_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_TOOLS</param>
+        </generator>
+    </id>
+    <property
+        name="fileName"
+        type="java.lang.String"
+        column="TOOL_FILE_FILE_NAME"
+        length="150"
+    />
+	  <property
+        name="toolFile"
+        type="java.sql.Blob"
+        column="TOOL_FILE"
+        
+    />
+    <property
+        name="toolFileContentType"
+        type="java.lang.String"
+        column="TOOL_FILE_CONTENT_TYPE"
+        length="100"
+    />
+	<property
+        name="showAll"
+        type="java.lang.String"
+        column="SHOW_ALL"
+        length="1"
+    />
+    
+    <!-- associations -->
+    <set
+        name="aimsAppCategories"
+        table="AIMS_TOOL_CATEGORIES"
+        lazy="true"
+    >
+        <key>
+            <column name="TOOL_ID" />
+        </key>
+        <many-to-many
+            class="com.netpace.aims.model.tools.AimsToolCatMaster" >
+            <column name="CATEGORY_ID" not-null="true"/>
+        </many-to-many>
+    </set>
+    
+    <set
+        name="aimsContracts"
+        table="AIMS_TOOL_CONTRACTS"
+        lazy="true"
+    >
+        <key>
+            <column name="TOOL_ID" />
+        </key>
+        <many-to-many
+            class="com.netpace.aims.model.core.AimsContract" >
+            <column name="CONTRACT_ID" not-null="true"/>
+        </many-to-many>
+    </set>
+	
+	 <set
+        name="platform"
+        table="AIMS_TOOL_PLATFORMS"
+        lazy="true"
+    >
+        <key>
+            <column name="TOOL_ID"  />
+        </key>
+        <many-to-many class="com.netpace.aims.model.core.AimsPlatform">
+			<column name="PLATFORM_ID" not-null="true"/>
+		</many-to-many>
+    </set>
+</class>
+</hibernate-mapping>

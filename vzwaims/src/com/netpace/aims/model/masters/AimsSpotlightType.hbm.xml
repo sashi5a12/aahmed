@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.masters.AimsSpotlightType" 
+    table="AIMS_SPOTLIGHT_TYPES"
+>
+<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>  
+    <id
+        name="spotlightTypeId"
+        type="java.lang.Long"
+        column="SPOTLIGHT_TYPE_ID"
+    >
+        <generator class="sequence">
+			<param name="sequence">SEQ_PK_SPOTLIGHT_TYPES</param>
+		</generator>
+    </id>
+    <property
+        name="spotlightTypeName"
+        type="java.lang.String"
+        column="SPOTLIGHT_TYPE_NAME"
+        length="50"
+    />
+    <property
+        name="spotlightTypeDesc"
+        type="java.lang.String"
+        column="SPOTLIGHT_TYPE_DESC"
+        length="200"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+
+    <property
+        name="imageName"
+        type="java.lang.String"
+        column="IMAGE_NAME"
+        length="50"
+    />
+    <property
+        name="active"
+        type="java.lang.String"
+        column="ACTIVE"
+        length="1"
+    />
+
+
+</class>
+</hibernate-mapping>

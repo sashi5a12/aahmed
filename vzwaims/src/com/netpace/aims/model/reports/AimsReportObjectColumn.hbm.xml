@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.reports.AimsReportObjectColumn" 
+    table="AIMS_REPORT_OBJECT_COLUMNS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="reportObjectColumnId"
+        type="java.lang.Long"
+        column="REPORT_OBJECT_COLUMN_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_REPORT_OBJECT_COLUMNS</param>
+        </generator>
+    </id>
+    <property
+        name="columnName"
+        type="java.lang.String"
+        column="COLUMN_NAME"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="columnDisplayName"
+        type="java.lang.String"
+        column="COLUMN_DISPLAY_NAME"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="columnType"
+        type="java.lang.String"
+        column="COLUMN_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+
+<property
+        name="reportObjectId"
+        type="java.lang.Long"
+        column="REPORT_OBJECT_ID"
+      
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsReportObject -->
+    
+	<!--
+	<many-to-one
+        name="aimsReportObject"
+        class="com.netpace.aims.model.reports.AimsReportObject"
+        not-null="true"
+    >
+        <column name="REPORT_OBJECT_ID" />
+    </many-to-one>   
+	-->
+
+</class>
+</hibernate-mapping>

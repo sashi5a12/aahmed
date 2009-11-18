@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.events.AimsNotifAdHocRecipient" 
+    table="AIMS_NOTIF_AD_HOC_RECIPIENTS"
+>
+
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+     <id
+        name="notificationId"
+        type="java.lang.Long"
+        column="NOTIFICATION_ID"
+    >
+		 <generator class="assigned" />
+    </id>
+
+	<property
+        name="emailAddress"
+        type="java.lang.String"
+        column="EMAIL_ADDRESS"
+        length="100"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsEventNotification -->
+    <!--many-to-one
+        name="aimsEventNotification"
+        class="com.netpace.aims.model.events.AimsEventNotification"
+        not-null="true"
+    >
+        <column name="NOTIFICATION_ID" />
+    </many-to-one-->   
+
+</class>
+</hibernate-mapping>

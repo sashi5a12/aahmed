@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.events.AimsEventHandler" 
+    table="AIMS_EVENT_HANDLERS"
+>
+<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="eventHandlerId"
+        type="java.lang.Long"
+        column="EVENT_HANDLER_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="className"
+        type="java.lang.String"
+        column="CLASS_NAME"
+        update="false"
+        insert="false"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+	
+	<!--many-to-one association CHANGED to properties-->
+	<property name="eventId" type="java.lang.Long" column="EVENT_ID" length="22"    />
+
+	<!-- associations -->
+    <!-- bi-directional many-to-one association to AimsEvent -->
+    <!--many-to-one
+        name="aimsEvent"
+        class="com.netpace.aims.model.events.AimsEvent"
+        not-null="true"
+    >
+        <column name="EVENT_ID" />
+    </many-to-one-->   
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.system.AimsCertification" 
+    table="AIMS_CERTIFICATIONS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="certificationId"
+        type="java.lang.Long"
+        column="CERTIFICATION_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_CERTIFICATIONS</param>
+        </generator>
+    </id>
+    <property
+        name="certificationName"
+        type="java.lang.String"
+        column="CERTIFICATION_NAME"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+    <property
+        name="certificationDesc"
+        type="java.lang.String"
+        column="CERTIFICATION_DESC"
+        length="500"
+    />
+    <property
+        name="certificationOrg"
+        type="java.lang.String"
+        column="CERTIFICATION_ORG"
+        length="200"
+    />
+    <property
+        name="certificationUrl"
+        type="java.lang.String"
+        column="CERTIFICATION_URL"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

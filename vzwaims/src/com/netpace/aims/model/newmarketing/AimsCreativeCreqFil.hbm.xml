@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.newmarketing.AimsCreativeCreqFil" 
+    table="AIMS_CREATIVE_CREQ_FILES">
+    
+      <id
+        name="fileId"
+        type="java.lang.Long"
+        column="FILE_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_CREA_CONT_REQ_FILES</param>
+        </generator>
+    </id>
+    
+    <property
+        name="crequestId"
+        type="java.lang.Long"
+        column="CREQUEST_ID"
+        length="22"
+    />
+  
+    <property
+        name="fileType"
+        type="java.lang.String"
+        column="FILE_TYPE"
+        not-null="true"
+        length="100"
+    />
+    <property
+        name="fileName"
+        type="java.lang.String"
+        column="FILE_NAME"
+        not-null="true"
+        length="100"
+    />
+    <property
+        name="fileObject"
+        type="java.sql.Blob"
+        column="FILE_OBJECT"
+        not-null="true"
+        length="4000"
+    />
+    <property
+        name="comments"
+        type="java.lang.String"
+        column="COMMENTS"
+        length="500"
+    />
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

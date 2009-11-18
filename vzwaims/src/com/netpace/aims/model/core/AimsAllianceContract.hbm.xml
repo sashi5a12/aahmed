@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.core.AimsAllianceContract" 
+    table="AIMS_ALLIANCE_CONTRACTS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="allianceContractId"
+        type="java.lang.Long"
+        column="ALLIANCE_CONTRACT_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_ALLIANCE_CONTRACTS</param>
+        </generator>
+    </id>
+
+	<property 
+		name="allianceId" 
+		type="java.lang.Long" 
+		column="ALLIANCE_ID" 
+		length="22"
+	 />
+
+	<property 
+		name="contractId" 
+		type="java.lang.Long" 
+		column="CONTRACT_ID" 
+		length="22"
+	 />
+
+    <property
+        name="vzwContractPresentDate"
+        type="java.sql.Timestamp"
+        column="VZW_CONTRACT_PRESENT_DATE"
+        length="7"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="20"
+    />
+
+    <property
+        name="modifiedContDoc"
+        type="java.sql.Blob"
+        column="MODIFIED_CONT_DOC"
+        length="4000"
+    />
+    <property
+        name="modifiedContDocFileName"
+        type="java.lang.String"
+        column="MODIFIED_CONT_DOC_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="modifiedContDocContentType"
+        type="java.lang.String"
+        column="MODIFIED_CONT_DOC_CONTENT_TYPE"
+        length="100"
+    />
+    <property
+        name="vzwStatus"
+        type="java.lang.String"
+        column="VZW_STATUS"
+        length="20"
+    />
+    <property
+        name="ifNegotiable"
+        type="java.lang.String"
+        column="IF_NEGOTIABLE"
+        length="1"
+    />
+
+    <property
+        name="acceptDeclineDate"
+        type="java.sql.Timestamp"
+        column="ACCEPT_DECLINE_DATE"
+        length="7"
+    />
+    <property
+        name="contractEffDate"
+        type="java.sql.Timestamp"
+        column="CONTRACT_EFF_DATE"
+        length="7"
+    />
+    <property
+        name="contractExpDate"
+        type="java.sql.Timestamp"
+        column="CONTRACT_EXP_DATE"
+        length="7"
+    />
+    <property
+        name="comments"
+        type="java.lang.String"
+        column="COMMENTS"
+        length="200"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="20"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+
+	<property 
+		name="acceptDeclineUserId" 
+		type="java.lang.Long" 
+		column="ACCEPT_DECLINE_USER_ID" 
+		length="22"
+	 />
+
+    <property
+        name="acceptDeclineSignName"
+        type="java.lang.String"
+        column="ACCEPT_DECLINE_SIGN_NAME"
+        length="100"
+    />
+    <property
+        name="acceptDeclineSignTitle"
+        type="java.lang.String"
+        column="ACCEPT_DECLINE_SIGN_TITLE"
+        length="100"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsUser 
+    <many-to-one
+        name="aimsUser"
+        class="com.netpace.aims.model.core.AimsUser"
+        not-null="true"
+		insert="false"
+		update="false"
+    >
+        <column name="ACCEPT_DECLINE_USER_ID" />
+    </many-to-one> 
+	-->
+    <!-- bi-directional many-to-one association to AimsAllianc 
+    <many-to-one
+        name="aimsAllianc"
+        class="com.netpace.aims.model.core.AimsAllianc"
+        not-null="true"
+		insert="false"
+		update="false"
+    >
+        <column name="ALLIANCE_ID" />
+    </many-to-one>   
+	--> 
+    <!-- bi-directional many-to-one association to AimsContract 
+    <many-to-one
+        name="aimsContract"
+        class="com.netpace.aims.model.core.AimsContract"
+        not-null="true"
+		insert="false"
+		update="false"
+    >
+        <column name="CONTRACT_ID" />
+    </many-to-one>   
+	-->
+</class>
+</hibernate-mapping>

@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.core.AimsCaseStudy" 
+    table="AIMS_CASE_STUDIES"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="caseStudyId"
+        type="java.lang.Long"
+        column="CASE_STUDY_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_CASE_STUDIES</param>
+        </generator>
+    </id>
+    <property
+        name="caseStudyName"
+        type="java.lang.String"
+        column="CASE_STUDY_NAME"
+        length="200"
+    />
+    <property
+        name="caseStudyDesc"
+        type="java.lang.String"
+        column="CASE_STUDY_DESC"
+        length="500"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="20"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="acceptDeclineDate"
+        type="java.sql.Timestamp"
+        column="ACCEPT_DECLINE_DATE"
+        length="7"
+    />
+    <property
+        name="comments"
+        type="java.lang.String"
+        column="COMMENTS"
+        length="20"
+    />
+    <property
+        name="caseStudyDoc"
+        type="java.sql.Blob"
+        column="CASE_STUDY_DOC"
+        length="4000"
+    />
+    <property
+        name="caseStudyDocFileName"
+        type="java.lang.String"
+        column="CASE_STUDY_DOC_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="caseStudyDocContentType"
+        type="java.lang.String"
+        column="CASE_STUDY_DOC_CONTENT_TYPE"
+        length="100"
+    />
+
+
+	<property 
+		name="appsId" 
+		type="java.lang.Long" 
+		column="APPS_ID" 
+		length="22"
+	 />
+
+	<property 
+		name="allianceId" 
+		type="java.lang.Long" 
+		column="ALLIANCE_ID" 
+		length="22"
+	 />
+
+	<property 
+		name="acceptDeclineUserId" 
+		type="java.lang.Long" 
+		column="ACCEPT_DECLINE_USER_ID" 
+		length="22"
+	 />
+
+	<property 
+		name="createdUserId" 
+		type="java.lang.Long" 
+		column="CREATED_USER_ID" 
+		length="22"
+	 />
+
+ 
+</class>
+</hibernate-mapping>

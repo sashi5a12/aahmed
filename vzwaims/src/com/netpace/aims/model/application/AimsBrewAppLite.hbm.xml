@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsBrewAppLite" 
+    table="AIMS_BREW_APPS"
+>
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+
+    <id
+        name="brewAppsId"
+        type="java.lang.Long"
+        column="BREW_APPS_ID"
+    >
+        <generator class="assigned"/>
+			
+    </id>
+    
+    
+    <property
+        name="appSize"
+        type="java.lang.String"
+        column="APP_SIZE"
+        length="50"
+    />
+    
+    <property
+        name="appType"
+        type="java.lang.String"
+        column="APP_TYPE"
+        length="1"
+    />
+    
+     <property
+        name="isLbs"
+        type="java.lang.String"
+        column="IS_LBS"
+        length="1"
+    />   
+    
+    <property
+        name="lbsClientId"
+        type="java.lang.Long"
+        column="LBS_CLIENT_ID"
+    />
+    
+	<property
+        name="lbsSecretKey"
+        type="java.lang.String"
+        column="LBS_SECRET_KEY"
+        length="32"
+    />
+    <property
+        name="lbsAutodeskPhaseId"
+        type="java.lang.Long"
+        column="LBS_AUTODESK_PHASE_ID"
+    />
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.message.AimsMessage" 
+    table="AIMS_MESSAGES"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="messageId"
+        type="java.lang.Long"
+        column="MESSAGE_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_MESSAGES</param>
+        </generator>
+    </id>
+    <property
+        name="subject"
+        type="java.lang.String"
+        column="SUBJECT"
+        length="300"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="recipients"
+        type="java.lang.String"
+        column="RECIPIENTS"
+        length="2000"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="20"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="viewedDate"
+        type="java.sql.Timestamp"
+        column="VIEWED_DATE"
+        length="7"
+    />
+    <property
+        name="messageText"
+        type="java.lang.String"
+        column="MESSAGE_TEXT"
+        length="4000"
+    />
+
+    <property
+        name="parentMesgId"
+        type="java.lang.Long"
+        column="PARENT_MESSAGE_ID"
+    />
+
+
+    <property
+        name="fromContactId"
+        type="java.lang.Long"
+        column="FROM_ID"
+    />
+
+    <property
+        name="toContactId"
+        type="java.lang.Long"
+        column="TO_ID"
+    />
+
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsContact -->
+    <many-to-one
+        name="aimsContactByFromId"
+        class="com.netpace.aims.model.core.AimsContact"
+        not-null="false"
+        insert="false"
+        update="false"
+    >
+        <column name="FROM_ID" />
+    </many-to-one>   
+    
+    
+    <!-- bi-directional many-to-one association to AimsContact -->
+    <many-to-one
+        name="aimsContactByToId"
+        class="com.netpace.aims.model.core.AimsContact"
+        not-null="false"
+        insert="false"
+        update="false"
+    >
+        <column name="TO_ID" />
+    </many-to-one>   
+    
+    
+    <!-- bi-directional many-to-one association to AimsApp -->
+    <!--
+    <many-to-one
+        name="aimsApp"
+        class="com.netpace.aims.model.AimsApp"
+        not-null="true"
+    >
+        <column name="APPS_ID" />
+    </many-to-one>   
+    -->
+    
+    <!-- bi-directional many-to-one association to AimsAllianc -->
+    <!--
+    <many-to-one
+        name="aimsAllianc"
+        class="com.netpace.aims.model.AimsAllianc"
+        not-null="true"
+    >
+        <column name="ALLIANCE_ID" />
+    </many-to-one>   
+    -->
+    
+    <!-- bi-directional one-to-many association to AimsMessag -->
+    <!--
+    <set
+        name="aimsMessags"
+        lazy="true"
+        inverse="true"
+    >
+        <key>
+            <column name="PARENT_MESSAGE_ID" />
+        </key>
+        <one-to-many 
+            class="com.netpace.aims.model.AimsMessag"
+        />
+    </set>
+    -->
+    
+    <!-- bi-directional many-to-one association to AimsMessag -->
+    <!--
+    <many-to-one
+        name="aimsMessag"
+        class="com.netpace.aims.model.AimsMessag"
+        not-null="true"
+    >
+        <column name="PARENT_MESSAGE_ID" />
+    </many-to-one>   
+    -->
+
+</class>
+</hibernate-mapping>

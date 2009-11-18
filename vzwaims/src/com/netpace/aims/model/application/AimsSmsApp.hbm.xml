@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsSmsApp" 
+    table="AIMS_SMS_APPS"
+>
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+		
+		<id
+        name="smsAppsId"
+        type="java.lang.Long"
+        column="SMS_APPS_ID"
+    >
+        <generator class="assigned"/>
+			
+    </id>
+    
+    <property
+        name="campaignClassification"
+        type="java.lang.String"
+        column="CAMPAIGN_CLASSIFICATION"
+        length="50"
+    />
+    <property
+        name="campaignStartDate"
+        type="java.sql.Timestamp"
+        column="CAMPAIGN_START_DATE"
+        length="7"
+    />
+    <property
+        name="campaignEndDate"
+        type="java.sql.Timestamp"
+        column="CAMPAIGN_END_DATE"
+        length="7"
+    />
+    <property
+        name="carrierSupport"
+        type="java.lang.String"
+        column="CARRIER_SUPPORT"
+        length="1"
+    />
+    <property
+        name="wholesalePrice"
+        type="java.math.BigDecimal"
+        column="WHOLESALE_PRICE"
+        length="22"
+    />
+    <property
+        name="retailPrice"
+        type="java.math.BigDecimal"
+        column="RETAIL_PRICE"
+        length="22"
+    />
+    <property
+        name="targetedLaunchDate"
+        type="java.sql.Timestamp"
+        column="TARGETED_LAUNCH_DATE"
+        length="7"
+    />
+    <property
+        name="avgMsgsPerSec"
+        type="java.math.BigDecimal"
+        column="AVG_MSGS_PER_SEC"
+        length="22"
+    />
+    <property
+        name="peakMsgsPerSec"
+        type="java.math.BigDecimal"
+        column="PEAK_MSGS_PER_SEC"
+        length="22"
+    />
+    <property
+        name="ifVzwDirectConn"
+        type="java.lang.String"
+        column="IF_VZW_DIRECT_CONN"
+        length="1"
+    />
+    <property
+        name="connType"
+        type="java.lang.String"
+        column="CONN_TYPE"
+        length="50"
+    />
+    <property
+        name="contentProvider"
+        type="java.lang.String"
+        column="CONTENT_PROVIDER"
+        length="100"
+    />
+    <property
+        name="campaignDesc"
+        type="java.lang.String"
+        column="CAMPAIGN_DESC"
+        length="500"
+    />
+    <property
+        name="campaignPromoInfo"
+        type="java.lang.String"
+        column="CAMPAIGN_PROMO_INFO"
+        length="500"
+    />
+    <property
+        name="shortCodesReqd"
+        type="java.lang.String"
+        column="SHORT_CODES_REQD"
+        length="100"
+    />
+    <property
+        name="messageFlowFileName"
+        type="java.lang.String"
+        column="MESSAGE_FLOW_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="messageFlowContentType"
+        type="java.lang.String"
+        column="MESSAGE_FLOW_CONTENT_TYPE"
+        length="100"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional one-to-one association to AimsApp 
+    <many-to-one
+        name="aimsApp"
+        class="com.netpace.aims.model.AimsApp"
+    >
+        <column name="SMS_APPS_ID" />
+    </many-to-one>   
+		-->
+		
+</class>
+</hibernate-mapping>

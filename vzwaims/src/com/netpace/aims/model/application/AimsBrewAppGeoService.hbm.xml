@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsBrewAppGeoService" 
+    table="AIMS_BREW_APPS_J_GEO_SERVICES"
+>
+ <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+    <composite-id>
+      <key-property name="brewAppsId" column="BREW_APPS_ID"/>
+      <key-many-to-one name="geoServices" class="com.netpace.aims.model.application.AimsLbsGeoService" column="GEO_SERVICE_ID"/>
+    </composite-id>
+
+    <property name="brewAppsId" type="java.lang.Long" column="BREW_APPS_ID" insert="false" update="false" /> 
+
+</class>
+</hibernate-mapping>

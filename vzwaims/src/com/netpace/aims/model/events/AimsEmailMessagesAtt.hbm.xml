@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.events.AimsEmailMessagesAtt" 
+    table="AIMS_EMAIL_MESSAGES_ATT"
+>
+<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+
+    <id
+        name="emailMessageId"
+        type="java.lang.Long"
+        column="EMAIL_MESSAGE_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    
+    <property
+        name="att"
+        type="java.sql.Blob"
+        column="ATT"
+        length="4000"
+    />
+    <property
+        name="attFileName"
+        type="java.lang.String"
+        column="ATT_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="attContentType"
+        type="java.lang.String"
+        column="ATT_CONTENT_TYPE"
+        length="100"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.security.AimsRolePrivilege" 
+    table="AIMS_ROLE_PRIVILEGES"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <composite-id>
+      <key-property name="roleId" column="ROLE_ID"/>
+      <key-many-to-one name="privilege" class="com.netpace.aims.model.security.AimsSysPrivilege" column="PRIVILEGE_ID"/>
+    </composite-id>
+
+
+    <property
+        name="roleId"
+        type="java.lang.Long"
+        column="ROLE_ID"
+        insert="false"
+        update="false"
+    />
+<!--
+    <property
+        name="privilegeId"
+        type="java.lang.Long"
+        column="PRIVILEGE_ID"
+        insert="false"
+        update="false"
+    />
+-->
+    <property
+        name="ifSelectAllowed"
+        type="java.lang.String"
+        column="IF_SELECT_ALLOWED"
+        length="1"
+    />
+    <property
+        name="ifCreateAllowed"
+        type="java.lang.String"
+        column="IF_CREATE_ALLOWED"
+        length="1"
+    />
+    <property
+        name="ifUpdateAllowed"
+        type="java.lang.String"
+        column="IF_UPDATE_ALLOWED"
+        length="1"
+    />
+    <property
+        name="ifDeleteAllowed"
+        type="java.lang.String"
+        column="IF_DELETE_ALLOWED"
+        length="1"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsSysRol -->
+    <!--
+    <many-to-one
+        name="aimsSysRol"
+        class="com.netpace.aims.model.security.AimsSysRole"
+        not-null="true"
+        insert="false"
+        update="false"
+    >
+        <column name="ROLE_ID" />
+    </many-to-one>   
+    -->
+    <!-- bi-directional many-to-one association to AimsSysPrivilege -->
+    <!--
+    <many-to-one
+        name="privilege"
+        class="com.netpace.aims.model.security.AimsSysPrivilege"
+        not-null="true"
+        insert="false"
+        update="false"
+    >
+        <column name="PRIVILEGE_ID" />
+    </many-to-one>   
+    -->
+</class>
+</hibernate-mapping>

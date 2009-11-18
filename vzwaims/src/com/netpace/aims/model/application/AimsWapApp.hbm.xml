@@ -1,0 +1,491 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsWapApp" 
+    table="AIMS_WAP_APPS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="wapAppsId"
+        type="java.lang.Long"
+        column="WAP_APPS_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="wapUrl"
+        type="java.lang.String"
+        column="WAP_URL"
+        length="100"
+    />
+    <property
+        name="launchDate"
+        type="java.sql.Timestamp"
+        column="LAUNCH_DATE"
+        length="7"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="numSuppResources"
+        type="java.lang.Long"
+        column="NUM_SUPP_RESOURCES"
+        length="22"
+    />
+    <property
+        name="screenShotFileName"
+        type="java.lang.String"
+        column="SCREEN_SHOT_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="screenShotContentType"
+        type="java.lang.String"
+        column="SCREEN_SHOT_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="longProductName"
+        type="java.lang.String"
+        column="LONG_PRODUCT_NAME"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="descContentOffering"
+        type="java.lang.String"
+        column="DESC_CONTENT_OFFERING"
+        length="500"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="contentType"
+        type="java.lang.String"
+        column="CONTENT_TYPE"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="demoUrl"
+        type="java.lang.String"
+        column="DEMO_URL"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="testUrl"
+        type="java.lang.String"
+        column="TEST_URL"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="productionUrl"
+        type="java.lang.String"
+        column="PRODUCTION_URL"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="websiteUrl"
+        type="java.lang.String"
+        column="WEBSITE_URL"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="subCategoryId1"
+        type="java.lang.Long"
+        column="SUB_CATEGORY_ID_1"
+        length="22"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="subCategoryId2"
+        type="java.lang.Long"
+        column="SUB_CATEGORY_ID_2"
+        length="22"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="subCategoryId3"
+        type="java.lang.Long"
+        column="SUB_CATEGORY_ID_3"
+        length="22"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="linkOrder1"
+        type="java.lang.String"
+        column="LINK_ORDER_1"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="linkOrder2"
+        type="java.lang.String"
+        column="LINK_ORDER_2"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="linkOrder3"
+        type="java.lang.String"
+        column="LINK_ORDER_3"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="testEffectiveDate"
+        type="java.sql.Timestamp"
+        column="TEST_EFFECTIVE_DATE"
+        length="7"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="presentationFileName"
+        type="java.lang.String"
+        column="PRESENTATION_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="presentationContentType"
+        type="java.lang.String"
+        column="PRESENTATION_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+
+    <property
+        name="appMediumLargeImageFileName"
+        type="java.lang.String"
+        column="APP_IMG_MEDIUM_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="appMediumLargeImageContentType"
+        type="java.lang.String"
+        column="APP_IMG_MEDIUM_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="appQVGAPotraitImageFileName"
+        type="java.lang.String"
+        column="APP_IMG_POTRAIT_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="appQVGAPotraitImageContentType"
+        type="java.lang.String"
+        column="APP_IMG_POTRAIT_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="appQVGALandscapeImageFileName"
+        type="java.lang.String"
+        column="APP_IMG_LANDSCAPE_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="appQVGALandscapeImageContentType"
+        type="java.lang.String"
+        column="APP_IMG_LANDSCAPE_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+
+    <property
+        name="productLogoFileName"
+        type="java.lang.String"
+        column="PRODUCT_LOGO_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="productLogoContentType"
+        type="java.lang.String"
+        column="PRODUCT_LOGO_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="productIconFileName"
+        type="java.lang.String"
+        column="PRODUCT_ICON_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="productIconContentType"
+        type="java.lang.String"
+        column="PRODUCT_ICON_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="vendorProductCode"
+        type="java.lang.String"
+        column="VENDOR_PRODUCT_CODE"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="vendorProductDisplay"
+        type="java.lang.String"
+        column="VENDOR_PRODUCT_DISPLAY"
+        length="500"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="vzwRetailPrice"
+        type="java.lang.String"
+        column="VZW_RETAIL_PRICE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="initialApprovalAction"
+        type="java.lang.String"
+        column="INITIAL_APPROVAL_ACTION"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="initialApprovalNotes"
+        type="java.lang.String"
+        column="INITIAL_APPROVAL_NOTES"
+        length="500"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="businessApprovalAction"
+        type="java.lang.String"
+        column="BUSINESS_APPROVAL_ACTION"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="businessApprovalNotes"
+        type="java.lang.String"
+        column="BUSINESS_APPROVAL_NOTES"
+        length="500"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="moveToPendingDcr"
+        type="java.lang.String"
+        column="MOVE_TO_PENDING_DCR"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="moveToCompletedInProduction"
+        type="java.lang.String"
+        column="MOVE_TO_COMPLETED_IN_PROD"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="moveToSunset"
+        type="java.lang.String"
+        column="MOVE_TO_SUNSET"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="pendingDcrNotes"
+        type="java.lang.String"
+        column="PENDING_DCR_NOTES"
+        length="500"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="vendorSplitPercentage"
+        type="java.lang.String"
+        column="VENDOR_SPLIT_PERCENTAGE"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="pendingDcrVersion"
+        type="java.lang.String"
+        column="PENDING_DCR_VERSION"
+        length="50"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="wapVersion"
+        type="java.lang.String"
+        column="WAP_VERSION"
+        length="3"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="clonedFromId"
+        type="java.lang.Long"
+        column="CLONED_FROM_ID"
+        length="22"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="clonedFromTitle"
+        type="java.lang.String"
+        column="CLONED_FROM_TITLE"
+        length="200"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>    
+	<property
+        name="taxCategoryCodeId"
+        type="java.lang.Long"
+        column="TAX_CATEGORY_CODE_ID"
+        length="22"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>    
+    <property
+        name="vzwLiveDate"
+        type="java.sql.Timestamp"
+        column="VZW_LIVE_DATE"
+        length="7"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="pageViewRate"
+        type="java.lang.String"
+        column="PAGE_VIEW_RATE"
+        length="50"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>    
+      <property
+        name="rolledBackToPendingDcr"
+        type="java.lang.String"
+        column="ROLLED_BACK_TO_PENDING_DCR"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>    
+      <property
+        name="versionBeforeRollback"
+        type="java.lang.String"
+        column="VERSION_BEFORE_ROLLBACK"
+        length="30"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+
+    <property
+        name="wapFtpFlag"
+        type="java.lang.String"
+        column="WAP_FTP_FLAG"
+        length="1"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    
+   <set name="licenseTypes" table="AIMS_WAP_APPS_J_LICENSE_TYPE">
+        <key>
+            <column name="WAP_APPS_ID" not-null="true"/>
+        </key>
+        <many-to-many class="com.netpace.aims.model.application.AimsWapLicenseType">
+			<column name="LICENSE_TYPE_ID" not-null="true"/>
+        </many-to-many>        
+    </set>
+    
+    <!-- bi-directional one-to-many association to AimsWapAppsBrowser -->
+    <set
+        name="aimsWapAppsBrowsers"
+        table="AIMS_WAP_APPS_BROWSERS"  
+    >
+        <key>
+            <column name="WAP_APPS_ID" not-null="true"/>
+        </key>
+        <many-to-many class="com.netpace.aims.model.masters.AimsBrowser">
+		   <column name="BROWSER_ID" not-null="true"/>
+		</many-to-many>
+        
+    </set>
+	
+    <!-- bi-directional one-to-many association to AimsWapAppsProgLang 	-->
+	
+	 <set
+        name="aimsWapAppsProgLangs"
+        table="AIMS_WAP_APPS_PROG_LANGS"
+    >
+        <key>
+            <column name="WAP_APPS_ID" not-null="true"/>
+        </key>
+        <many-to-many  class="com.netpace.aims.model.masters.AimsProgrammingLang">
+             <column name= "LANG_ID" not-null="true"/>
+		</many-to-many>	 
+    </set>
+	
+	
+  
+</class>
+</hibernate-mapping>

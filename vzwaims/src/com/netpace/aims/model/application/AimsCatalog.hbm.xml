@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsCatalog" 
+    table="AIMS_CATALOGS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>  
+	<id
+        name="catalogId"
+        type="java.lang.Long"
+        column="CATALOG_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_CATALOGS</param>
+        </generator>
+    </id>
+    <property
+        name="catalogDateCreated"
+        type="java.sql.Date"
+        column="CATALOG_DATE_CREATED"
+        length="7"
+    />
+    <property
+        name="catalogFileName"
+        type="java.lang.String"
+        column="CATALOG_FILE_NAME"
+        length="200"
+    />
+    <property
+        name="catalogGin"
+        type="java.lang.String"
+        column="CATALOG_GIN"
+        length="50"
+    />
+    <property
+        name="isReconciled"
+        type="java.lang.String"
+        column="IS_RECONCILED"
+        length="1"
+    />
+    <property
+        name="reconciledDate"
+        type="java.sql.Date"
+        column="RECONCILED_DATE"
+        length="7"
+    />
+    <property
+        name="comments"
+        type="java.lang.String"
+        column="COMMENTS"
+        length="1000"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="20"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to AimsCatalogsData -->
+    <set
+        name="aimsCatalogsDatas"
+        cascade="all"
+        lazy="true"
+        inverse="true"
+    >
+        <key>
+            <column name="CATALOG_ID" />
+        </key>
+        <one-to-many 
+            class="com.netpace.aims.model.application.AimsCatalogsData"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+<!-- 
+    
+-->
+<hibernate-mapping>
+    <class name="com.netpace.aims.model.application.AimsVZAppZoneApp" table="AIMS_VZAPPZONE_APPS">
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+		<id
+			name="vzAppZoneAppsId"
+			type="java.lang.Long"
+			column="VZAPPZONE_APPS_ID"
+		>
+			<generator class="assigned" />
+		</id>
+
+		<property
+			name="appCatalogName"
+			type="java.lang.String"
+			column="APP_CATALOG_NAME"
+			length="200"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="appProductCode"
+			type="java.lang.String"
+			column="APP_PRODUCT_CODE"
+			length="150"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="appGoLiveDate"
+			type="java.sql.Timestamp"
+			column="APP_GO_LIVE_DATE"
+			length="7"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="appExpirationDate"
+			type="java.sql.Timestamp"
+			column="APP_EXPIRATION_DATE"
+			length="7"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>  
+
+		<property
+			name="subsBilling"
+			type="java.lang.String"
+			column="SUBS_BILLING"
+			length="1"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="subsBillingPricepoint"
+			type="java.lang.String"
+			column="SUBS_BILLING_PRICEPOINT"
+			length="100"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="onetimeBilling"
+			type="java.lang.String"
+			column="ONETIME_BILLING"
+			length="1"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="onetimeBillingPricepoint"
+			type="java.lang.String"
+			column="ONETIME_BILLING_PRICEPOINT"
+			length="100"
+		/>
+
+		<property
+			name="appLandingPageContentType"
+			type="java.lang.String"
+			column="APP_LANDING_PAGE_CONTENT_TYPE"
+			length="100"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="appLandingPageFileName"
+			type="java.lang.String"
+			column="APP_LANDING_PAGE_FILE_NAME"
+			length="150"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="appPresentationContentType"
+			type="java.lang.String"
+			column="APP_PRESENTATION_CONTENT_TYPE"
+			length="100"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="appPresentationFileName"
+			type="java.lang.String"
+			column="APP_PRESENTATION_FILE_NAME"
+			length="150"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		
+		<property
+			name="clonedFromId"
+			type="java.lang.Long"
+			column="CLONED_FROM_ID"
+			length="22"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		
+		<property
+			name="clonedFromTitle"
+			type="java.lang.String"
+			column="CLONED_FROM_TITLE"
+			length="200"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property> 
+
+		<property
+			name="subVZWRecommendedPrice"
+			type="java.lang.String"
+			column="SUBS_VZW_RECOMMENDED_PRICE"
+			length="100"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property
+			name="subsVendorSplitPercent"
+			type="java.lang.String"
+			column="SUBS_VENDOR_SPLIT_PERCENT"
+			length="150"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property
+			name="subsVendorProdDisplay"
+			type="java.lang.String"
+			column="SUBS_VENDOR_PROD_DISPLAY"
+			length="500"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="onetimeVZWRecommendedPrice"
+			type="java.lang.String"
+			column="ONETIME_VZW_RECOMMENDED_PRICE"
+			length="100"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property
+			name="onetimeVendorSplitPercent"
+			type="java.lang.String"
+			column="ONETIME_VENDOR_SPLIT_PERCENT"
+			length="150"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property
+			name="onetimeVendorProdDisplay"
+			type="java.lang.String"
+			column="ONETIME_VENDOR_PROD_DISPLAY"
+			length="500"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="subCategory1"
+			type="java.lang.Long"
+			column="SUB_CATEGORY1"
+			length="22"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property
+			name="subCategory2"
+			type="java.lang.Long"
+			column="SUB_CATEGORY2"
+			length="22"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property
+			name="subCategory3"
+			type="java.lang.Long"
+			column="SUB_CATEGORY3"
+			length="22"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+        <property
+			name="scmVendorId"
+			type="java.lang.Long"
+			column="SCM_VENDOR_ID"
+			length="22"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+        <property
+            name="vzwLiveDate"
+            type="java.sql.Timestamp"
+            column="VZW_LIVE_DATE"
+            length="7"
+        >
+            <meta attribute="use-in-tostring">true</meta>
+        </property>
+        <property
+            name="taxCategoryCodeId"
+            type="java.lang.Long"
+            column="TAX_CATEGORY_CODE_ID"
+            length="22"
+        >
+            <meta attribute="use-in-tostring">true</meta>
+        </property>
+        <property
+            name="contentType"
+            type="java.lang.Long"
+            column="content_type"
+            length="22"
+        >
+            <meta attribute="use-in-tostring">true</meta>
+        </property>
+		<property
+            name="initialApprovalAction"
+            type="java.lang.String"
+            column="INITIAL_APPROVAL_ACTION"
+            length="1"
+        >
+            <meta attribute="use-in-tostring">true</meta>
+        </property>
+        <property
+            name="initialApprovalNotes"
+            type="java.lang.String"
+            column="INITIAL_APPROVAL_NOTES"
+            length="500"
+        >
+            <meta attribute="use-in-tostring">true</meta>
+        </property>        
+        <property
+            name="contentId"
+            type="java.lang.String"
+            column="CONTENT_ID"
+            length="1"
+        >
+            <meta attribute="use-in-tostring">true</meta>
+        </property>
+
+		<property
+			name="isLocked"
+			type="java.lang.String"
+			column="IS_LOCKED"
+			length="1"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+        <property
+            name="contentRating"
+            type="java.lang.Long"
+            column="content_rating"
+            length="22"
+        >
+            <meta attribute="use-in-tostring">true</meta>
+        </property>
+
+        <property
+			name="communityChatUgc"
+			type="java.lang.String"
+			column="COMMUNITY_CHAT_UGC"
+			length="1"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+        <property
+			name="contentSweekstakes"
+			type="java.lang.String"
+			column="CONTENT_SWEEKSTAKES"
+			length="1"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+    </class>
+</hibernate-mapping>

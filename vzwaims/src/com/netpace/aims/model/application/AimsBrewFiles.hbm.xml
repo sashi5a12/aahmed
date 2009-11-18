@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsBrewFiles" 
+    table="AIMS_BREW_APPS"
+>
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+    <id
+        name="brewAppsId"
+        type="java.lang.Long"
+        column="BREW_APPS_ID"
+    >
+        <generator class="assigned"/>
+			
+    </id>
+        
+    <property
+        name="appTitleName"
+        type="java.sql.Blob"
+        column="APP_TITLE_NAME"
+        length="4000"
+    />
+    <property
+        name="progGuide"
+        type="java.sql.Blob"
+        column="PROG_GUIDE"
+        length="4000"
+    />
+    <property 
+    	name="companyLogo" 
+    	type="java.sql.Blob"
+    	column="COMPANY_LOGO"
+    />    
+    <property  
+    	name="titleShot" 
+    	type="java.sql.Blob"
+    	column="TITLE_SHOT"
+    />    
+    <property
+        name="appTitleNameFileName"
+        type="java.lang.String"
+        column="APP_TITLE_NAME_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="appTitleNameContentType"
+        type="java.lang.String"
+        column="APP_TITLE_NAME_CONTENT_TYPE"
+        length="100"
+    />
+    <property
+        name="progGuideFileName"
+        type="java.lang.String"
+        column="PROG_GUIDE_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="progGuideContentType"
+        type="java.lang.String"
+        column="PROG_GUIDE_CONTENT_TYPE"
+        length="100"
+    />
+
+    <property 
+    	name="companyLogoFileName" 
+    	type="java.lang.String"
+    	column="COMPANY_LOGO_FILE_NAME" 
+    	length="150"
+    />
+    <property 
+    	name="companyLogoContentType" 
+    	type="java.lang.String"
+    	column="COMPANY_LOGO_CONTENT_TYPE" 
+    	length="100" 
+    />    
+    <property 
+    	name="titleShotFileName" 
+    	type="java.lang.String"
+    	column="TITLE_SHOT_FILE_NAME" 
+    	length="150" 
+    />
+    <property 
+    	name="titleShotContentType" 
+    	type="java.lang.String"
+    	column="TITLE_SHOT_CONTENT_TYPE" 
+    	length="100" 
+    />
+    
+    <property name="highResSplash" type="java.sql.Blob" column="HIGH_RES_SPLASH" />
+    <property name="highResSplashFileName" type="java.lang.String" column="HIGH_RES_SPLASH_FILE_NAME" length="150" />        
+    <property name="highResSplashContentType" type="java.lang.String" column="HIGH_RES_SPLASH_CONTENT_TYPE" length="100" />        
+    
+    <property name="highResActive" type="java.sql.Blob" column="HIGH_RES_ACTIVE" />        
+    <property name="highResActiveFileName" type="java.lang.String" column="HIGH_RES_ACTIVE_FILE_NAME" length="150" />        
+    <property name="highResActiveContentType" type="java.lang.String" column="HIGH_RES_ACTIVE_CONTENT_TYPE" length="100" />        
+    
+    <property name="splashScreen" type="java.sql.Blob" column="SPLASH_SCREEN" />        
+    <property name="splashScreenFileName" type="java.lang.String" column="SPLASH_SCREEN_FILE_NAME" length="150" />        
+    <property name="splashScreenContentType" type="java.lang.String" column="SPLASH_SCREEN_CONTENT_TYPE" length="100" />        
+    
+    <property name="smallSplash" type="java.sql.Blob" column="SMALL_SPLASH" />        
+    <property name="smallSplashFileName" type="java.lang.String" column="SMALL_SPLASH_FILE_NAME" length="150" />        
+    <property name="smallSplashContentType" type="java.lang.String" column="SMALL_SPLASH_CONTENT_TYPE" length="100" />        
+    
+    <property name="activeScreen1" type="java.sql.Blob" column="ACTIVE_SCREEN_1" />        
+    <property name="activeScreen1FileName" type="java.lang.String" column="ACTIVE_SCREEN_1_FILE_NAME" length="150" />        
+    <property name="activeScreen1ContentType" type="java.lang.String" column="ACTIVE_SCREEN_1_CONTENT_TYPE" length="100" />        
+    
+    <property name="activeScreen2" type="java.sql.Blob" column="ACTIVE_SCREEN_2" />        
+    <property name="activeScreen2FileName" type="java.lang.String" column="ACTIVE_SCREEN_2_FILE_NAME" length="150" />        
+    <property name="activeScreen2ContentType" type="java.lang.String" column="ACTIVE_SCREEN_2_CONTENT_TYPE" length="100" />        
+    
+    <property name="smlActiveScreen" type="java.sql.Blob" column="SML_ACTIVE_SCREEN" />        
+    <property name="smlActiveScreenFileName" type="java.lang.String" column="SML_ACTIVE_SCREEN_FILE_NAME" length="150" />        
+    <property name="smlActiveScreenContentType" type="java.lang.String" column="SML_ACTIVE_SCREEN_CONTENT_TYPE" length="100" />        
+    
+    <property name="appActiionFlash" type="java.sql.Blob" column="APP_ACTIION_FLASH" />        
+    <property name="appActiionFlashFileName" type="java.lang.String" column="APP_ACTIION_FLASH_FILE_NAME" length="150" />        
+    <property name="appActiionFlashContentType" type="java.lang.String" column="APP_ACTIION_FLASH_CONTENT_TYPE" length="100" />        
+    
+    <property name="appGifAction" type="java.sql.Blob" column="APP_GIF_ACTION" />        
+    <property name="appGifActionFileName" type="java.lang.String" column="APP_GIF_ACTION_FILE_NAME" length="150" />        
+    <property name="appGifActionContentType" type="java.lang.String" column="APP_GIF_ACTION_CONTENT_TYPE" length="100" />        
+    
+    <property name="mediaStore" type="java.sql.Blob" column="MEDIA_STORE" />        
+    <property name="mediaStoreFileName" type="java.lang.String" column="MEDIA_STORE_FILE_NAME" length="150" />        
+    <property name="mediaStoreContentType" type="java.lang.String" column="MEDIA_STORE_CONTENT_TYPE" length="100" />    
+
+    <property name="userGuide" type="java.sql.Blob" column="USER_GUIDE" />        
+    <property name="userGuideFileName" type="java.lang.String" column="USER_GUIDE_FILE_NAME" length="150" />        
+    <property name="userGuideContentType" type="java.lang.String" column="USER_GUIDE_CONTENT_TYPE" length="100" />
+    
+    <property name="flashDemoMovie" type="java.sql.Blob" column="FLASH_DEMO_MOVIE" />        
+	<property name="flashDemoMovieFileName" type="java.lang.String" column="FLASH_DEMO_MOVIE_FILE_NAME" length="150" />
+	<property name="flashDemoMovieContentType" type="java.lang.String" column="FLASH_DEMO_MOVIE_CONTENT_TYPE" length="100" />
+        
+    <property name="dashboardScrImg" type="java.sql.Blob" column="DASHBOARD_SCR_IMG" />        
+	<property name="dashboardScrImgFileName" type="java.lang.String" column="DASHBOARD_SCR_IMG_FILE_NAME" length="150" />
+	<property name="dashboardScrImgContentType" type="java.lang.String" column="DASHBOARD_SCR_IMG_CONTENT_TYPE" length="100" />
+
+    
+        
+</class>
+</hibernate-mapping>

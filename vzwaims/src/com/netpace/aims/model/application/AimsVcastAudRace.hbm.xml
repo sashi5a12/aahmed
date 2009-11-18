@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsVcastAudRace" 
+    table="AIMS_VCAST_AUD_RACES"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="audRaceId"
+        type="java.lang.Long"
+        column="AUD_RACE_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="audRaceName"
+        type="java.lang.String"
+        column="AUD_RACE_NAME"
+        length="50"
+    />
+
+</class>
+</hibernate-mapping>

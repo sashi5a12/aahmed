@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsBrewApp" 
+    table="AIMS_BREW_APPS"
+>
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+		<!--
+		<id
+        name="brewAppsId"
+        type="java.lang.Long"
+        column="BREW_APPS_ID"
+    >
+        <generator class="sequence">
+			<param name="sequence">SEQ_PK_BREW_APPS</param>
+		</generator>
+    </id>
+    
+    <composite-id>
+      <key-property name="brewAppsId" column="BREW_APPS_ID"/>
+      <key-many-to-one name="privilege" class="com.netpace.aims.model.security.AimsSysPrivilege" column="PRIVILEGE_ID"/>
+    </composite-id>
+    
+    <property
+        name="brewAppsId"
+        type="java.lang.Long"
+        column="BREW_APPS_ID"
+        insert="false"
+        update="false"
+    />  
+    -->
+    <id
+        name="brewAppsId"
+        type="java.lang.Long"
+        column="BREW_APPS_ID"
+    >
+        <generator class="assigned"/>
+			
+    </id>
+    
+    
+    <property
+        name="appSize"
+        type="java.lang.String"
+        column="APP_SIZE"
+        length="50"
+    />
+    <property
+        name="appTitleNameFileName"
+        type="java.lang.String"
+        column="APP_TITLE_NAME_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="appTitleNameContentType"
+        type="java.lang.String"
+        column="APP_TITLE_NAME_CONTENT_TYPE"
+        length="100"
+    />
+    <property
+        name="developerName"
+        type="java.lang.String"
+        column="DEVELOPER_NAME"
+        length="150"
+    />
+    <property
+        name="publisherName"
+        type="java.lang.String"
+        column="PUBLISHER_NAME"
+        length="150"
+    />
+    <property
+        name="sellingPoints"
+        type="java.lang.String"
+        column="SELLING_POINTS"
+        length="2000"
+    />
+    <property
+        name="plannedDevStartDate"
+        type="java.sql.Timestamp"
+        column="PLANNED_DEV_START_DATE"
+        length="7"
+    />
+    <property
+        name="plannedEntryIntoNstl"
+        type="java.sql.Timestamp"
+        column="PLANNED_ENTRY_INTO_NSTL"
+        length="7"
+    />
+    <property
+        name="plannedCompletionByNstl"
+        type="java.sql.Timestamp"
+        column="PLANNED_COMPLETION_BY_NSTL"
+        length="7"
+    />
+    <property
+        name="plannedEntryIntoVzw"
+        type="java.sql.Timestamp"
+        column="PLANNED_ENTRY_INTO_VZW"
+        length="7"
+    />
+    <property
+        name="plannedCompletionByVzw"
+        type="java.sql.Timestamp"
+        column="PLANNED_COMPLETION_BY_VZW"
+        length="7"
+    />
+    <property
+        name="anticipatedDaps"
+        type="java.lang.String"
+        column="ANTICIPATED_DAPS"
+        length="500"
+    />
+    <property
+        name="networkUse"
+        type="java.lang.String"
+        column="NETWORK_USE"
+        length="1"
+    />
+    <property
+        name="singleMultiPlayer"
+        type="java.lang.String"
+        column="SINGLE_MULTI_PLAYER"
+        length="1"
+    />
+    <property
+        name="evaluation"
+        type="java.lang.String"
+        column="EVALUATION"
+        length="1"
+    />
+    <property
+        name="deckLaunchDate"
+        type="java.sql.Timestamp"
+        column="DECK_LAUNCH_DATE"
+        length="7"
+    />
+    <property
+        name="deckPlacement"
+        type="java.lang.Long"
+        column="DECK_PLACEMENT"
+    />
+	<property
+        name="appType"
+        type="java.lang.String"
+        column="APP_TYPE"
+        length="1"
+    />
+    <property
+        name="evaluationDate"
+        type="java.sql.Timestamp"
+        column="EVALUATION_DATE"
+        length="7"
+    />
+    <property
+        name="conceptId"
+        type="java.lang.Long"
+        column="CONCEPT_ID"
+        length="22"
+    />
+    <property
+        name="conceptTitle"
+        type="java.lang.String"
+        column="CONCEPT_TITLE"
+        length="200"
+    />
+    <property
+        name="conceptEvaluationDate"
+        type="java.sql.Timestamp"
+        column="CONCEPT_EVALUATION_DATE"
+        length="7"
+    />
+    <property
+        name="progGuideFileName"
+        type="java.lang.String"
+        column="PROG_GUIDE_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="progGuideContentType"
+        type="java.lang.String"
+        column="PROG_GUIDE_CONTENT_TYPE"
+        length="100"
+    />
+    <property
+        name="prizes"
+        type="java.lang.String"
+        column="PRIZES"
+        length="1"
+    />
+    <property
+        name="ugcChat"
+        type="java.lang.String"
+        column="UGC_CHAT"
+        length="1"
+    />   
+    <property
+        name="chatPrize"
+        type="java.lang.String"
+        column="CHAT_PRIZE"
+        length="1"
+    />          
+    <property
+        name="isLbs"
+        type="java.lang.String"
+        column="IS_LBS"
+        length="1"
+    />   
+    <property
+        name="lbsClientId"
+        type="java.lang.Long"
+        column="LBS_CLIENT_ID"
+    />
+	<property
+        name="lbsSecretKey"
+        type="java.lang.String"
+        column="LBS_SECRET_KEY"
+        length="32"
+    />
+    <property
+        name="lbsAutodeskPhaseId"
+        type="java.lang.Long"
+        column="LBS_AUTODESK_PHASE_ID"
+    />
+	<property
+        name="lbsAppType"
+        type="java.lang.String"
+        column="LBS_APP_TYPE"
+        length="1"
+    />
+
+	<property
+        name="contentRating"
+        type="java.lang.Long"
+        column="CONTENT_RATING_TYPE_ID"
+    />
+    
+    <property 
+    	name="companyLogoFileName" 
+    	type="java.lang.String"
+    	column="COMPANY_LOGO_FILE_NAME" 
+    	length="150" 
+    />
+    <property 
+    	name="companyLogoContentType" 
+    	type="java.lang.String"
+    	column="COMPANY_LOGO_CONTENT_TYPE" 
+    	length="100"
+    />
+    <property 
+    	name="titleShotFileName" 
+    	type="java.lang.String"
+    	column="TITLE_SHOT_FILE_NAME" 
+    	length="150"
+    />
+    <property 
+    	name="titleShotContentType" 
+    	type="java.lang.String"
+    	column="TITLE_SHOT_CONTENT_TYPE" 
+    	length="100"
+    />
+    <property 
+    	name="productDescription" 
+    	type="java.lang.String"
+    	column="PRODUCT_DESCRIPTION" 
+    	length="1000" 
+    />
+    <property 
+    	name="multiPlayer" 
+    	type="java.lang.String"
+    	column="MULTI_PLAYER" 
+    	length="1"
+    />
+    
+    <property name="highResSplashFileName" type="java.lang.String" column="HIGH_RES_SPLASH_FILE_NAME" length="150" />        
+    <property name="highResSplashContentType" type="java.lang.String" column="HIGH_RES_SPLASH_CONTENT_TYPE" length="100" />        
+    
+    <property name="highResActiveFileName" type="java.lang.String" column="HIGH_RES_ACTIVE_FILE_NAME" length="150" />        
+    <property name="highResActiveContentType" type="java.lang.String" column="HIGH_RES_ACTIVE_CONTENT_TYPE" length="100" />        
+    
+    <property name="splashScreenFileName" type="java.lang.String" column="SPLASH_SCREEN_FILE_NAME" length="150" />        
+    <property name="splashScreenContentType" type="java.lang.String" column="SPLASH_SCREEN_CONTENT_TYPE" length="100" />        
+    
+    <property name="smallSplashFileName" type="java.lang.String" column="SMALL_SPLASH_FILE_NAME" length="150" />        
+    <property name="smallSplashContentType" type="java.lang.String" column="SMALL_SPLASH_CONTENT_TYPE" length="100" />        
+    
+    <property name="activeScreen1FileName" type="java.lang.String" column="ACTIVE_SCREEN_1_FILE_NAME" length="150" />        
+    <property name="activeScreen1ContentType" type="java.lang.String" column="ACTIVE_SCREEN_1_CONTENT_TYPE" length="100" />        
+    
+    <property name="activeScreen2FileName" type="java.lang.String" column="ACTIVE_SCREEN_2_FILE_NAME" length="150" />        
+    <property name="activeScreen2ContentType" type="java.lang.String" column="ACTIVE_SCREEN_2_CONTENT_TYPE" length="100" />        
+    
+    <property name="smlActiveScreenFileName" type="java.lang.String" column="SML_ACTIVE_SCREEN_FILE_NAME" length="150" />        
+    <property name="smlActiveScreenContentType" type="java.lang.String" column="SML_ACTIVE_SCREEN_CONTENT_TYPE" length="100" />        
+    
+    <property name="appActiionFlashFileName" type="java.lang.String" column="APP_ACTIION_FLASH_FILE_NAME" length="150" />        
+    <property name="appActiionFlashContentType" type="java.lang.String" column="APP_ACTIION_FLASH_CONTENT_TYPE" length="100" />        
+    
+    <property name="appGifActionFileName" type="java.lang.String" column="APP_GIF_ACTION_FILE_NAME" length="150" />        
+    <property name="appGifActionContentType" type="java.lang.String" column="APP_GIF_ACTION_CONTENT_TYPE" length="100" />        
+    
+    <property name="mediaStoreFileName" type="java.lang.String" column="MEDIA_STORE_FILE_NAME" length="150" />        
+    <property name="mediaStoreContentType" type="java.lang.String" column="MEDIA_STORE_CONTENT_TYPE" length="100" />
+
+	<property name="userGuideFileName" type="java.lang.String" column="USER_GUIDE_FILE_NAME" length="150" />
+	<property name="userGuideContentType" type="java.lang.String" column="USER_GUIDE_CONTENT_TYPE" length="100" />
+        
+	<property name="flashDemoMovieFileName" type="java.lang.String" column="FLASH_DEMO_MOVIE_FILE_NAME" length="150" />
+	<property name="flashDemoMovieContentType" type="java.lang.String" column="FLASH_DEMO_MOVIE_CONTENT_TYPE" length="100" />
+        
+	<property name="dashboardScrImgFileName" type="java.lang.String" column="DASHBOARD_SCR_IMG_FILE_NAME" length="150" />
+	<property name="dashboardScrImgContentType" type="java.lang.String" column="DASHBOARD_SCR_IMG_CONTENT_TYPE" length="100" />
+        
+	<!--<property name="contentStandardPhaseId" type="java.lang.Long" column="CONTENT_STANDARD_PHASE_ID" length="22" />
+	<property name="legalPhaseId" type="java.lang.Long" column="LEGAL_PHASE_ID" length="22" />  -->
+	
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to AimsBrewAppsDevic -->
+    <set name="devices" table="AIMS_BREW_APPS_DEVICES">
+        <key>
+            <column name="BREW_APPS_ID" not-null="true"/>
+        </key>
+        <many-to-many class="com.netpace.aims.model.masters.AimsDevic">
+					<column name="DEVICE_ID" not-null="true"/>
+        </many-to-many>        
+    </set>
+    
+    <set name="appDevicesMap" table="AIMS_BREW_APPS_DEVICES" order-by="device_id asc">
+        <key>
+            <column name="BREW_APPS_ID" not-null="true"/>
+        </key>
+        <one-to-many 
+            class="com.netpace.aims.model.application.AimsBrewAppDevice"
+        /> 
+    </set>
+    
+    <set name="geoServices" table="AIMS_BREW_APPS_J_GEO_SERVICES">
+        <key>
+            <column name="BREW_APPS_ID" not-null="true"/>
+        </key>
+        <many-to-many class="com.netpace.aims.model.application.AimsLbsGeoService">
+			<column name="GEO_SERVICE_ID" not-null="true"/>
+        </many-to-many>        
+    </set>
+    
+    <!-- bi-directional one-to-one association to AimsApp 
+    <many-to-one
+        name="aimsApp"
+        class="com.netpace.aims.model.application.AimsApp"
+    >
+        <column name="BREW_APPS_ID" />
+    </many-to-one>   
+    -->
+
+</class>
+</hibernate-mapping>

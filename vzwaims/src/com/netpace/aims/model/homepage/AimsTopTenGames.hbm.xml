@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+    <class name="com.netpace.aims.model.homepage.AimsTopTenGames" table="AIMS_TOP_TEN_GAMES">
+        <id name="id" type="java.lang.Long">
+            <meta attribute="use-in-tostring">true</meta>
+            <column name="ID"/>
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <meta attribute="use-in-tostring">true</meta>
+            <column name="NAME" length="500" />
+        </property>
+        <property name="baseUrl" type="java.lang.String">
+            <meta attribute="use-in-tostring">true</meta>        
+            <column name="BASE_URL" length="250" />
+        </property>
+        <property name="url" type="java.lang.String">
+            <meta attribute="use-in-tostring">true</meta>        
+            <column name="URL" length="250" />
+        </property>
+        <property name="sortOrder" type="java.lang.Long">
+            <meta attribute="use-in-tostring">true</meta>        
+            <column name="SORT_ORDER"/>
+        </property>
+        <property name="visible" type="java.lang.String">
+            <meta attribute="use-in-tostring">true</meta>        
+            <column name="VISIBLE" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

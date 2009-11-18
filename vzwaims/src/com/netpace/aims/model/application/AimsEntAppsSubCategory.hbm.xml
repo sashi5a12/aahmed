@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsEntAppsSubCategory" 
+    table="AIMS_ENT_APPS_SUB_CATEGORIES"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    
+		<composite-id>
+      <key-property name="enterpriseAppsId" column="ENTERPRISE_APPS_ID"/>
+      <key-many-to-one name="aimsAppSubCategory" class="com.netpace.aims.model.application.AimsAppSubCategory" column="SUB_CATEGORY_ID"/>
+    </composite-id>
+		
+		<property name="enterpriseAppsId" type="java.lang.Long" column="ENTERPRISE_APPS_ID" insert="false" update="false" /> 
+		<property name="subCategoryId" type="java.lang.Long" column="SUB_CATEGORY_ID" insert="false" update="false" /> 
+		
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.alliance.AimsAllianceWhitePaper" 
+    table="AIMS_ALLIANCE_WHITE_PAPERS"
+>
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="whitePaperId"
+        type="java.lang.Long"
+        column="WHITE_PAPER_ID"
+    >
+        <generator class="sequence">
+			<param name="sequence">SEQ_PK_ALLIANCE_WHITE_PAPERS</param>
+		</generator>
+    </id>
+    
+    <property
+        name="whitePaperName"
+        type="java.lang.String"
+        column="WHITE_PAPER_NAME"
+        length="100"
+    />
+    <property
+        name="whitePaperDesc"
+        type="java.lang.String"
+        column="WHITE_PAPER_DESC"
+        length="500"
+    />
+    <property
+        name="whitePaperFile"
+        type="java.sql.Blob"
+        column="WHITE_PAPER_FILE"
+        length="4000"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="1"
+    />
+    <property
+        name="submittedBy"
+        type="java.lang.Long"
+        column="SUBMITTED_BY"
+        length="22"
+    />
+    <property
+        name="submittedDate"
+        type="java.sql.Timestamp"
+        column="SUBMITTED_DATE"
+        length="7"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+
+    <property
+        name="whitePaperFilename"
+        type="java.lang.String"
+        column="WHITE_PAPER_FILENAME"
+        length="150"
+    />
+    
+    <property
+        name="whitePaperFileType"
+        type="java.lang.String"
+        column="WHITE_PAPER_FILE_TYPE"
+        length="100"
+    />
+    
+    <property
+        name="allianceId"
+        type="java.lang.Long"
+        column="ALLIANCE_ID"
+        length="22"
+    />
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

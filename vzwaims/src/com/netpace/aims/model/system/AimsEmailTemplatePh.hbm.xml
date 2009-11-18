@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.system.AimsEmailTemplatePh" 
+    table="AIMS_EMAIL_TEMPLATE_PHS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+	 <id
+        name="placeholderId"
+        type="java.lang.Long"
+        column="PLACEHOLDER_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="placeholderLabel"
+        type="java.lang.String"
+        column="PLACEHOLDER_LABEL"
+        not-null="true"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="placeholderValue"
+        type="java.lang.String"
+        column="PLACEHOLDER_VALUE"
+        not-null="true"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+   
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>
