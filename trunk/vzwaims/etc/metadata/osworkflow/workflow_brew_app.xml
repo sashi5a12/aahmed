@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE workflow PUBLIC "-//OpenSymphony Group//DTD OSWorkflow 2.6//EN" "http://www.opensymphony.com/osworkflow/workflow_2_8.dtd">
+<workflow>
+	<initial-actions>
+		<action id="100" name="Start Brew Workflow">
+			<results>
+				<unconditional-result old-status="Completed" status="Underway" step="201" owner="BREW_EVALUATED"/>
+			</results>
+		</action>
+	</initial-actions>
+	<steps>
+		<step id="201" name="Evaluated">
+			<actions>
+				<action id="101" name="Launch Product">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" old-status="Completed" split="301"/>
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="oldStatus">10</arg>						    
+						</function>					
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">138,139,142,145</arg>
+							<arg name="previousStatusId">10</arg>
+							<arg name="newStatusId">42</arg>
+							<arg name="previousState">Evaluated</arg>
+							<arg name="currentState">Content Standard Pending, Legal Pending</arg>
+						</function>
+			      		<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Evaluated</arg>
+						    <arg name="toStates">Content Standard Pending, Legal Pending</arg>
+						</function>
+					</post-functions>
+				</action>
+			</actions>
+		</step>
+
+		<step id="202" name="Content Standard Pending">
+			<actions>
+				<action id="102" name="Approve">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name"> com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" old-status="Completed" join="401"/>
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">140</arg>
+							<arg name="previousState">Content Standard Pending</arg>
+							<arg name="currentState">-</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						</function>				
+					</post-functions>
+				</action>
+				<action id="103" name="Reject">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Rejected" old-status="Completed" step="205" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="statusRejected">true</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">16</arg>
+							<arg name="previousStatusId">42</arg>
+							<arg name="newStatusId">43</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Content Standard Pending</arg>
+						    <arg name="toStates">Rejected</arg>							
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowCompletion</arg>
+						</function>
+					</post-functions>
+				</action>
+				<action id="104" name="RFI Product Manager">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" join="402" old-status="InfoRequested" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="oldStatus">42</arg>						    
+						    <arg name="rfi">true</arg>						    
+						</function>	
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.AbandonWorkflowState</arg>
+							<arg name="stateId">203</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">141</arg>
+							<arg name="previousState">Content Standard Pending</arg>
+							<arg name="currentState">Evaluated</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Content Standard Pending</arg>
+						    <arg name="toStates">Evaluated</arg>
+						</function>
+					</post-functions>
+				</action>
+				<action id="110" name="RFI Publisher">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" join="402" old-status="InfoRequested" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="oldStatus">42</arg>						    
+						    <arg name="rfi">true</arg>						    
+						</function>	
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.AbandonWorkflowState</arg>
+							<arg name="stateId">203</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">146</arg>
+							<arg name="previousState">Content Standard Pending</arg>
+							<arg name="currentState">Evaluated</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Content Standard Pending</arg>
+						    <arg name="toStates">Evaluated</arg>
+						</function>
+					</post-functions>
+				</action>
+			</actions>
+		</step>
+
+		<step id="203" name="Legal Pending">
+			<actions>
+				<action id="105" name="Approve">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" old-status="Completed" join="401"/>
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">143</arg>
+							<arg name="previousState">Legal Pending</arg>
+							<arg name="currentState">-</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						</function>
+					</post-functions>
+				</action>
+				<action id="106" name="Reject">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Rejected" old-status="Completed" step="205" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="statusRejected">true</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">16</arg>
+							<arg name="previousStatusId">42</arg>
+							<arg name="newStatusId">43</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Legal Pending</arg>
+						    <arg name="toStates">Rejected</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowCompletion</arg>
+						</function>						
+					</post-functions>
+				</action>
+				<action id="107" name="RFI Product Manager">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" join="402" old-status="InfoRequested" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="oldStatus">42</arg>						    
+						    <arg name="rfi">true</arg>						    
+						</function>	
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.AbandonWorkflowState</arg>
+							<arg name="stateId">202</arg>
+						</function>						
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">144</arg>
+							<arg name="previousState">Legal Pending</arg>
+							<arg name="currentState">Evaluated</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Legal Pending</arg>
+						    <arg name="toStates">Evaluated</arg>
+						</function>
+					</post-functions>
+				</action>
+				<action id="111" name="RFI Publisher">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" join="402" old-status="InfoRequested" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="oldStatus">42</arg>						    
+						    <arg name="rfi">true</arg>						    
+						</function>	
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.AbandonWorkflowState</arg>
+							<arg name="stateId">202</arg>
+						</function>						
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">147</arg>
+							<arg name="previousState">Legal Pending</arg>
+							<arg name="currentState">Evaluated</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Legal Pending</arg>
+						    <arg name="toStates">Evaluated</arg>
+						</function>
+					</post-functions>
+				</action>
+			</actions>
+		</step>
+		<step id="204" name="Brew_Accepted">
+			<actions>
+				<action id="108" name="Accepted" finish="TRUE" auto="TRUE">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Accepted</arg>
+							</condition>
+						</conditions>
+					</restrict-to>				
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">1</arg>
+						    <arg name="oldStatus">42</arg>
+						</function>						
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowCompletion</arg>
+						</function>	
+					</pre-functions>
+					<results>
+						<unconditional-result old-status="Completed" status="Underway" step="-1" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">15</arg>
+							<arg name="previousStatusId">42</arg>
+							<arg name="newStatusId">7</arg>
+							<arg name="previousState">Content Standard Pending, Legal Pending</arg>
+							<arg name="currentState">Approved</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Content Standard Pending, Legal Pending</arg>
+						    <arg name="toStates">Accepted</arg>
+						    <arg name="actionEntry">false</arg>
+						</function>						
+					</post-functions>
+				</action>
+			</actions>
+		</step>	
+		<step id="205" name="Rejected">
+			<actions>
+				<action id="109" name="Reject" finish="TRUE" auto="TRUE">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Rejected</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<results>
+						<unconditional-result old-status="Rejected" status="Underway" step="-1" />
+					</results>
+				</action>
+			</actions>
+		</step>	
+	</steps>
+	
+	<splits>
+		<split id="301">
+			<unconditional-result old-status="Completed" status="Underway" owner="BREW_CONTENT_STANDARD_PENDING" step="202" />
+			<unconditional-result old-status="Completed" status="Underway" owner="BREW_LEGAL_PENDING" step="203" />
+		</split>
+	</splits>
+		
+	<joins>
+		<join id="401">
+			<conditions type="AND">
+				<condition type="beanshell">
+					<arg name="script"><![CDATA["Completed".equals(jn.getStep(202).getStatus()) && "Completed".equals(jn.getStep(203).getStatus()) ]]></arg>
+				</condition>
+			</conditions>
+			<unconditional-result old-status="Completed" status="Accepted" step="204" />
+		</join>
+
+		<join id="402">
+			<conditions type="AND">
+				<condition type="beanshell">
+					<arg name="script"><![CDATA["InfoRequested".equals(jn.getStep(202).getStatus()) || "InfoRequested".equals(jn.getStep(203).getStatus()) ]]></arg>
+				</condition>
+			</conditions>
+			<unconditional-result old-status="Completed" status="Underway" step="201" owner="BREW_EVALUATED" />
+		</join>
+	</joins>
+</workflow>

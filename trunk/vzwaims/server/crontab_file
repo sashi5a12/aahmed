@@ -1,0 +1,24 @@
+#To Synch Date/Time
+#0 * * * * su - root /root/update_time.sh >> /root/cronoutput.file 2>&1
+
+#FOR VZW GIN SMS KEYWORD AND URL LIST. Upload in TOOLS Section
+0 9,15 * * 1-5 su - root /usr/java/GTM_SERVICES/standalone/run_standalone.sh tool_fetch_xls_file >> /usr/java/GTM_SERVICES/logs/cron/SA_FetchXLS.txt 2>&1
+
+#FOR Temporarily Sending Role Comparision Report to DBA
+30 17,18 * * * su - root /usr/java/GTM_SERVICES/standalone/run_standalone.sh mail_ldap_change_user_roles >> /usr/java/GTM_SERVICES/logs/cron/SA_LDAPComparision.txt 2>&1
+
+#For AW Stats
+0 23 * * * /etc/awstats/cron/webstat_cron.sh >> /usr/java/GTM_SERVICES/logs/cron/AWStats.txt 2>&1
+
+#FOR SCM (WAP) via NDM
+0 1 * * * su - root /usr/java/GTM_SERVICES/scm/senddcr.sh >> /usr/java/GTM_SERVICES/logs/cron/SCM_WAP.txt 2>&1
+
+#FOR WAP OPT-OUT
+15 0 * * * su - root /usr/java/GTM_SERVICES/standalone/run_standalone.sh ftp_wap_optout_send_optout_file >> /usr/java/GTM_SERVICES/logs/cron/SA_WAPOptOut.txt 2>&1
+00 2 * * 0 su - root /usr/java/GTM_SERVICES/standalone/run_standalone.sh ftp_wap_optout_fetch_whitelist >> /usr/java/GTM_SERVICES/logs/cron/SA_WAPOptOut.txt 2>&1
+
+#FOR Daily CA Feed to VM (Vendor Management)
+30 2 * * * su - root /usr/java/GTM_SERVICES/cafeed/bin/ca_cron_task.sh >> /usr/java/GTM_SERVICES/logs/cron/CAFeedVM.txt 2>&1
+
+#FOR Backup of Whole GTM_SERVICES Folder to SPIKE (Backup Application Server)
+00 4 * * * su - root /usr/java/GTM_SERVICES/BackupFolderToSpike.sh >> /root/cronoutput.file 2>&1

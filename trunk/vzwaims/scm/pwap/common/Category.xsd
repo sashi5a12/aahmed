@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by testing (testing inc) -->
+<xsd:schema targetNamespace="http://www.vzw.com/namespace/scm" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:scm="http://www.vzw.com/namespace/scm" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="Content.xsd"/>
+	<xsd:complexType name="ItemCategoryBriefType">
+		<xsd:sequence>
+			<xsd:element name="Item_Category_Id">
+				<xsd:annotation>
+					<xsd:documentation>Global unique id of category</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Item_Category_Version">
+				<xsd:annotation>
+					<xsd:documentation>Version of Item Category.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="10"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ItemCategoryType">
+		<xsd:complexContent>
+			<xsd:extension base="scm:ItemCategoryBriefType">
+				<xsd:sequence>
+					<xsd:element name="categoryName">
+						<xsd:annotation>
+							<xsd:documentation>Name of Item Category, as displayed to a Subscriber.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Vendor" type="scm:VendorBriefType">
+						<xsd:annotation>
+							<xsd:documentation>Owning Vendor of the Item Category, and the party that will be paid when an Item Category is purchased if the Item Category participates in a Purchasable Price Plan Package. This will almost always be the Service Provider.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="parentCategory" type="scm:ItemCategoryBriefType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Item Category Id within which this category is nested. The top level category has no parent and is the root.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="categoryItems" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>The set of Items contained within this Item Category. The same Item may be contained within different Item Categories at the same time and be priced differently in each one.</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:complexContent>
+								<xsd:extension base="scm:VzWItemType">
+									<xsd:sequence>
+										<xsd:element name="DeviceCapabilities" type="scm:DeviceCapabilitiesType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:extension>
+							</xsd:complexContent>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

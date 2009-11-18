@@ -1,0 +1,29 @@
+Run the following scripts to (re)set up the database:
+
+1) droptables.sql
+	This script will delete all tables in the current schema whose names begin with 'AIMS_'.
+	Note: Since this is a DDL, it cannot be rolled back.
+
+2) createtables.sql
+	This script will create the tables and also the primary keys.
+
+3) create_col_comments.sql
+	This script will add comments to the table columns.
+
+4) not_null_constraints.sql
+	This will add the NOT NULL constraints to the appropriate columns.
+
+5) createunique_indexes.sql
+	This script will create the unique indexes on columns which are unique (apart from the primary key).
+
+6) createforeignkeys.sql
+	This script will create the relationships between the tables.
+
+7) create_indexes_on_foreign_keys.sql
+        This script will create (non-unique) indexes on the foreign keys. This prevents locking of the whole table incase of an unexpected update of the primary key.
+
+8) Add data
+
+
+9) gather_stats_analyze.sql
+	This will gather the statistics of the schema for the cost based optimizer to make better informed decisions on query plans.

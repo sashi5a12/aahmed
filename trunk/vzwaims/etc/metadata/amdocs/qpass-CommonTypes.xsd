@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   - Copyright 1997-2008 Amdocs. All rights reserved.
+  -->
+<xsd:schema targetNamespace="urn:qpass-CommonTypes" elementFormDefault="qualified"
+    xmlns:tns="urn:qpass-CommonTypes"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="UserCredentials">
+        <xsd:annotation>
+            <xsd:documentation>Information that uniquely identifies the user. This element is also a complex type that includes three subelements: credentialType, id, and password.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="credentialType" type="tns:CredentialType">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Identifies whether the credential ID is a MSISDN, subscriber number, or mobile identifier.
+                        Must be one of: msisdn, subNo, or mobileIdentifier.
+                        Note that although this string is constrained by a simpleType CredentialType,
+                        It is essentially just a string that must be one of the above values.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="id" type="tns:NonEmpty">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Information that uniquely identifies the user.
+                        The id value should be of the type defined by credentialType.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="password" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Reserved for future use. It is currently not used.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="CredentialType">
+        <xsd:annotation>
+            <xsd:documentation>Identifies whether the credential id is a MSISDN, subscriber number, or mobile identifier</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:enumeration value="msisdn">
+                <xsd:annotation>
+                    <xsd:documentation>Credential id is of type MSISDN.  Length should be 10.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="subNo">
+                <xsd:annotation>
+                    <xsd:documentation>Credential id is of type subscriber number.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="mobileIdentifier">
+                <xsd:annotation>
+                    <xsd:documentation>Credential id is of type mobile identifier</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="canonicalUsername">
+                <xsd:annotation>
+                    <xsd:documentation>Credential id is of type username.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="caseSensitiveUsername">
+                <xsd:annotation>
+                    <xsd:documentation>Credential id is of type case sensitive username.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="accountId">
+                <xsd:annotation>
+                    <xsd:documentation>Credential id is of type account ID.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="NonEmpty">
+        <xsd:annotation>
+            <xsd:documentation>Non empty element value.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ResponseCode">
+        <xsd:annotation>
+            <xsd:documentation>Response codes of a single or bulk purchase or access.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:integer">
+            <xsd:enumeration value="0">
+                <xsd:annotation>
+                    <xsd:documentation>Success</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="13040">
+                <xsd:annotation>
+                    <xsd:documentation>Processing has not completed.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="40010">
+                <xsd:annotation>
+                    <xsd:documentation>User not found</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="40020">
+                <xsd:annotation>
+                    <xsd:documentation>Account is closed</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="40030">
+                <xsd:annotation>
+                    <xsd:documentation>Account is locked</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="40040">
+                <xsd:annotation>
+                    <xsd:documentation>Over spending limit</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="42010">
+                <xsd:annotation>
+                    <xsd:documentation>Ineligible product</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "50010">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid Composition ID</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "50020">
+                <xsd:annotation>
+                    <xsd:documentation>Composition does not support count</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "50110">
+                <xsd:annotation>
+                    <xsd:documentation>No Accesses Available</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "50120">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid Purchase Activity Identifier</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "50210">
+                <xsd:annotation>
+                    <xsd:documentation>Required Instance ID not present</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "50220">
+                <xsd:annotation>
+                    <xsd:documentation>Unexpected Instance ID supplied</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "51010">
+                <xsd:annotation>
+                    <xsd:documentation>Duplicate check requires Access External ID</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="62010">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid product ID</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63010">
+                <xsd:annotation>
+                    <xsd:documentation>Authentication failure</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63020">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid Record Count</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63030">
+                <xsd:annotation>
+                    <xsd:documentation>Parsing error</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63050">
+                <xsd:annotation>
+                    <xsd:documentation>Invalid request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63060">
+                <xsd:annotation>
+                    <xsd:documentation>Bulk request removed</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63070">
+                <xsd:annotation>
+                    <xsd:documentation>Bulk request failed</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63080">
+                <xsd:annotation>
+                    <xsd:documentation>Too many records</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63090">
+                <xsd:annotation>
+                    <xsd:documentation>No attachment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63490">
+                <xsd:annotation>
+                    <xsd:documentation>Not Supported</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value = "63498">
+                <xsd:annotation>
+                    <xsd:documentation>Retryable System Error</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="63499">
+                <xsd:annotation>
+                    <xsd:documentation>System error</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,7 @@
+CREATE OR REPLACE PROCEDURE GET_DIR_LIST (
+   P_DIRECTORY IN VARCHAR2)
+AS
+   LANGUAGE JAVA
+      NAME 'DirList.getList( java.lang.String )';
+/
+

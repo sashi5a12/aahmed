@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://api.qpass.com/cponboarding"
+	elementFormDefault="qualified"
+	xmlns:tns="http://api.qpass.com/cponboarding"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="CreateContentProvider"
+		type="tns:CreateContentProvider">
+		<xsd:annotation>
+			<xsd:documentation>
+				Create Content Provider Profile.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="CreateContentProvider">
+		<xsd:annotation>
+			<xsd:documentation>
+				The top level response type sent by the Content Provider
+				web service.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="errors" minOccurs="0"
+				type="tns:ErrorsType">
+				<xsd:annotation>
+					<xsd:documentation>
+						A complex type representing the collection of
+						errors which may occur while validating or
+						onboarding a content provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="contentProviderWorkingName" minOccurs="0"
+				type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						This field represents the vendorWorkingName for
+						the content provider. On successful creation of
+						a CP, the response will contain this
+						information. If the value for this field is
+						present in the CPOnboarding request then that
+						value will be ignored: it will be a read-only
+						field populated by the web service to let the
+						requester know the vendorWorkingName of the CP
+						being onboarded.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="cpOnboardingData" minOccurs="0"
+				type="tns:CPOnboardingDataType">
+				<xsd:annotation>
+					<xsd:documentation>
+						This complex type represents content provider
+						information.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErrorsType">
+		<xsd:sequence>
+			<xsd:element name="error" minOccurs="0"
+				maxOccurs="unbounded" type="tns:ErrorType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Indicates the error that may occur while
+						validating and onboarding a content provider. It
+						contains the response Code and response Message.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ErrorType">
+		<xsd:sequence>
+			<xsd:element name="responseCode" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						Response code indicating success or failure of
+						the request.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="responseMessage" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						Message text corresponding to the responseCode.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CPOnboardingDataType">
+		<xsd:sequence>
+			<xsd:element name="initialProfileData"
+				type="tns:InitialProfileDataType" />
+			<xsd:element name="contentProviderData"
+				type="tns:ContentProviderDataType" />
+			<xsd:element name="externalInformationList"
+				type="tns:ExternalInformationList" minOccurs="0" />
+			<xsd:element name="provisingData"
+				type="tns:ProvisioningDataType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExternalInformationList">
+		<xsd:sequence>
+			<xsd:element name="externalInformation"
+				type="tns:ExternalInformationData" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="InitialProfileDataType">
+		<xsd:sequence>
+			<xsd:element name="registrantFirstName" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The registrant's first name, used to provision a
+						user account on their behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="registrantLastName" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The registrant's last name, used to provision a
+						user account on their behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="registrantUserName" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The registrant's requested user name, used to
+						provision a user account on their behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="registrantEmailId" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The registrant's email address, used to
+						provision a user account on their behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="password" type="xsd:string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The registrant's password, used to provision a
+						user account on their behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="securityQuestion" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The registrant's security question, used to
+						provision a user account on their behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="securityAnswer" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The registrant's answer to their security
+						question, used to provision a user account on
+						their behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="companyName" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The content provider's company name, used to
+						provision an organization account on their
+						behalf.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="companyReferenceName" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Indicates the company reference name of the
+						content provider this product offer belongs to.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="productsDescription" type="xsd:string"
+				minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The content provider's product line description,
+						collected for evaluation by the network
+						operator.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="termsAndConditions"
+				type="tns:TermsAndConditionsType" />
+			<xsd:element name="companyUrl" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						A URL to the content provider's products or to
+						some other documentation regarding their product
+						line. Collected for evaluation by the network
+						operator.
+					</documentation>
+				</annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TermsAndConditionsType">
+		<xsd:sequence>
+			<xsd:element name="isTermAgreed" type="xsd:boolean"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The content provider's agreement to the terms
+						and conditions (true/false).
+					</documentation>
+				</annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContentProviderDataType">
+		<xsd:sequence>
+			<xsd:element name="contactData" type="tns:ContactDataType"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xsd:element name="remittanceInformationData"
+				type="tns:RemittanceInformationDataType" />
+			<xsd:element name="taxInformationData"
+				type="tns:TaxInformationDataType" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContactDataType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The content provider contact name.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="title" type="xsd:string" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The contact's professional title or job
+						description.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="email" type="xsd:string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The contact's email address.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="phone" type="xsd:string" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The contact's work phone number.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="mobilePhone" type="xsd:string"
+				minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The contact's mobile phone number.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="contactType" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The contact type. Types are configured by the
+						network operator and may be types such as
+						Business Development, Technical Support,
+						Customer Service, After Hours ,etc.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="notes" type="xsd:string" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						Any notes that should be saved regarding this
+						Contact.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="isPrimary" type="xsd:boolean"
+				minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Indicates whether or not the contact added is a
+						primary contact.
+					</documentation>
+				</annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemittanceInformationDataType">
+		<xsd:sequence>
+			<xsd:element name="remitTo" type="xsd:string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The remittance addressee; 
+						for example, a person or department.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="address1" type="xsd:string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The street address of the remittance contact.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="address2" type="xsd:string" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						Optional additional address information for the
+						remittance contact. For example, a suite number
+						or department name.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="city" type="xsd:string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The remittance address city.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="state" type="xsd:string" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The remittance address state or province.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="postalCode" type="xsd:string"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The remittance address postal code.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="country" type="xsd:string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The remittance address country.
+					</documentation>
+				</annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TaxInformationDataType">
+		<xsd:sequence>
+			<xsd:element name="isTaxNexusExempted" type="xsd:boolean"
+				minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Indicates whether or not the tax nexus is
+						exempted.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="nexus" type="xsd:string" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						The state or province code associated with the
+						tax nexus.
+					</documentation>
+				</annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExternalInformationData">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string">
+				<annotation>
+					<documentation>
+						This value represents the name part of the
+						ExternalInformation name value pair.
+					</documentation>
+				</annotation>
+			</xsd:element>
+			<xsd:element name="value" type="xsd:string">
+				<annotation>
+					<documentation>
+						This value represents the value part of the
+						ExternalInformation name value pair.
+					</documentation>
+				</annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProvisioningDataType">
+		<xsd:sequence>
+			<xsd:element name="autoApprove" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						Indicates whether or not the content 
+						provider should be pre-approved by the web service.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="termsAcceptanceWaived" type="xsd:boolean"
+				default="true">
+				<xsd:annotation>
+					<xsd:documentation>
+						Indicates whether or not the content provider must 
+						accept the Terms and Conditions in order to register.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="revenueDistributionContractTemplateId"
+				type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						Describes the revenue distribution 
+						contract for the content provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element
+				name="revenueDistributionContractTemplateDescription"
+				type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						Describes the revenue distribution 
+						contract for the content provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="purchaseAndOwnershipNotifications"
+				type="xsd:boolean" default="false">
+				<xsd:annotation>
+					<xsd:documentation>
+						Indicates whether or not this content 
+						provider can enable system messages 
+						for purchase and ownership events.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="taxNexus" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						Identifies the default tax 
+						provider as either a network 
+						operator or content provider.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="taxNexusWaived" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						Indicates whether or not the content provider is participating.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
