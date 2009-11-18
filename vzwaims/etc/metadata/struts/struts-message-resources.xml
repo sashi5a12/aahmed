@@ -1,0 +1,39 @@
+  <message-resources
+    parameter="ApplicationResources"
+    key="org.apache.struts.action.MESSAGE" />
+  <message-resources
+    parameter="MastersResources"
+    key="com.netpace.aims.action.MASTERS_MESSAGE" />
+  <message-resources
+    parameter="RegistrationResources"
+    key="com.netpace.aims.action.REGISTRATION_MESSAGE" />
+  <message-resources
+    parameter="AllianceResources"
+    key="com.netpace.aims.action.ALLIANCE_MESSAGE" />
+  <message-resources
+    parameter="AccountsResources"
+    key="com.netpace.aims.action.ACCOUNTS_MESSAGE" />
+	<message-resources
+    parameter="ManageApplicationResources"
+    key="com.netpace.aims.action.MANAGE_APPLICATION_MESSAGE" />
+	<message-resources
+    parameter="AllianceProfileResources"
+    key="com.netpace.aims.action.ALLIANCE_PROFILE_MESSAGE" />
+	<message-resources
+    parameter="ContentResources"
+    key="com.netpace.aims.action.CONTENT_MESSAGE"/>
+    <message-resources
+    parameter="ReportsResources"
+    key="com.netpace.aims.action.REPORTS_MESSAGE"/>
+    <message-resources
+    parameter="SystemsResources"
+    key="com.netpace.aims.action.SYSTEM_MESSAGE"/>
+    <message-resources
+    parameter="SalesLeadResources"
+	 key="com.netpace.aims.action.SALES_LEAD_MESSAGE"/>
+    <message-resources
+    parameter="DeviceOnLoanResources"
+	 key="com.netpace.aims.action.DEVICE_ON_LOAN_MESSAGE"/>
+	<message-resources
+    parameter="WapOptoutResource"
+	 key="com.netpace.aims.action.WAP_OPTOUT"/>	 	 

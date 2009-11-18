@@ -1,0 +1,20 @@
+<application xmlns="http://research.sun.com/wadl/2006/10" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ort="uri:qpass-CPOnboarding.xsd" xsi:schemaLocation="http://research.sun.com/wadl/2006/10 https://wadl.dev.java.net/wadl20061109.xsd">
+	<doc>
+        A concrete instance of the WADL would extend this by defining the resources, which binds URIs to
+        the methods defined below.  
+    </doc>
+	<grammars>
+		<include href="qpass-CPOnboarding.xsd"/>
+	</grammars>
+	<representation id="error" mediaType="application/xml" element="ort:error"/>
+	<resources base="http://api.qpass.com/cponboarding-rest/v1/'">
+		<resource path="/partner">
+			<method name="POST">
+				<doc>
+            Call to onboard CP. See accompanying XSD for request and response
+            documentation.
+        </doc>
+			</method>
+		</resource>
+	</resources>
+</application>

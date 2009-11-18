@@ -1,0 +1,41 @@
+<tns:ProductOffer xsi:schemaLocation="http://api.qpass.com/productoffer productoffer.xsd" xmlns:tns="http://api.qpass.com/productoffer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:productOfferData>
+		<tns:offerId>id9033</tns:offerId>
+		<tns:vendorWorkingName>v_8390903</tns:vendorWorkingName>
+		<tns:productOfferTermData>
+			<tns:offerName>offerName9033</tns:offerName>
+			<tns:offerDescription>offerDescription1</tns:offerDescription>
+			<tns:offerCategoryData>
+				<tns:offerCategory>verizon.Vzdn Miscellaneous Category</tns:offerCategory>
+			</tns:offerCategoryData>
+			<tns:taxSchemaData>
+				<tns:taxCategory>no_tax_category</tns:taxCategory>
+			</tns:taxSchemaData>
+			<tns:offerExpiration>neverRetires</tns:offerExpiration>   
+			<tns:priceSchemeData>
+				<tns:offerPrice>0.01</tns:offerPrice>
+				<tns:offerPricingMethod>pos</tns:offerPricingMethod>
+			</tns:priceSchemeData>
+			<tns:paymentPlanData>
+				<tns:chargeFrequency>oneTime</tns:chargeFrequency>
+			</tns:paymentPlanData>
+			<tns:requirementData>
+				<tns:paymentMethod>verizon.VzdnBillToVerizonWirelessAccount</tns:paymentMethod>
+			</tns:requirementData>
+			<tns:compositionData>
+				<tns:constraintData>
+					<tns:accessPeriodOption>free</tns:accessPeriodOption>
+				</tns:constraintData>
+			</tns:compositionData>
+			<tns:countedAccessOfferTermsData>
+				<tns:offerPackagingType>item</tns:offerPackagingType>
+			</tns:countedAccessOfferTermsData>
+		</tns:productOfferTermData>
+		<tns:approveOffer>true</tns:approveOffer>
+		<tns:refundable>true</tns:refundable>
+		<tns:concludable>true</tns:concludable>
+		<tns:chargesAggregatable>true</tns:chargesAggregatable>
+		<tns:taxNexusPreference>NETWORK_OPERATOR</tns:taxNexusPreference>
+	</tns:productOfferData>
+</tns:ProductOffer>
+

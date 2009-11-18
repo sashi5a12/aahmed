@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProductCategoryDoc fileDate="2005-07-02" fileID="000000002" vendor_id="800000" xmlns="http://www.vzw.com/namespace/scm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsd_version="1.0.0" xsi:schemaLocation="http://www.vzw.com/namespace/scm VendorStocking1_0.xsd">
+    <PC recID="1">
+        <Vendor_Item_Info>
+            <Vendor_Product_ID>
+                <Vendor_Product_Version>1.1</Vendor_Product_Version>
+                <Vendor_Product_Code>ebgames_wap_v1.1</Vendor_Product_Code>
+                <Vendor_Product_Display>EBGames by mPoria</Vendor_Product_Display>
+            </Vendor_Product_ID>
+            <Vendor_Id>
+                <Vendor_Id>801320</Vendor_Id>
+            </Vendor_Id>
+            <Download_URL>http://www.mporia.com/ebgames</Download_URL>
+            <Vendor_Pricing>
+                <Vendor_Split_Percentage>60</Vendor_Split_Percentage>
+                <Vendor_Purchase_Price>
+                    <value>2.49</value>
+                    <currency_type>USD</currency_type>
+                </Vendor_Purchase_Price>
+                <License>
+                    <Licenses>Subscription Based</Licenses>
+                </License>
+            </Vendor_Pricing>
+            <Vendor_Pricing>
+                <Vendor_Split_Percentage>60</Vendor_Split_Percentage>
+                <Vendor_Purchase_Price>
+                    <value>2.49</value>
+                    <currency_type>USD</currency_type>
+                </Vendor_Purchase_Price>
+                <License>
+                    <Licenses>Default</Licenses>
+                </License>
+            </Vendor_Pricing>
+        </Vendor_Item_Info>
+        <Product_Type>
+            <Categorization>PREM_WAP</Categorization>
+            <MIME_Type>text/plain</MIME_Type>
+        </Product_Type>
+        <Device_Requirements/>
+    </PC>
+    <ProductCategoryDoc.End Purchase_Price_Sum="4.98" VSRP_Sum="0.00" Wholesale_Sum="0.00" recCount="1"/>
+</ProductCategoryDoc>

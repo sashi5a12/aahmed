@@ -1,0 +1,5 @@
+<workflows>	
+     <workflow name="workflow_brew_app" type="resource" location="workflow_brew_app.xml"/>	
+     <workflow name="workflow_jondapp" type="resource" location="workflow_java_ondeck_app.xml"/>
+     <workflow name="workflow_jofdapp" type="resource" location="workflow_java_offdeck_app.xml"/>
+</workflows>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CreateContentProvider xmlns="http://api.qpass.com/cponboarding">
+                <cpOnboardingData>
+                                <initialProfileData>
+                                                <registrantFirstName>DevAdminFN1</registrantFirstName>
+                                                <registrantLastName>DevAdminLN1</registrantLastName>
+                                                <registrantUserName>8390904</registrantUserName>
+                                                <registrantEmailId>netpacedev52@qmail.com</registrantEmailId>
+                                                <password>password123</password>
+                                                <securityQuestion>What's your pet name</securityQuestion>
+                                                <securityAnswer>dogi123</securityAnswer>
+                                                <companyName>DevAdmin78902</companyName>
+                                                <companyReferenceName>8390904</companyReferenceName>
+                                                <termsAndConditions>
+                                                                <isTermAgreed>true</isTermAgreed>
+                                                </termsAndConditions>
+                                                <companyUrl>http://www.netpace.com</companyUrl>
+                                </initialProfileData>
+                                <contentProviderData>
+                                                <contactData>
+                                                                <name>DevAdminFNLN</name>
+                                                                <title>support staff</title>
+                                                                <email>netpacedev3@gmail.com</email>
+                                                                <phone>8076980769</phone>
+                                                                <mobilePhone>8076980769</mobilePhone>
+                                                                <contactType>example.customerService</contactType>
+                                                                <notes>80769 loves support calls</notes>
+                                                </contactData>
+                                                <remittanceInformationData>
+                                                                <remitTo>DevAdmin Smith</remitTo>
+                                                                <address1>123 Main street</address1>
+                                                                <address2>Suite# 123</address2>
+                                                                <city>San Ramon</city>
+                                                                <state>CA</state>
+                                                                <postalCode>94583</postalCode>
+                                                                <country>USA</country>
+                                                </remittanceInformationData>
+                                                <taxInformationData>
+                                                                <isTaxNexusExempted>true</isTaxNexusExempted>
+                                                </taxInformationData>
+                                </contentProviderData>
+                                <externalInformationList>
+									<externalInformation>
+										<name>business</name> 
+										<value>VZDN</value> 
+									</externalInformation>
+								</externalInformationList>
+                                <provisingData>
+                                                <autoApprove>true</autoApprove>
+                                                <termsAcceptanceWaived>true</termsAcceptanceWaived>
+                                                <revenueDistributionContractTemplateId>Revenue Distribution 10% - 90%</revenueDistributionContractTemplateId>
+                                                <revenueDistributionContractTemplateDescription>Default Contract</revenueDistributionContractTemplateDescription>
+                                                <purchaseAndOwnershipNotifications>false</purchaseAndOwnershipNotifications>
+                                                <taxNexus>NO</taxNexus>
+                                                <taxNexusWaived>true</taxNexusWaived>
+                                </provisingData>
+                </cpOnboardingData>
+</CreateContentProvider>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by testing (testing inc) -->
+<schema targetNamespace="http://www.vzw.com/namespace/scm" xmlns:scm="http://www.vzw.com/namespace/scm" xmlns:ipdr="http://www.ipdr.org/namespaces/ipdr" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<import namespace="http://www.ipdr.org/namespaces/ipdr" schemaLocation="IPDRDoc3.1-SCM.xsd"/>
+	<complexType name="SCMDateTimeType">
+		<annotation>
+			<documentation>The type represent date and type in GMT and timezone offset in seconds. Format is yyyy-mm-ddThh:mm:ss.sssZ </documentation>
+		</annotation>
+		<sequence>
+			<element name="DateTime" type="ipdr:dateTimeMsec">
+				<annotation>
+					<documentation>String representing the Date and Time in GMT.</documentation>
+				</annotation>
+			</element>
+			<element name="TZoffset" type="integer">
+				<annotation>
+					<documentation>Offset from GMT for the local TZ in seconds.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

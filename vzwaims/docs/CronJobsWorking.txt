@@ -1,0 +1,4 @@
+1. Cron job execute Shell Script File "run_standalone.sh" and call ant file "standalonebuild.xml" with target name.
+2. standalonebuild.xml execute the target
+
+	

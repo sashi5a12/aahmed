@@ -1,0 +1,9 @@
+
+<global-exceptions>
+ <exception key="error.security" path="/common/security.jsp" scope="request"
+      type="com.netpace.aims.bo.security.AimsSecurityException" />
+ <exception key="error.security" path="/common/securityForPopup.jsp" scope="request"
+      type="com.netpace.aims.bo.security.AimsSecurityExceptionForPopup" />
+ <exception key="error.contact.admin" path="/common/security.jsp" scope="request"
+      type="java.lang.Exception" handler="com.netpace.aims.bo.core.CustomizedExceptionHandler"/>
+</global-exceptions>

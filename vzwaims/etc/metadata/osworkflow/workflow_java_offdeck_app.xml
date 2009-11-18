@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE workflow PUBLIC "-//OpenSymphony Group//DTD OSWorkflow 2.6//EN" "http://www.opensymphony.com/osworkflow/workflow_2_8.dtd">
+<workflow>
+	<initial-actions>
+		<action id="100" name="Start Java Workflow">
+			<results>
+				<unconditional-result old-status="Completed" status="Underway" step="700" owner="JAVA_APP_TAX_MANAGER" />
+			</results>
+			<post-functions>
+				<function type="class">
+					<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+					<!-- Java Platform ID is 44 -->
+					<arg name="platformId">44</arg>
+					<arg name="ringNumber">173</arg>
+					<arg name="oldStatus">1</arg>
+					<arg name="newStatus">2007</arg>						
+				</function>
+				<function type="class">
+					<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+				</function>
+				<function type="class">
+					<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+					<arg name="eventId">2001</arg>
+					<arg name="previousStatusId">1</arg>
+					<arg name="newStatusId">2007</arg>
+					<arg name="previousState">Java offdeck workflow kick started</arg>
+					<arg name="currentState">Tax Review Pending</arg>
+				</function>
+				<function type="class">
+					<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+					<arg name="fromState">SUBMITTED</arg>
+					<arg name="toStates">Tax Review Pending</arg>
+				</function>
+			</post-functions>
+		</action>
+	</initial-actions>
+	
+	<steps>
+		
+		<!--  
+		Tax Review
+		-->
+		<step id="700" name="Tax Review">
+			<actions>
+				<action id="701" name="Tax Category Updated" >
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" old-status="Completed" step="800" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">44</arg>
+							<arg name="ringNumber">173</arg>
+						    <arg name="oldStatus">2007</arg>						    
+						    <arg name="newStatus">2009</arg>						    							
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<!--  notify VDS Team -->
+							<arg name="eventId">2003</arg>
+							<arg name="previousStatusId">2007</arg>
+							<arg name="newStatusId">2009</arg>
+							<arg name="previousState">Pending Tax Review</arg>
+							<arg name="currentState">Tax Approved</arg>
+						</function>
+			      		<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Pending Tax Review</arg>
+						    <arg name="toStates">Tax Approved</arg>
+						</function>
+						<!-- forward to Approved step
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowCompletion</arg>
+						</function>
+						 -->							
+					</post-functions>
+				</action>
+				<action id="702" name="Request For Information (RFI)">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway"  old-status="InfoRequested" step="750" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">44</arg>
+							<arg name="ringNumber">173</arg>
+						    <arg name="oldStatus">2007</arg>
+						    <arg name="newStatus">2006</arg>
+						    <arg name="rfi">true</arg>						    
+						</function>						
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>												
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">2011</arg>
+							<arg name="previousStatusId">2007</arg>
+							<arg name="newStatusId">2006</arg>
+							<arg name="previousState">Pending Tax Review</arg>
+							<arg name="currentState">RFI Tax Review</arg>
+						</function>						
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Pending Tax Review</arg>
+						    <arg name="toStates">RFI Tax Review</arg>
+						</function>
+					</post-functions>
+				</action>				
+				<action id="703" name="Tax Category Unavailable">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" old-status="Completed"  step="-1" owner="JAVA_APP_TAX_MANAGER"/>
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+							<!-- set status to PENDING TAX APPROVAL -->
+						    <arg name="platformId">44</arg>
+							<arg name="ringNumber">173</arg>
+						    <arg name="oldStatus">2007</arg>
+						    <arg name="newStatus">2007</arg>
+							<arg name="pendingTaxCategory">true</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<!-- 
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<arg name="eventId">2019</arg>
+							<arg name="previousStatusId">2007</arg>
+							<arg name="newStatusId">2007</arg>
+							<arg name="previousState">Pending Tax Review</arg>
+							<arg name="currentState">Tax Review Rejected</arg>
+						</function>
+						 -->			
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">Pending Tax Review</arg>
+						    <arg name="toStates">Tax Review On Hold</arg>							
+						</function>
+					</post-functions>
+				</action>				
+			</actions>
+		</step>
+		
+		
+		<!--
+		RFI on Tax Review  
+		-->
+		<step id="750" name="RFI Tax Review">
+			<actions>
+				<action id="751" name="Resubmit">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Underway</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<pre-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowStatusEntry</arg>
+				    	</function>
+					</pre-functions>
+					<results>
+						<unconditional-result status="Underway" old-status="Completed" step="700" owner="JAVA_APP_TAX_MANAGER"/>
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.ApplicationStatusEntry</arg>
+						    <arg name="platformId">44</arg>
+							<arg name="ringNumber">173</arg>
+						    <arg name="oldStatus">2006</arg>
+						    <arg name="newStatus">2007</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkItemEntry</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowNotification</arg>
+							<!-- notify tax manager -->
+							<arg name="eventId">2021</arg>
+							<arg name="previousStatusId">2006</arg>
+							<arg name="newStatusId">2007</arg>
+							<arg name="previousState">RFI Tax Review</arg>
+							<arg name="currentState">Pending Tax Review</arg>
+						</function>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowJournalEntry</arg>
+						    <arg name="fromState">RFI Tax Review</arg>
+						    <arg name="toStates">Pending Tax Review</arg>
+						</function>						
+					</post-functions>
+				</action>
+			</actions>
+		</step>
+		
+			
+		<!--
+		Approved 
+		-->
+		<step id="800" name="Approved">
+			<actions>
+				<action id="801" name="Approved" finish="TRUE" auto="TRUE">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Completed</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<results>
+						<unconditional-result old-status="Completed" status="Completed" step="-1" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowCompletion</arg>
+						</function>
+					</post-functions>
+				</action>
+			</actions>
+		</step>
+			
+		<!-- 
+		Rejected
+		-->
+		<step id="900" name="Rejected">
+			<actions>
+				<action id="901" name="Reject" finish="TRUE" auto="TRUE">
+					<restrict-to>
+						<conditions type="AND">
+							<condition type="class">
+								<arg name="class.name">com.opensymphony.workflow.util.StatusCondition</arg>
+								<arg name="status">Completed</arg>
+							</condition>
+						</conditions>
+					</restrict-to>
+					<results>
+						<unconditional-result old-status="Completed" status="Completed" step="-1" />
+					</results>
+					<post-functions>
+						<function type="class">
+							<arg name="class.name">com.netpace.aims.workflow.WorkflowCompletion</arg>
+						</function>
+					</post-functions>
+				</action>
+			</actions>
+		</step>	
+		
+	</steps>	
+</workflow>

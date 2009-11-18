@@ -1,0 +1,44 @@
+            
+   <!-- Aims User Login -->
+   
+	  <action path="/loginSetup"
+	          type="org.apache.struts.action.ActionForward"
+              forward="/public/login.jsp">
+	 </action>  
+
+	<!-- Open Rich Text Editor -->
+   
+	  <action path="/dashboardUserGuideRte"
+	          type="org.apache.struts.action.ActionForward"
+              forward="/application/dashboardUserGuideRTE.jsp">
+	 </action>
+
+	  <!-- Profile chanage password  -->
+
+	  <action path="/profileChangePasswordSetup"
+	          type="org.apache.struts.action.ActionForward"
+              forward="/profile/profileChangePassword.jsp">
+	 </action>
+
+   <!-- User Account chanage password  -->
+
+	  <action path="/accountsChangePasswordSetup"
+	          type="org.apache.struts.action.ActionForward"
+	          validate="false"
+	          name="AccountsChangePasswordForm"
+	          scope="request"
+              forward="/accounts/accountsChangePassword.jsp">
+	 </action>
+
+ <!-- Open Rich Text Editor -->
+   
+	  <action path="/brewUserGuideRte"
+	          type="org.apache.struts.action.ActionForward"
+              forward="/application/brewUserGuideRTE.jsp">
+	 </action>  
+
+	  <action path="/javaUserGuideRte"
+	          type="org.apache.struts.action.ActionForward"
+              forward="/application/javaUserGuideRTE.jsp">
+	 </action>  
+

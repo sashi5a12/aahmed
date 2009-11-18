@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProductCategoryDoc fileDate="2009-04-14" fileID="000000052" vendor_id="800000" xmlns="http://www.vzw.com/namespace/scm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsd_version="1.0.0" xsi:schemaLocation="http://www.vzw.com/namespace/scm VendorStocking1_0.xsd">
+    <PC recID="1">
+        <Vendor_Item_Info>
+            <Vendor_Product_ID>
+                <Vendor_Product_Version>1.0</Vendor_Product_Version>
+                <Vendor_Product_Code>airGCool Pics</Vendor_Product_Code>
+                <Vendor_Product_Display>airG Care 1-866-689-3280</Vendor_Product_Display>
+            </Vendor_Product_ID>
+            <Vendor_Id>
+                <Vendor_Id>800471</Vendor_Id>
+            </Vendor_Id>
+            <Download_URL>http://airg.com/verizon-coolpics</Download_URL>
+            <Vendor_Pricing>
+                <Vendor_Split_Percentage>50</Vendor_Split_Percentage>
+                <Vendor_Purchase_Price>
+                    <value>2.99</value>
+                    <currency_type>USD</currency_type>
+                </Vendor_Purchase_Price>
+                <License>
+                    <Licenses>Subscription Based</Licenses>
+                </License>
+            </Vendor_Pricing>
+            <Vendor_Pricing>
+                <Vendor_Split_Percentage>50</Vendor_Split_Percentage>
+                <Vendor_Purchase_Price>
+                    <value>2.99</value>
+                    <currency_type>USD</currency_type>
+                </Vendor_Purchase_Price>
+                <License>
+                    <Licenses>Default</Licenses>
+                </License>
+            </Vendor_Pricing>
+        </Vendor_Item_Info>
+        <Product_Type>
+            <Categorization>PREM_WAP</Categorization>
+            <MIME_Type>text/plain</MIME_Type>
+        </Product_Type>
+        <Device_Requirements/>
+    </PC>
+    <PC recID="2">
+        <Vendor_Item_Info>
+            <Vendor_Product_ID>
+                <Vendor_Product_Version>1.0</Vendor_Product_Version>
+                <Vendor_Product_Code>airGDivas</Vendor_Product_Code>
+                <Vendor_Product_Display>airG Care 1-866-689-3280</Vendor_Product_Display>
+            </Vendor_Product_ID>
+            <Vendor_Id>
+                <Vendor_Id>800471</Vendor_Id>
+            </Vendor_Id>
+            <Download_URL>http://airg.com/verizon-divas</Download_URL>
+            <Vendor_Pricing>
+                <Vendor_Split_Percentage>50</Vendor_Split_Percentage>
+                <Vendor_Purchase_Price>
+                    <value>3.99</value>
+                    <currency_type>USD</currency_type>
+                </Vendor_Purchase_Price>
+                <License>
+                    <Licenses>Subscription Based</Licenses>
+                </License>
+            </Vendor_Pricing>
+            <Vendor_Pricing>
+                <Vendor_Split_Percentage>50</Vendor_Split_Percentage>
+                <Vendor_Purchase_Price>
+                    <value>3.99</value>
+                    <currency_type>USD</currency_type>
+                </Vendor_Purchase_Price>
+                <License>
+                    <Licenses>Default</Licenses>
+                </License>
+            </Vendor_Pricing>
+        </Vendor_Item_Info>
+        <Product_Type>
+            <Categorization>PREM_WAP</Categorization>
+            <MIME_Type>text/plain</MIME_Type>
+        </Product_Type>
+        <Device_Requirements/>
+    </PC>
+    <ProductCategoryDoc.End Purchase_Price_Sum="13.96" VSRP_Sum="0.00" Wholesale_Sum="0.00" recCount="2"/>
+</ProductCategoryDoc>

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+
+<project name="aims" default="help" basedir=".">
+
+	<!-- USER'S DEFINED PATH IS PICKED FROM THIS PROPERTY FILE -->
+	<property name="lib.dir" value="${basedir}/lib" />
+
+
+	<!-- =================================================================== -->
+	<!-- Define all the required paths here                                  -->
+	<!-- =================================================================== -->
+
+	<path id="aims.classpath">
+		<pathelement location="${basedir}" />
+		<pathelement location="${basedir}/classes" />
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="tomcat.classpath">
+		<fileset dir="/usr/java/ProjectLibraries">
+			<include name="ojdbc14.jar" />
+		</fileset>
+	</path>
+		
+	<!-- =================================================================== -->
+	<!-- WAP OptOut                                                          -->
+	<!-- =================================================================== -->
+
+	<target name="ftp_wap_optout_send_optout_file">
+		<java classname="com.netpace.aims.ftp.wapoptout.FtpExcelFile" fork="true">
+			<classpath>
+				<path refid="aims.classpath" />
+				<path refid="tomcat.classpath" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="ftp_wap_optout_fetch_whitelist">
+		<java classname="com.netpace.aims.ftp.wapoptout.FtpWhiteList" fork="true">
+			<classpath>
+				<path refid="aims.classpath" />
+				<path refid="tomcat.classpath" />
+			</classpath>
+		</java>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Tool Fetch xls file                                                 -->
+	<!-- =================================================================== -->
+
+	<target name="tool_fetch_xls_file">
+		<java classname="com.netpace.aims.ftp.tool.FetchAndSaveToolFile" fork="true">
+			<classpath>
+				<path refid="aims.classpath" />
+				<path refid="tomcat.classpath" />
+			</classpath>
+			<jvmarg value="-Xmx512m"/>
+		</java>
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Check GTM verizon users in LDAP to identify which roles are changed -->
+	<!-- =================================================================== -->
+	
+	<target name="mail_ldap_change_user_roles">
+		<java classname="com.netpace.aims.crons.MailLdapChangeUser" fork="true">
+			<classpath>
+				<path refid="aims.classpath" />
+				<path refid="tomcat.classpath" />
+			</classpath>
+		</java>
+	</target>
+	
+	<!-- =================================================================== -->
+
+	<!-- Help - Ant Tasks                                                    -->
+	<!-- =================================================================== -->
+	<target name="help">
+		<echo message=" ****************************************************   " />
+		<echo message="                   VZWAIMS Help Menu                    " />
+		<echo message=" ****************************************************   " />
+		<echo message="                                                        " />
+		<echo message="                                                        " />
+		<echo message=" ant help      - Shows this help menu       " />
+		<echo message=" ant ftp_wap_optout_fetch_whitelist       - WAP Optout Module. Fetches Whitelist from Verizon FTP Server           " />
+		<echo message=" ant ftp_wap_optout_send_optout_file      - WAP Optout Module. Sends Optouts (in XLS) to Verizon FTP Server           " />
+		<echo message=" ant tool_fetch_xls_file      			 - Tool Module. Get excel file from ftp and save for record number 1.      " />
+		<echo message=" ant mail_ldap_change_user_roles      	 - Check GTM verizon users in LDAP to identify which roles are changed      " />
+	</target>
+
+</project>

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+
+<project name="cafeed" default="scpcafeed" basedir=".">
+
+	<property name="app.name" value="cafeed" />
+	<property name="home.dir" value=".." />
+	
+    <!-- call scp script -->
+	<target name="scpfile">
+	    <exec executable="${home.dir}/bin/scp_cafeed.sh"
+	    	resultproperty="file.transfer.result"
+	    	>
+	      <arg value="${file.name}"/>
+	    </exec>
+		<condition property="file.transfer.failed">
+			<matches string="${file.transfer.result}" pattern="[1]"/>
+		</condition>
+	</target>
+	
+	<!-- call ftp script -->
+	<target name="ftpfile">
+		    <exec executable="${home.dir}/bin/ftp_cafeed.sh">
+		      <arg value="${file.name}"/>
+		    </exec> 
+	</target>
+	
+	<target name="notifyerror"	if="file.transfer.failed" >
+		<echo message="Notify support team on error." />
+		<!-- email the error message -->
+		<mail mailhost="mail.netpace.com" mailport="25" subject="CA Feed file transfer failed!!!">
+		  <from address="cafeed-noreply@netpace.com"/>
+		  <replyto address="cafeed-noreply@netpace.com"/>
+		  <to address="support@wireless.netpace.com"/>
+		  <message>The daily CA Feed to VM failed with error  "${file.transfer.error}"</message>
+		</mail>
+	</target>
+		
+    <!-- ************************************************************** -->
+    <!--               Execution of CA Feed - Daily Load                  --> 
+    <!-- ************************************************************** -->
+    <target name="cafeed" >
+    	
+    	<tstamp>
+    	    <format property="start.timestamp" pattern="MM/dd/yyyy HH:mm:ss" offset="-24" unit="hour"/>
+    	</tstamp>    	
+        <tstamp>
+    	    <format property="end.timestamp" pattern="MM/dd/yyyy HH:mm:ss" unit="hour"/>
+    	</tstamp>
+    	<tstamp>
+			<format property="file.name.suffix" pattern="MMddyyyy_HHmmss" locale="en,US" />
+    	</tstamp>
+    	
+   	
+		<property name="file.name" value="VZDN_Developer_Feed_${file.name.suffix}.txt" />
+    	<property name="file.path" value="${home.dir}/feed/${file.name}" />
+        
+    	<echo message="CA Feed - Daily Load started............."/>
+		<echo message="start timestamp 	= ${start.timestamp}"/>
+    	<echo message="end timestamp 	= ${end.timestamp}"/>
+        <echo message="CA feed file 	= ${file.path}"/>
+    	
+    	<java classname="com.netpace.aims.ca.regularfeeds.CafeedRegular" fork="true">
+            <arg value="${start.timestamp}"/>
+            <arg value="${end.timestamp}"/>
+            <arg value="${file.path}"/>
+              <classpath>
+              	 <pathelement location="${home.dir}/conf"/>
+              	 <fileset dir="${home.dir}/lib">
+              	 	<include name="**/*.jar"/>
+              	 </fileset>
+              </classpath>
+          </java>
+    </target>
+	
+	<target name="ca" depends="cafeed,scpfile,notifyerror"/>
+
+    <!-- ************************************************************** -->
+    <!--               Execution of CA Feed - Bulk Load                                                                                                           -->
+    <!-- ************************************************************** -->
+    <target name="cafeedbulkload" >
+    	
+    	<property name="start.timestamp" value="07/28/2009 00:00:00"/>
+    	<property name="end.timestamp" value="10/24/2009 00:00:00"/>
+    	
+		<property name="file.name" value="VZDN_Developer_Feed_bulkload.txt" />
+    	<property name="file.path" value="${home.dir}/feed/${file.name}" />
+        
+    	<echo message="CA Feed - Bulk Load started............."/>
+		<echo message="start timestamp 	= ${start.timestamp}"/>
+    	<echo message="end timestamp 	= ${end.timestamp}"/>
+        <echo message="CA feed file 	= ${file.path}"/>
+    	
+    	<java classname="com.netpace.aims.ca.bulkfeeds.CafeedBulk" fork="true">
+            <arg value="${start.timestamp}"/>
+            <arg value="${end.timestamp}"/>
+            <arg value="${file.path}"/>
+              <classpath>
+              	 <pathelement location="${home.dir}/conf"/>
+              	 <fileset dir="${home.dir}/lib">
+              	 	<include name="**/*.jar"/>
+              	 </fileset>
+              </classpath>
+          </java>
+    </target>
+	
+	<target name="bl" depends="cafeedbulkload,scpfile"/>
+
+</project>
