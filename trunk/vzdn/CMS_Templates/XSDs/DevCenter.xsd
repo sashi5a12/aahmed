@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:vzdn="http://www.netpace.com/vzdn"
+			xmlns:alf="http://www.alfresco.org"
+			targetNamespace="http://www.netpace.com/vzdn"
+			elementFormDefault="qualified"			
+			>
+
+	<xs:complexType name="pod">
+		<xs:sequence>
+			<xs:element name="display_name" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${common.label.linkText}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${common.label.link}</alf:label>			            
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="target" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+			            <alf:label>${common.label.linkTarget}</alf:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="logged_in" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+			            <alf:label>${common.label.linkLoggedIn}</alf:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="deviceSliderImages">
+		<xs:sequence>
+			<xs:element name="deviceDisplayName" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>Display Name</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="deviceImage" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>Device Image</alf:label>
+			            <alf:appearance>image_file_picker</alf:appearance>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="deviceImageAlt" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>Device Image Alt Text</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${common.label.link}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="target" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+			            <alf:label>${common.label.linkTarget}</alf:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="logged_in" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+			            <alf:label>${common.label.linkLoggedIn}</alf:label>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="root">
+		<xs:annotation>
+			<xs:appinfo>
+				<alf:label>Dev Center</alf:label>
+			</xs:appinfo>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dir_output_path">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.dirOutputPath}</alf:label>
+				            <alf:alert>${common.required.error.dirOutputPath}</alf:alert>
+				        </xs:appinfo>
+				    </xs:annotation>								
+					<xs:simpleType>
+						<xs:restriction base="xs:normalizedString">
+							<xs:enumeration value="Brew" />
+							<xs:enumeration value="Dashboard" />
+							<xs:enumeration value="Enterprise" />							
+							<xs:enumeration value="Network_Enablers">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Network_Enablers</alf:label>
+									</xs:appinfo>
+								</xs:annotation>	
+							</xs:enumeration>
+							<xs:enumeration value="JIL" />							
+							<xs:enumeration value="Messaging_PSMS">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Messaging PSMS</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:enumeration value="Mobile_Web">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Mobile Web</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:enumeration value="MusicVideo">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>VCAST Music and Video</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:enumeration>							
+							<xs:enumeration value="Smart_Phone">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Smart Phone</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:enumeration>							
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="page" default="jsp">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.page}</alf:label>
+				            <alf:alert>${common.required.error.page}</alf:alert>
+				            <alf:appearance>minimal</alf:appearance>
+				        </xs:appinfo>
+				    </xs:annotation>								
+					<xs:simpleType>
+						<xs:restriction base="xs:normalizedString">
+							<xs:enumeration value="jsp">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Non Secure Page</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:enumeration value="sjsp">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Secure Page</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:enumeration>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>				
+				<xs:element name="page_title" type="xs:normalizedString">			
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.pageTitle}</alf:label>
+				            <alf:alert>${common.required.error.pageTitle}</alf:alert>
+				        </xs:appinfo>
+				    </xs:annotation>				
+				</xs:element>
+				<xs:element name="keywords" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.keywords}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				<xs:element name="version" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.version}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				<xs:element name="heading" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.heading}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+
+				<xs:element name="spotlight_html" type="xs:anyURI" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+				            <alf:label>${common.label.spotlightHtml}</alf:label>
+				            <alf:appearance>vzdn_html_file_picker</alf:appearance>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				
+				<xs:element name="gettingStarted">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.gettingStartedHeading}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="pod_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podtitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="links" type="vzdn:pod" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podlinksHeading}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>
+
+				<xs:element name="techResources">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.techResourcesHeading}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="pod_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podtitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="links" type="vzdn:pod" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podlinksHeading}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>
+
+				<xs:element name="downloads">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.downloadsHeading}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="pod_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podtitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="links" type="vzdn:pod" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podlinksHeading}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>
+				
+				<xs:element name="messageCenter">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.messageCenterHeading}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="pod_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podtitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="links" type="vzdn:pod" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podlinksHeading}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>				
+
+				<xs:element name="communitySupport">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.communitySupportHeading}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="pod_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podtitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="links" type="vzdn:pod" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podlinksHeading}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>				
+				
+				<xs:element name="issueResolution" type="vzdn:pod" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.issueResolutionText}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="issueResolutionLinks" type="vzdn:pod" minOccurs="0"  maxOccurs="2">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.issueResolutionLinks}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>							
+				</xs:element>
+						
+				<xs:element name="gotoMarket">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${devcenter.label.gotoMarketHeading}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="pod_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podtitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="links" type="vzdn:pod" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>${devcenter.label.podlinksHeading}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>				
+
+				<xs:element name="deviceSliderPod" minOccurs="0" maxOccurs="4">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>Device Slider Pod Info</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType >
+						<xs:sequence>
+							<xs:element name="device_title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Device Title</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="images" type="vzdn:deviceSliderImages" minOccurs="0"  maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<alf:label>Images</alf:label>
+									</xs:appinfo>
+								</xs:annotation>							
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

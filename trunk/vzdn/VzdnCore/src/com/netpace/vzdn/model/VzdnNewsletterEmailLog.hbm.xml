@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.netpace.vzdn.model">
+				 
+    <class name="VzdnNewsletterEmailLog" table="vzdn_newsletter_email_log">
+        <id name="newsLetterLogId" type="java.lang.Integer">
+            <column name="newsletter_email_log_id" />
+            <generator class="native" />
+        </id>     
+        <property name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+        </property>							 
+        <property name="emailDateTime" type="java.sql.Timestamp">
+            <column name="email_date_time" length="19"/>
+        </property>
+        <property name="emailSubject" type="java.lang.String">
+            <column name="email_subject" length="100"/>
+        </property>
+        <property name="emailAttachment" type="java.sql.Blob">
+            <column name="email_attachment" />
+        </property>         
+        <property name="emailContent" type="java.lang.String">
+            <column name="email_content" length="1000" />
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="createdBy" type="java.lang.String">
+            <column name="created_by" length="50" />
+        </property>
+		<!-- 
+		<set name="recieversList" table="vzdn_newsletter_reciever_log" inverse="true">
+			<key column="NEWSLETTER_EMAIL_LOG_ID" />
+			<one-to-many class="VzdnNewsletterRecieverLog"/>
+		</set>
+		
+		 -->
+		
+		<set name="recieversList" inverse="false" cascade="all">
+            <key>
+                <column name="newsletter_email_log_id" />
+            </key>
+            <one-to-many class="VzdnNewsletterRecieverLog" />
+        </set>
+        
+    </class>
+</hibernate-mapping>

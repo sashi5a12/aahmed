@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.netpace.vzdn.model">
+    <class name="VzdnMenus" table="vzdn_menus">
+        <id name="menuId" type="java.lang.Integer">
+            <column name="menu_id" />
+            <generator class="native" />
+        </id>
+        <property name="menuName" type="java.lang.String">
+            <column name="menu_name" length="100" />
+        </property>
+        <property name="menuUrl" type="java.lang.String">
+            <column name="menu_url" length="200" />
+        </property>
+        <property name="imageName" type="java.lang.String">
+            <column name="image_name" length="100" />
+        </property>
+        <property name="sortOrder" type="java.lang.Integer">
+            <column name="sort_order" />
+        </property>
+        <property name="createdBy" type="java.lang.String">
+            <column name="created_by" length="50" />
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.String">
+            <column name="last_updated_by" length="50" />
+        </property>
+        <property name="lastUpdatedDate" type="java.sql.Timestamp">
+            <column name="last_updated_date" length="19" />
+        </property>
+        <set name="subMenus" inverse="true" lazy="true">
+            <key>
+                <column name="menu_id" />
+            </key>
+            <one-to-many class="VzdnSubMenus" />
+        </set>
+        <set name="privileges" inverse="true" lazy="true">
+            <key>
+                <column name="menu_id" />
+            </key>
+            <one-to-many class="VzdnSysPrivileges" />
+        </set>
+    </class>
+</hibernate-mapping>

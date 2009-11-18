@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.netpace.vzdn.model">
+    <class name="VzdnDevCareSubCategories" table="vzdn_dev_care_sub_categories">
+        <id name="subCategoryId" type="java.lang.Integer">
+            <column name="sub_category_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vzdnDevCareCategories" class="VzdnDevCareCategories" fetch="join" not-null="true">
+            <column name="category_id" />
+        </many-to-one>
+        <property name="subCategoryName" type="java.lang.String">
+            <column name="sub_category_name" length="50" not-null="true" />
+        </property>
+        <property name="createdBy" type="java.lang.Integer">
+            <column name="created_by" />
+        </property>
+        <property name="updatedBy" type="java.lang.Integer">
+            <column name="updated_by" />
+        </property>
+        <property name="updatedDate" type="java.sql.Timestamp">
+            <column name="updated_date" length="19" />
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <set name="issues" inverse="true" lazy="true">
+            <key>
+                <column name="sub_category_id" />
+            </key>
+            <one-to-many class="VzdnDevCareIssues" />
+        </set>
+    </class>
+</hibernate-mapping>

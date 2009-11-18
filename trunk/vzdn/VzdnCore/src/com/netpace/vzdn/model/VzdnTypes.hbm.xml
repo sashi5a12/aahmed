@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.netpace.vzdn.model">
+    <class name="VzdnTypes" table="vzdn_types">
+        <id name="typeId" type="java.lang.Integer">
+            <column name="type_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vzdnTypeDefs" class="VzdnTypeDefs" fetch="join" not-null="true">
+            <column name="type_def_id" not-null="true" />
+        </many-to-one>
+        <property name="typeValue" type="java.lang.String">
+            <column name="type_value" length="100" not-null="true" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" length="500" />
+        </property>
+        <property name="sortOrder" type="java.lang.Integer">
+            <column name="sort_order" not-null="true" />
+        </property>
+        <property name="createdBy" type="java.lang.String">
+            <column name="created_by" length="50" />
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.String">
+            <column name="last_updated_by" length="50" />
+        </property>
+        <property name="lastUpdatedDate" type="java.sql.Timestamp">
+            <column name="last_updated_date" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.netpace.vzdn.model">
+    <class name="VzdnSysRoles" table="vzdn_sys_roles">
+        <id name="roleId" type="java.lang.Integer">
+            <column name="role_id" />
+            <generator class="native" />
+        </id>
+        <property name="roleName" type="java.lang.String">
+            <column name="role_name" length="50" />
+        </property>
+        <property name="roleDescription" type="java.lang.String">
+            <column name="role_description" length="500" />
+        </property>
+       
+        <many-to-one name="vzdnTypes" class="VzdnTypes"  fetch="join" not-null="true">
+            <column name="type_id" not-null="true" />
+        </many-to-one>
+        
+        <property name="createdBy" type="java.lang.String">
+            <column name="created_by" length="50" />
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="vzdnRoleMappingId" type="java.lang.Integer">
+            <column name="vzdn_role_mapping_id"  />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.String">
+            <column name="last_updated_by" length="50" />
+        </property>
+        <property name="lastUpdatedDate" type="java.sql.Timestamp">
+            <column name="last_updated_date" length="19" />
+        </property>
+        <set name="privileges" table="vzdn_role_privileges" lazy="false" inverse="true" cascade="save-update">
+            <key>
+                <column name="role_id" not-null="true" />
+            </key>
+            <many-to-many class="VzdnSysPrivileges">
+                <column name="privilege_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="users" table="vzdn_user_roles" inverse="true" cascade="all" lazy="true"  >
+            <key>
+                <column name="role_id" not-null="true"  />
+            </key>
+            <many-to-many class="VzdnUsers" column="user_id"/>
+        </set>
+        
+        
+        
+        
+		<set name="reports" table="vzdn_report_roles" lazy="true">
+            <key>
+                <column name="role_id" not-null="true" />
+            </key>
+            <many-to-many class="VzdnReports">
+                <column name="report_id" not-null="true" />
+            </many-to-many>
+        </set> 
+        
+        <set name="notifications" table="vzdn_notification_roles" lazy="true">
+            <key>
+                <column name="role_id" not-null="true" />
+            </key>
+            <many-to-many class="VzdnEventNotifications">
+                <column name="notification_id" not-null="true" />
+            </many-to-many>
+        </set>        
+        
+               
+    </class>
+</hibernate-mapping>

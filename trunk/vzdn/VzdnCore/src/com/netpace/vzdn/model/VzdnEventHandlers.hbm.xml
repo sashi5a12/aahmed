@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.netpace.vzdn.model">
+    <class name="VzdnEventHandlers" table="vzdn_event_handlers">
+        <id name="eventHandlerId" type="java.lang.Integer">
+            <column name="event_handler_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vzdnEvents" class="VzdnEvents" fetch="join" not-null="true">
+            <column name="event_id" />
+        </many-to-one>
+        <property name="className" type="java.lang.String">
+            <column name="class_name" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

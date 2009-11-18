@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+    <!-- Configuration of the deployment service -->
+
+    <bean id="properties" 
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders">
+            <value>true</value>
+        </property>
+        <property name="locations">
+            <list>
+                <value>classpath:deployment.properties</value>
+            </list>
+        </property>
+    </bean>  
+   
+   <bean id="configuration" class="org.alfresco.deployment.config.Configuration"
+          init-method="init">
+        <property name="dataDirectory">
+            <value>${dep.datadir}</value>
+        </property>
+        <property name="logDirectory">
+            <value>${dep.logdir}</value>
+        </property>
+        <property name="metaDataDirectory">
+            <value>${dep.metadatadir}</value>
+        </property>
+        <!-- Target Configuration. Modify for your site. -->
+        <property name="targetData">
+            <map>
+            	<entry key="default">
+            	    <map>
+            	    	<entry key="root"><value>/usr/java/vzdn/tomcat_vzdnsite/webapps</value></entry>
+            	    	<entry key="user"><value>admin</value></entry>
+            	    	<entry key="password"><value>12657alcosta</value></entry>
+     	            </map>
+            	</entry>
+		    </map>
+        </property>
+    </bean>
+    
+    <bean id="deploymentReceiverService" 
+    	class="org.alfresco.deployment.impl.server.DeploymentReceiverServiceImpl" 
+        init-method="init">
+        <property name="configuration">
+            <ref bean="configuration"/>
+        </property>
+    </bean>
+    
+    <bean id="deploymentReceiverTransport" 
+    	class="org.alfresco.deployment.impl.server.DeploymentReceiverTransportImpl" >
+        <property name="deploymentReceiverService">
+            <ref bean="deploymentReceiverService"/>
+        </property>
+    </bean>
+    
+</beans>

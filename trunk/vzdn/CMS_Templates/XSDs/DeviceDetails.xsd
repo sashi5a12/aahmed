@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:vzdn="http://www.netpace.com/vzdn"
+			xmlns:alf="http://www.alfresco.org"
+			targetNamespace="http://www.netpace.com/vzdn"
+			elementFormDefault="qualified"			
+			>
+
+	<xs:complexType name="type_links">
+		<xs:sequence>
+			<xs:element name="link_text" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${deviceDetails.label.linkText}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="link" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${deviceDetails.label.link}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="type_tabs">
+		<xs:sequence>
+			<xs:element name="name" type="xs:normalizedString" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${deviceDetails.label.tabName}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="col1" type="xs:string" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${deviceDetails.label.tabCol1}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+			<xs:element name="col2" type="xs:string" minOccurs="0" maxOccurs="1">
+			    <xs:annotation>
+			        <xs:appinfo>
+			            <alf:label>${deviceDetails.label.tabCol2}</alf:label>
+			        </xs:appinfo>
+			    </xs:annotation>				
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+		
+	<xs:element name="root">
+		<xs:annotation>
+			<xs:appinfo>
+				<alf:label>${deviceDetails.label}</alf:label>
+			</xs:appinfo>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dir_output_path" type="xs:normalizedString">			
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.dirOutputPath}</alf:label>
+				            <alf:alert>${common.required.error.dirOutputPath}</alf:alert>
+				        </xs:appinfo>
+				    </xs:annotation>				
+				</xs:element>
+				<xs:element name="page_title" type="xs:normalizedString">			
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.pageTitle}</alf:label>
+				            <alf:alert>${common.required.error.pageTitle}</alf:alert>
+				        </xs:appinfo>
+				    </xs:annotation>				
+				</xs:element>
+				<xs:element name="heading" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.heading}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+
+				<xs:element name="spotlight_html" type="xs:string" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.spotlightHtml}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				
+				<xs:element name="pods" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${deviceDetails.label.pods}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${deviceDetails.label.podTitleText}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="links" type="vzdn:type_links" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${deviceDetails.label.podLinks}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="explore_link" type="xs:anyURI" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${deviceDetails.label.podExploreLink}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>														
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				<xs:element name="tabs" minOccurs="0" maxOccurs="5" type="vzdn:type_tabs">
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${deviceDetails.label.tabs}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>				
+				</xs:element>												
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

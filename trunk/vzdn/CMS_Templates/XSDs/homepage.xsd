@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:vzdn="http://www.netpace.com/vzdn"
+			xmlns:alf="http://www.alfresco.org"
+			targetNamespace="http://www.netpace.com/vzdn"
+			elementFormDefault="qualified"			
+			>
+
+	<xs:element name="root">
+		<xs:annotation>
+			<xs:appinfo>
+				<alf:label>${homepage.label}</alf:label>
+			</xs:appinfo>
+		</xs:annotation>	
+		<xs:complexType>
+			<xs:sequence>							
+				<xs:element name="page_title" type="xs:normalizedString">			
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.pageTitle}</alf:label>
+				            <alf:alert>${common.required.error.pageTitle}</alf:alert>
+				        </xs:appinfo>
+				    </xs:annotation>				
+				</xs:element>
+				<xs:element name="keywords" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.keywords}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				<xs:element name="version" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.version}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>											
+				<xs:element name="heading" type="xs:normalizedString" minOccurs="0">
+				    <xs:annotation>
+				        <xs:appinfo>
+				            <alf:label>${common.label.heading}</alf:label>
+				        </xs:appinfo>
+				    </xs:annotation>
+				</xs:element>
+				
+				<xs:element name="spotlight_html" type="xs:anyURI" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+				            <alf:label>${common.label.spotlightHtml}</alf:label>
+				            <alf:appearance>vzdn_html_file_picker</alf:appearance>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				
+				<xs:element name="devCenter" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:appinfo>
+							<alf:label>${homepage.label.devCenter}</alf:label>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="title" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${homepage.label.devCenterTitle}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="description" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${homepage.label.devCenterShortDesc}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="image" type="xs:anyURI" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${homepage.label.devCenterImg}</alf:label>
+										<alf:appearance>image_file_picker</alf:appearance>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="image_alt" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${homepage.label.devCenterImgAlt}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="link_text" type="xs:normalizedString" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkText}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="learn_more_link" type="xs:anyURI" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.link}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="target" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkTarget}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="logged_in" type="xs:boolean" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+							            <alf:label>${common.label.linkLoggedIn}</alf:label>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
