@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequestData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="VZAppZoneRequest.xsd">
+      <Header>
+            <UserName>xxxx</UserName>
+            <Password>xxxx</Password>
+            <InterfaceName>CONTENT_SUBMIT</InterfaceName>
+      </Header>
+      <RequestBody>            
+            <Content action="ADD">
+                  <ContentId>xxxx</ContentId>
+                  <DisplayName>xxxx</DisplayName>
+                  <Description>xxxx</Description>
+                  <Asset type="RINGTONE" action="ADD">
+                        <AssetId>xxxx</AssetId>
+                        <AssetVersion>0</AssetVersion>
+                        <Device action="ADD">xxxx</Device>
+                        <Language action="ADD">EN</Language>
+                        <AssetDetails>
+                              <AssetLocation>xxx</AssetLocation>
+                              <AssetSize>xxxx</AssetSize>
+                              <AssetMimeType>xxxx</AssetMimeType>
+                        </AssetDetails>
+                        <AssetPreviewDetails>
+                              <PreviewLocation>xxxx</PreviewLocation>
+                              <PreviewSize>xxxx</PreviewSize>
+                              <PreviewMimeType>xxxx</PreviewMimeType>
+                        </AssetPreviewDetails>
+                  </Asset>
+                  <PricePlans>
+                        <PricePlan action="ADD" isGeneric="false" planStatus="A">
+                              <Price>0</Price>
+                              <PlanType>xxxx</PlanType>                              
+                              <InvoiceDescription>xxxx</InvoiceDescription>
+							  <RevenueSharePercentage>0</RevenueSharePercentage>
+                        </PricePlan>
+                  </PricePlans>
+                  <ContentCategories>
+                        <ContentCategory action="ADD">
+                              <CategoryPath>xxxx</CategoryPath>
+                        </ContentCategory>                        
+                  </ContentCategories>
+                  <ContentType>xxxx</ContentType>
+                  <ContentDetail>
+                        <ShortDescription>xxxx</ShortDescription>
+                        <VendorName>xxxx</VendorName>
+                  </ContentDetail>
+            </Content>
+      </RequestBody>
+</RequestData>

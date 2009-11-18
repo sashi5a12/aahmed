@@ -1,0 +1,38 @@
+<project>
+	<!-- =================================================================== -->
+    <!-- context - created aim.xml context file                               -->
+    <!-- =================================================================== -->
+    
+	<target name="generateContextFile">
+		<property name="zonws.xml" location="${build.dir}/zonws.xml" />
+		<echoxml file="${zonws.xml}" >
+
+			<Context reloadable="false">
+	
+			    <Manager className="org.apache.catalina.session.PersistentManager" saveOnRestart="false"/>
+
+			    <Resource name="jdbc/zonwsDS" auth="Container" type="javax.sql.DataSource"
+	                        username="${connection.username}"
+	                        password="${connection.password}"
+        	                driverClassName="oracle.jdbc.driver.OracleDriver"
+                	        url="${connection.url}"
+                        	factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+	                        maxActive="100"
+        	                maxIdle="30"
+                	        maxWait="60000"
+                        	removeAbandoned="true"
+	                        removeAbandonedTimeout="60" />
+
+			</Context>
+
+		</echoxml>
+	</target>
+	
+	<!-- ============================================================================= -->
+    <!-- deployContextFile - Deploy context file in <TOMCAT>/conf/Catalina/localhost  -->
+    <!-- ============================================================================= -->
+    
+    <target name="deployContextFile" depends="generateContextFile" >
+        <copy file="${build.dir}/zonws.xml" todir="${tomcat.home}/conf/Catalina/localhost" />
+    </target>
+</project>

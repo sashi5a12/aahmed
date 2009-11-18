@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Mahmood Mohammed (Netpace inc) -->
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:v="http://www.vzwdeveloper.com/vds/application/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.vzwdeveloper.com/vds/application/">
+	<types>
+		<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:v="http://www.vzwdeveloper.com/vds/application/" targetNamespace="http://www.vzwdeveloper.com/vds/application/" elementFormDefault="qualified">
+			<s:simpleType name="VendorId_Type">
+				<s:annotation>
+					<s:documentation>Vendor Id is unique identifier for alliance/company/developer,mumber of max length</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:long">
+					<s:totalDigits value="22"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="RingNumber_Type">
+				<s:annotation>
+					<s:documentation>Ring number, possible values 1, 2 and 3</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:int">
+					<s:totalDigits value="1"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="ContractRefId_Type">
+				<s:annotation>
+					<s:documentation>Contract referene ID inside ZON</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:long">
+					<s:totalDigits value="22"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="ApplicationRefId_Type">
+				<s:annotation>
+					<s:documentation>Application Reference ID </s:documentation>
+				</s:annotation>
+				<s:restriction base="s:long">
+					<s:totalDigits value="22"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="ApplicationName_Type">
+				<s:annotation>
+					<s:documentation>Application Name</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:string">
+					<s:length value="50"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="ApplicationShortDescription_Type">
+				<s:annotation>
+					<s:documentation>Application Short Description</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:string">
+					<s:length value="200"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="ApplicationLongDescription_Type">
+				<s:annotation>
+					<s:documentation>Application Long Description</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:string">
+					<s:length value="500"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="ContentRating_Type">
+				<s:annotation>
+					<s:documentation>Content Rating Type </s:documentation>
+				</s:annotation>
+				<s:restriction base="s:string">
+					<s:length value="100"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="TaxCategory_Type">
+				<s:annotation>
+					<s:documentation>Tax Category</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:string">
+					<s:length value="100"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="ContentType_Type">
+				<s:annotation>
+					<s:documentation>Content Type, TODO put enumeration?? </s:documentation>
+				</s:annotation>
+				<s:restriction base="s:string">
+					<s:enumeration value="GAME"/>
+					<s:enumeration value="APPLICATION"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:simpleType name="EnterpriseId_Type">
+				<s:annotation>
+					<s:documentation>Enterprise ID</s:documentation>
+				</s:annotation>
+				<s:restriction base="s:string">
+					<s:length value="100"/>
+				</s:restriction>
+			</s:simpleType>
+			<s:element name="ApplicationInfoResponse">
+				<s:annotation>
+					<s:documentation>Application Information from ZON Portal</s:documentation>
+				</s:annotation>
+				<s:complexType>
+					<s:sequence>
+						<s:element name="VendorID" type="v:VendorId_Type"/>
+						<s:element name="RingNumber" type="v:RingNumber_Type"/>
+						<s:element name="ContractRefId" type="v:ContractRefId_Type"/>
+						<s:element name="ApplicationRefId" type="v:ApplicationRefId_Type"/>
+						<s:element name="ApplicationName" type="v:ApplicationName_Type"/>
+						<s:element name="ApplicationShortDescription" type="v:ApplicationShortDescription_Type"/>
+						<s:element name="ApplicationLongDescription" type="v:ApplicationLongDescription_Type"/>
+						<s:element name="ContentRating" type="v:ContentRating_Type"/>
+						<s:element name="TaxCategory" type="v:TaxCategory_Type"/>
+						<s:element name="ContentType" type="v:ContentType_Type"/>
+						<s:element name="EnterpriseFlag" type="s:boolean"/>
+						<s:element name="EnterpriseId" type="v:EnterpriseId_Type" minOccurs="0"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ApplicationInfoRequest">
+				<s:complexType>
+					<s:sequence>
+						<s:element name="ApplicationKeyword" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ErrorResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element name="errorItem" type="v:ErrorItem_Type" minOccurs="0" maxOccurs="unbounded"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="ErrorItem_Type">
+				<s:sequence>
+					<s:element name="errorField" type="s:string" minOccurs="0"/>
+					<s:element name="errorText" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	<message name="ApplicationInfoSoapIn">
+		<part name="parameters" element="v:ApplicationInfoRequest"/>
+	</message>
+	<message name="ApplicationInfoSoapOut">
+		<part name="parameters" element="v:ApplicationInfoResponse"/>
+	</message>
+	<message name="errorSoapOut">
+		<part name="Error" element="v:ErrorResponse"/>
+	</message>
+	<portType name="ApplicationInfoSoap">
+		<operation name="getApplicationInfo">
+			<input message="v:ApplicationInfoSoapIn"/>
+			<output message="v:ApplicationInfoSoapOut"/>
+			<fault name="FaultApplicationNotFound" message="v:errorSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="ApplicationInfoSoapDoc" type="v:ApplicationInfoSoap">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getApplicationInfo">
+			<soap:operation soapAction="http://www.vzwdeveloper.com/VDS/getApplicationInfo" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="FaultApplicationNotFound">
+				<soap:fault name="FaultApplicationNotFound" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<service name="ApplicationInfo">
+		<documentation>Provide Application information from ZON</documentation>
+		<port name="ApplicationInfoSoap" binding="v:ApplicationInfoSoapDoc">
+			<soap:address location="http://www.vzwdeveloper.com/VDS/ApplicationService"/>
+		</port>
+	</service>
+</definitions>

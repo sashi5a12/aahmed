@@ -1,0 +1,258 @@
+#gn_outside {
+	BACKGROUND: url(../images/globalnav/off_red.gif) repeat-x; WIDTH: 100%; TEXT-ALIGN: center
+}
+#gn {
+	WIDTH: 990px; HEIGHT: 35px;
+}
+#gn_outside #gn {
+	MARGIN: 0px auto; TEXT-ALIGN: left
+}
+#gn DIV UL {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; LIST-STYLE-POSITION: outside; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 180px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#gn DIV UL LI UL {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; LIST-STYLE-POSITION: outside; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 180px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#gn DIV UL LI {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px; VERTICAL-ALIGN: bottom; WIDTH: 180px; PADDING-TOP: 0px
+}
+#gn DIV UL LI UL LI {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px; VERTICAL-ALIGN: bottom; WIDTH: 180px; PADDING-TOP: 0px
+}
+#gn H2 {
+	PADDING-RIGHT: 1px; DISPLAY: block; PADDING-LEFT: 0px; BACKGROUND: url(../images/globalnav/divider.gif) no-repeat right top; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; LINE-HEIGHT: 35px; PADDING-TOP: 0px; HEIGHT: 35px
+}
+#gn H2 A:link {
+	PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: url(../images/globalnav/off_red.gif) repeat-x; FLOAT: left; PADDING-BOTTOM: 0px; FONT: bold 13px/35px arial,sans-serif; COLOR: #fff; PADDING-TOP: 0px; HEIGHT: 35px; TEXT-DECORATION: none
+}
+#gn H2 A:visited {
+	PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: url(../images/globalnav/off_red.gif) repeat-x; FLOAT: left; PADDING-BOTTOM: 0px; FONT: bold 13px/35px arial,sans-serif; COLOR: #fff; PADDING-TOP: 0px; HEIGHT: 35px; TEXT-DECORATION: none
+}
+#gn H2 A:hover {
+	BACKGROUND: url(../images/globalnav/over_red.gif) repeat-x; COLOR: #fff; TEXT-DECORATION: none
+}
+#gn H2 A:active {
+	BACKGROUND: url(../images/globalnav/over_red.gif) repeat-x; COLOR: #fff; TEXT-DECORATION: none
+}
+#gn H2 A:unknown {
+	BACKGROUND: url(../images/globalnav/over_red.gif) repeat-x; COLOR: #fff; TEXT-DECORATION: none
+}
+#gn H2 A.gn_active {
+	BACKGROUND: url(../images/globalnav/over_red.gif) repeat-x; COLOR: #fff; TEXT-DECORATION: none
+}
+A.gn_selected {
+	BACKGROUND: url(../images/globalnav/over_red.gif) repeat-x; COLOR: #fff; TEXT-DECORATION: none
+}
+#gn H2 SPAN.gn_left_end A.gn_active {
+	BACKGROUND: url(../images/globalnav/over_red.gif) repeat-x; COLOR: #fff; TEXT-DECORATION: none
+}
+#gn H2 SPAN.gn_left_end A.gn_selected {
+	BACKGROUND: url(../images/globalnav/over_red.gif) repeat-x; COLOR: #fff; TEXT-DECORATION: none
+}
+#gn H2 SPAN {
+	DISPLAY: block; FLOAT: left; CURSOR: hand
+}
+#gn H2 SPAN.gn_left_end {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 1px; BACKGROUND: url(../images/globalnav/divider.gif) no-repeat left top; PADDING-BOTTOM: 0px; MARGIN: 0px; LINE-HEIGHT: 35px; PADDING-TOP: 0px; HEIGHT: 35px
+}
+#gn H2 DIV.gn_left_end {
+	BACKGROUND: url(../images/globalnav/divider.gif) no-repeat left top; FLOAT: left; MARGIN: 0px; WIDTH: 1px; LINE-HEIGHT: 35px; HEIGHT: 35px
+}
+#gn H2 IMG {
+	DISPLAY: block; FLOAT: left; OVERFLOW: hidden; WIDTH: 1px; HEIGHT: 35px
+}
+#gn SUP {
+	VERTICAL-ALIGN: text-top; LINE-HEIGHT: 0px
+}
+#gn DIV.gn_dd {
+	Z-INDEX: 500; BACKGROUND: url(../images/globalnav/s.gif); LEFT: -1000em; WIDTH: 180px; POSITION: absolute
+}
+#gn DIV.gn_dd UL LI A:link {
+	PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: #000; PADDING-BOTTOM: 4px; FONT: bold 12px arial,sans-serif; COLOR: #fff; PADDING-TOP: 4px; BORDER-BOTTOM: #333 1px solid; TEXT-DECORATION: none
+}
+#gn DIV.gn_dd UL LI A:visited {
+	PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: #000; PADDING-BOTTOM: 4px; FONT: bold 12px arial,sans-serif; COLOR: #fff; PADDING-TOP: 4px; BORDER-BOTTOM: #333 1px solid; TEXT-DECORATION: none
+}
+#deadLink{
+	COLOR: #787878; 
+}
+#deadLink{
+	COLOR: #787878; 
+}
+#gn DIV.gn_dd UL LI A:hover {
+	TEXT-DECORATION: none
+}
+#gn DIV.gn_dd UL LI A:active {
+	TEXT-DECORATION: none
+}
+#gn DIV.gn_dd UL LI A:unknown {
+	TEXT-DECORATION: none
+}
+#gn DIV.gn_dd UL LI UL {
+	Z-INDEX: 500; LEFT: -1000em; VISIBILITY: hidden; MARGIN-LEFT: 180px; OVERFLOW: hidden; WIDTH: 0px; POSITION: absolute; TOP: 0px
+}
+#gn DIV.gn_dd UL LI UL LI A:link {
+	PADDING-LEFT: 1.65em; BACKGROUND: #333; FONT: 11px arial,sans-serif; TEXT-INDENT: -0.5em; BORDER-BOTTOM: #4d4d4d 1px solid
+}
+#gn DIV.gn_dd UL LI UL LI A:visited {
+	PADDING-LEFT: 1.65em; BACKGROUND: #333; FONT: 11px arial,sans-serif; TEXT-INDENT: -0.5em; BORDER-BOTTOM: #4d4d4d 1px solid
+}
+#gn DIV.gn_dd UL LI UL LI A:hover {
+	BACKGROUND: #990000; TEXT-DECORATION: none
+}
+#gn DIV.gn_dd UL LI UL LI A:active {
+	BACKGROUND: #990000; TEXT-DECORATION: none
+}
+#gn DIV UL LI UL LI.promo {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: 1px 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; FONT: 11px arial,sans-serif; COLOR: #fff; PADDING-TOP: 0px; BORDER-BOTTOM: #4d4d4d 1px solid; BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: #333
+}
+#gn DIV UL LI UL LI.promo STRONG {
+	DISPLAY: block; FONT-SIZE: 12px
+}
+#gn DIV UL LI UL LI.promo P {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 74px
+}
+#gn DIV UL LI UL LI.blank P {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px
+}
+#gn_games {
+	WIDTH: 73px; text-align:center;
+}
+#gn_music {
+	WIDTH: 93px; text-align:center;
+}
+#gn_videoTV {
+	WIDTH: 108px; text-align:center;
+}
+#gn_messaging {
+	WIDTH: 105px; text-align:center;
+}
+#gn_images {
+	WIDTH: 86px; text-align:center;
+}
+#gn_toolApps {
+	WIDTH: 121px; text-align:center;
+}
+#gn_webBrowsing {
+	WIDTH: 133px; text-align:center;
+}
+#gn_enterprise {
+	WIDTH: 102px; text-align:center;
+}
+#gn LI.ph_mobile {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_mobile.jpg)
+}
+#gn LI.ph_pdas {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_pdas.jpg)
+}
+#gn LI.ph_blackberrys {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_blackberrys.jpg)
+}
+#gn LI.ph_push {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_push.jpg)
+}
+#gn LI.ph_wireless {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_wireless.jpg)
+}
+#gn LI.ph_special {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_special.jpg)
+}
+#gn LI.ph_gift {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_gift.jpg)
+}
+#gn LI.ph_accessories {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/ph_accessories.jpg)
+}
+#gn LI.pl_voice {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/pl_voice.jpg)
+}
+#gn LI.pl_voice_data {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/pl_voice_data.jpg)
+}
+#gn LI.pl_wireless {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/pl_wireless.jpg)
+}
+#gn LI.pl_business {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/pl_business.jpg)
+}
+#gn LI.pl_international {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/pl_international.jpg)
+}
+#gn LI.pl_transfer {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/pl_transfer.jpg)
+}
+#gn LI.pl_coverage {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/pl_coverage.jpg)
+}
+#gn LI.bu_business {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_business.jpg)
+}
+#gn LI.bu_business_solutions {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_business_solutions.jpg)
+}
+#gn LI.bu_customer {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_customer.jpg)
+}
+#gn LI.bu_global {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_global.jpg)
+}
+#gn LI.bu_government {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_government.jpg)
+}
+#gn LI.bu_phones {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_phones.jpg)
+}
+#gn LI.bu_wireless {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_wireless.jpg)
+}
+#gn LI.bu_wireless_internet {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_wireless_internet.jpg)
+}
+#gn LI.bu_product_services {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_product_services.jpg)
+}
+#gn LI.bu_small_business {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/bu_small_business.jpg)
+}
+#gn LI.fe_games {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/fe_games.jpg)
+}
+#gn LI.fe_mobile {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/fe_mobile.jpg)
+}
+#gn LI.fe_mobile_web {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/fe_mobile_web.jpg)
+}
+#gn LI.fe_music {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/fe_music.jpg)
+}
+#gn LI.fe_ringback {
+	BACKGROUND-IMAGE: url(/images_b2c/shared/promos/fe_ringback.jpg)
+}
+#gn LI.fe_ringtones {
+	BACKGROUND-IMAGE: url(../images/promos/fe_ringtones.jpg)
+}
+#gn LI.fe_tools {
+	BACKGROUND-IMAGE: url(../images/fe_tools.jpg)
+}
+#gn LI.fe_video {
+	BACKGROUND-IMAGE: url(../images/fe_video.jpg)
+}
+#gn LI.fe_wallpapers {
+	BACKGROUND-IMAGE: url(../images/fe_wallpapers.jpg)
+}
+#gn LI.me_mobile {
+	BACKGROUND-IMAGE: url(../images/me_mobile.jpg)
+}
+#gn LI.me_mobile_email {
+	BACKGROUND-IMAGE: url(../images/me_mobile_email.jpg)
+}
+#gn LI.me_picture {
+	BACKGROUND-IMAGE: url(../images/me_picture.jpg)
+}
+#gn LI.me_text {
+	BACKGROUND-IMAGE: url(../images/me_text.jpg)
+}
+#gn LI.me_text_alerts {
+	BACKGROUND-IMAGE: url(../images/me_text_alerts.jpg)
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientProv xmlns="http://www.autodesk.com/lbs/wsg/schemas/clientProv">
+	<reqHdr ver="1.0.1">
+		<client>
+			<id>xxxxxx</id>
+			<pwd>xxxxxxxxx</pwd>
+		</client>
+	</reqHdr>
+	<addClientReq requestID="xxx">
+		<clientId>xxxxxx</clientId>
+		<clientName>xxxxxx</clientName>
+		<password>xxxxxxxxx</password>
+		<description>xxxxxxxxxxxx</description>
+		<type>xxx</type>
+		<propertyList>
+			<property name="lifecyclestage">xxxxxx</property>
+			<property name="part_number">0</property>
+			<property name="vendorid">0</property>
+			<property name="system_client">false</property>
+			<property name="network_clientid">0</property>
+			<property name="brew_classid">0</property>
+		</propertyList>
+		<roleList>
+			<role>xxxxxx</role>
+		</roleList>
+	</addClientReq>
+</clientProv>
