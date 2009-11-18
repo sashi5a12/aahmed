@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsScmProdCatPricing" 
+    table="AIMS_SCM_PROD_CAT_PRICING"
+>
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+    <id
+        name="scmProdCatPricingId"
+        type="java.lang.Long"
+        column="SCM_PROD_CAT_PRICING_ID"
+    >
+			<generator class="sequence">
+				<param name="sequence">SEQ_PK_SCM_PROD_CAT_PRICING</param>
+			</generator>
+
+    </id>
+    <property
+        name="vendorSplitPercentage"
+        type="java.math.BigDecimal"
+        column="VENDOR_SPLIT_PERCENTAGE"
+        length="5"
+    />
+    <property
+        name="purchasePriceValue"
+        type="java.math.BigDecimal"
+        column="PURCHASE_PRICE_VALUE"
+        length="9"
+    />
+    <property
+        name="purchasePriceCurrency"
+        type="java.lang.String"
+        column="PURCHASE_PRICE_CURRENCY"
+        length="3"
+    />
+    <property
+        name="wholeSalePriceValue"
+        type="java.math.BigDecimal"
+        column="WHOLE_SALE_PRICE_VALUE"
+        length="6"
+    />
+    <property
+        name="wholeSalePriceCurrency"
+        type="java.lang.String"
+        column="WHOLE_SALE_PRICE_CURRENCY"
+        length="3"
+    />
+    <property
+        name="vsrpPriceValue"
+        type="java.math.BigDecimal"
+        column="VSRP_PRICE_VALUE"
+        length="9"
+    />
+    <property
+        name="vsrpSalePriceCurrency"
+        type="java.lang.String"
+        column="VSRP_SALE_PRICE_CURRENCY"
+        length="3"
+    />
+    <property
+        name="licenses"
+        type="java.lang.String"
+        column="LICENSES"
+        length="30"
+    />
+    <property
+        name="pricePlanType"
+        type="java.lang.String"
+        column="PRICE_PLAN_TYPE"
+        length="1"
+    />
+
+    <!-- associations -->
+	<!--many-to-one association CHANGED to properties-->
+    <property name="scmProdCatId" type="java.lang.Long" column="SCM_PROD_CAT_ID" length="22"    />
+
+</class>
+</hibernate-mapping>

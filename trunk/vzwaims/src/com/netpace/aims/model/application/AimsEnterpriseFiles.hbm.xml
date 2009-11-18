@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping>
+
+<!--
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.netpace.aims.model.application.AimsEnterpriseFiles"
+    table="AIMS_ENTERPRISE_APPS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+    <id
+        name="enterpriseAppsId"
+        type="java.lang.Long"
+        column="ENTERPRISE_APPS_ID"
+    >
+        <generator class="assigned"/>
+
+    </id>
+
+    <property
+        name="presentation"
+        type="java.sql.Blob"
+        column="PRESENTATION"
+        length="4000"
+    />
+    <property
+        name="presentationFileName"
+        type="java.lang.String"
+        column="PRESENTATION_FILE_NAME"
+        length="100"
+    />
+    <property
+        name="presentationContentType"
+        type="java.lang.String"
+        column="PRESENTATION_CONTENT_TYPE"
+        length="100"
+    />
+     
+     <property
+        name="bobLetterofAuth"
+        type="java.sql.Blob"
+        column="BOBO_LETTER_AUTH"
+        length="4000"
+    />
+    <property
+        name="bobLetterofAuthFileName"
+        type="java.lang.String"
+        column="BOBO_LETTER_AUTH_FILE_NAME"
+        length="100"
+    />
+    <property
+        name="bobLetterofAuthContentType"
+        type="java.lang.String"
+        column="BOBO_LETTER_AUTH_CONTENT_TYPE"
+        length="100"
+    />
+    
+     <property
+        name="lbsContract"
+        type="java.sql.Blob"
+        column="LBS_CONTRACT"
+        length="4000"
+    />
+    <property
+        name="lbsContractFileName"
+        type="java.lang.String"
+        column="LBS_CONTRACT_FILE_NAME"
+        length="100"
+    />
+    <property
+        name="lbsContractContentType"
+        type="java.lang.String"
+        column="LBS_CONTRACT_CONTENT_TYPE"
+        length="100"
+    />
+
+</class>
+</hibernate-mapping>

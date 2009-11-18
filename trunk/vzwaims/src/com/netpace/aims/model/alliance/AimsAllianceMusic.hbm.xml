@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.alliance.AimsAllianceMusic" 
+    table="AIMS_ALLIANCE_MUSIC"
+>
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="allianceId"
+        type="java.lang.Long"
+        column="ALLIANCE_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="haveRightsCleared"
+        type="java.lang.String"
+        column="HAVE_RIGHTS_CLEARED"
+        length="1"
+    />
+    <property
+        name="contentThruAggregator"
+        type="java.lang.String"
+        column="CONTENT_THRU_AGGREGATOR"
+        length="1"
+    />
+    <property
+        name="currentDistributionPartners"
+        type="java.lang.String"
+        column="CURRENT_DISTRIBUTION_PARTNERS"
+        length="3000"
+    />
+    <property
+        name="annualRevenue"
+        type="java.lang.String"
+        column="ANNUAL_REVENUE"
+        length="100"
+    />
+    <property
+        name="additionalInformation"
+        type="java.lang.String"
+        column="ADDITIONAL_INFORMATION"
+        length="3000"
+    />
+    <property
+        name="haveExclusiveRights"
+        type="java.lang.String"
+        column="HAVE_EXCLUSIVE_RIGHTS"
+        length="1"
+    />
+    <property
+        name="whatIsExclusive"
+        type="java.lang.String"
+        column="WHAT_IS_EXCLUSIVE"
+        length="3000"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="200"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="200"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+    
+    <set name="musicProductTypeMap" inverse="true">
+        <key>
+            <column name="ALLIANCE_ID" not-null="true"/>
+        </key>
+        <one-to-many class="com.netpace.aims.model.alliance.AimsAllianceMusicProdType"/>
+    </set>
+    
+    
+    <!--set name="devices" table="AIMS_BREW_APPS_DEVICES">
+        <key>
+            <column name="BREW_APPS_ID" not-null="true"/>
+        </key>
+        <many-to-many class="com.netpace.aims.model.masters.AimsDevic">
+					<column name="DEVICE_ID" not-null="true"/>
+        </many-to-many>        
+    </set-->
+    
+    <!--set name="musicProductTypeMap" table="AIMS_ALLIANCE_MUSIC_PROD_TYPES">
+        <key>
+            <column name="ALLIANCE_ID" not-null="true"/>
+        </key>
+	    <one-to-many class="com.netpace.aims.model.alliance.AimsAllianceMusicProdType" /> 
+    </set-->
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

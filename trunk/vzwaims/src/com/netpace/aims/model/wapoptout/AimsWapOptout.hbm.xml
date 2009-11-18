@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping>
+    <class name="com.netpace.aims.model.wapoptout.AimsWapOptout" table="AIMS_WAP_OPTOUT">
+    	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+        <id name="wapOptoutId" type="java.lang.Long">
+            <column name="WAP_OPTOUT_ID"/>
+	        <generator class="sequence">
+				<param name="sequence">SEQ_PK_WAP_OPTOUT</param>
+			</generator>
+        </id>
+        <property name="companyName" type="java.lang.String">
+            <column name="COMPANY_NAME" />
+        </property>
+        <property name="streetAddress" type="java.lang.String">
+            <column name="STREET_ADDRESS" />
+        </property>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" length="100" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="STATE" length="100" />
+        </property>
+        <property name="zipCode" type="java.lang.String">
+            <column name="ZIP_CODE" length="20" />
+        </property>
+        <property name="country" type="java.lang.String">
+            <column name="COUNTRY" length="100" />
+        </property>
+        <property name="reqFirstName" type="java.lang.String">
+            <column name="REQ_FIRST_NAME" length="100" />
+        </property>
+        <property name="reqLastName" type="java.lang.String">
+            <column name="REQ_LAST_NAME" length="100" />
+        </property>
+        <property name="reqPhoneNumber" type="java.lang.String">
+            <column name="REQ_PHONE_NUMBER" length="50" />
+        </property>
+        <property name="reqEmailAddress" type="java.lang.String">
+            <column name="REQ_EMAIL_ADDRESS" length="200" />
+        </property>
+		<property name="adminCompanyName" type="java.lang.String">
+            <column name="ADMIN_COMPANY_NAME" length="255" />
+        </property>        
+        <property name="adminFirstName" type="java.lang.String">
+            <column name="ADMIN_FIRST_NAME" length="100" />
+        </property>
+        <property name="adminLastName" type="java.lang.String">
+            <column name="ADMIN_LAST_NAME" length="100" />
+        </property>
+        <property name="adminPhoneNumber" type="java.lang.String">
+            <column name="ADMIN_PHONE_NUMBER" length="50" />
+        </property>
+        <property name="adminEmailAddress" type="java.lang.String">
+            <column name="ADMIN_EMAIL_ADDRESS" length="200" />
+        </property>
+        <property name="submittalNumber" type="java.lang.Long">
+            <column name="SUBMITTAL_NUMBER"/>
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="CREATED_DATE" length="7" />
+        </property>
+        <property name="createdBy" type="java.lang.String">
+            <column name="CREATED_BY" length="200" />
+        </property>
+        <property name="isDirty" type="java.lang.String">
+            <column name="IS_DIRTY" length="1" />
+        </property>        
+	    <set name="aimsWapOptoutUrlses" lazy="true" inverse="true" cascade="save-update" sort="com.netpace.aims.util.WapOptOutComparator">
+            <key>
+                <column name="WAP_OPTOUT_ID"/>
+            </key>
+            <one-to-many class="com.netpace.aims.model.wapoptout.AimsWapOptoutUrls" />
+	    </set>
+    </class>
+</hibernate-mapping>

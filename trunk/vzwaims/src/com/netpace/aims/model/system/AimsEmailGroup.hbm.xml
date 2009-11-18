@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.system.AimsEmailGroup" 
+    table="AIMS_EMAIL_GROUPS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="groupId"
+        type="java.lang.Long"
+        column="GROUP_ID"
+    >
+     <generator class="sequence">
+          <param name="sequence">SEQ_PK_EMAIL_GROUPS</param>
+     </generator>
+    </id>
+    <property
+        name="groupTitle"
+        type="java.lang.String"
+        column="GROUP_TITLE"
+        length="200"
+    />
+    <property
+        name="groupDesc"
+        type="java.lang.String"
+        column="GROUP_DESC"
+        length="500"
+    />
+
+    <property
+        name="groupType"
+        type="java.lang.String"
+        column="GROUP_TYPE"
+        length="5"
+    />
+
+    <property
+        name="lastEmailSentDate"
+        type="java.sql.Timestamp"
+        column="LAST_EMAIL_SENT_DATE"
+        length="7"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to AimsEmailGroupUser 
+    <set
+        name="aimsEmailGroupUsers" table="AIMS_EMAIL_GROUP_USERS">
+        <key>
+            <column name="GROUP_ID" />
+        </key>
+        <many-to-many  class="com.netpace.aims.model.core.AimsUser">
+             <column name= "USER_ID" not-null="true"/>
+    	</many-to-many
+    ></set>
+-->
+</class>
+</hibernate-mapping>

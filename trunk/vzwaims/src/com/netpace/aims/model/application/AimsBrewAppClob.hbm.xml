@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<class name="com.netpace.aims.model.application.AimsBrewAppClob" table="AIMS_BREW_APPS" >
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+		
+    <id
+        name="brewAppsId"
+        type="java.lang.Long"
+        column="BREW_APPS_ID"
+    >
+        <generator class="assigned"/>			
+    </id>    
+    <property 
+    	name="usingApplication" 
+    	type="java.sql.Clob"
+    	column="USING_APPLICATION" 
+    	length="4000"
+    />
+    <property 
+    	name="usingApplicationStr" 
+    	type="java.lang.String" 
+    	formula="BREW_APPS_ID"
+    />
+    
+    <property 
+    	name="tipsAndTricks" 
+    	type="java.sql.Clob"
+    	column="TIPS_AND_TRICKS" 
+    	length="4000" 
+    />
+    <property 
+    	name="tipsAndTricksStr" 
+    	type="java.lang.String" 
+    	formula="BREW_APPS_ID"
+    />
+    
+    <property 
+    	name="faq" 
+    	type="java.sql.Clob"
+    	column="FAQ" 
+    	length="4000" 
+    />
+    <property 
+    	name="faqStr" 
+    	type="java.lang.String" 
+    	formula="BREW_APPS_ID"
+    />
+    
+    <property 
+    	name="troubleshooting" 
+    	type="java.sql.Clob"
+    	column="TROUBLESHOOTING" 
+    	length="4000"
+    />
+    <property 
+    	name="troubleshootingStr" 
+    	type="java.lang.String" 
+    	formula="BREW_APPS_ID"
+    />
+    
+    <property 
+    	name="developmentCompanyDisclaimer" 
+    	type="java.sql.Clob"
+    	column="DEVELOPMENT_COMPANY_DISCLAIMER" 
+    	length="4000"
+    />
+    <property 
+    	name="developmentCompanyDisclaimerStr" 
+    	type="java.lang.String" 
+    	formula="BREW_APPS_ID"
+    />
+    
+    <property 
+    	name="additionalInformation" 
+    	type="java.sql.Clob"
+    	column="ADDITIONAL_INFORMATION" 
+    	length="4000"
+    />
+    <property 
+    	name="additionalInformationStr" 
+    	type="java.lang.String" 
+    	formula="BREW_APPS_ID"
+    />
+
+</class>
+</hibernate-mapping>

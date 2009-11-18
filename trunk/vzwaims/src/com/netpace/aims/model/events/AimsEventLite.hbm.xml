@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.events.AimsEventLite" 
+    table="AIMS_EVENTS"
+>
+    <meta attribute="extends">com.netpace.aims.model.events.BaseEvent</meta>
+    <id
+        name="eventId"
+        type="java.lang.Long"
+        column="EVENT_ID"
+    >
+       <generator class="assigned" />
+    </id>
+
+	
+
+    <property
+        name="eventName"
+        type="java.lang.String"
+        column="EVENT_NAME"
+        update="false"
+        insert="false"
+        length="50"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="eventDesc"
+        type="java.lang.String"
+        column="EVENT_DESC"
+        length="20"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+
+	<set name="eventPlaceHolders" table="AIMS_EVENT_PLACE_HOLDERS">
+        <key>
+            <column name="EVENT_ID" not-null="true"/>
+        </key>
+        <many-to-many class="com.netpace.aims.model.events.AimsPlaceHolder">
+			<column name="PLACE_HOLDER_ID" not-null="true"/>
+        </many-to-many>        
+    </set>
+
+    <!-- bi-directional one-to-many association to AimsEventHandler -->
+    <set name="eventHandlers">
+        <key>
+            <column name="EVENT_ID" />
+        </key>
+        <one-to-many 
+            class="com.netpace.aims.model.events.AimsEventHandler"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

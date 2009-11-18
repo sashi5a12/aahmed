@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+<!-- 
+    
+-->
+<hibernate-mapping>
+    <class name="com.netpace.aims.model.application.AimsVZAppBinariesFiles" table="AIMS_VZAPP_BINARIES">
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+		<id
+			name="binaryId"
+			type="java.lang.Long"
+			column="BINARY_ID"
+		>
+			<generator class="sequence">
+				<param name="sequence">SEQ_PK_VZAPP_BINARIES</param>
+			</generator>
+		</id>
+
+		<property
+			name="vzAppZoneAppsId"
+			type="java.lang.Long"
+			column="VZAPPZONE_APPS_ID"
+			length="22"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+
+		<property
+			name="binaryFile"
+			type="java.sql.Blob"
+			column="BINARY_FILE"
+			length="4000"
+		/>
+		<property
+			name="binaryFileFileName"
+			type="java.lang.String"
+			column="BINARY_FILE_FILE_NAME"
+			length="150"
+		/>
+		<property
+			name="binaryFileContentType"
+			type="java.lang.String"
+			column="BINARY_FILE_CONTENT_TYPE"
+			length="100"
+		/>
+		<property
+			name="previewFile"
+			type="java.sql.Blob"
+			column="PREVIEW_FILE"
+			length="4000"
+		/>
+		<property
+			name="previewFileFileName"
+			type="java.lang.String"
+			column="PREVIEW_FILE_FILE_NAME"
+			length="150"
+		/>
+		<property
+			name="previewFileContentType"
+			type="java.lang.String"
+			column="PREVIEW_FILE_CONTENT_TYPE"
+			length="100"
+		/>
+
+        <property
+			name="documentFile"
+			type="java.sql.Blob"
+			column="DOCUMENT_FILE"
+			length="4000"
+		/>
+		<property
+			name="documentFileFileName"
+			type="java.lang.String"
+			column="DOCUMENT_FILE_FILE_NAME"
+			length="150"
+		/>
+		<property
+			name="documentFileContentType"
+			type="java.lang.String"
+			column="DOCUMENT_FILE_CONTENT_TYPE"
+			length="100"
+		/>
+		
+		<property
+            name="binaryFileSizeInBytes"
+            type="java.lang.Long"
+            column="BINARY_FILE_SIZE_IN_BYTES"
+            length="22"
+        />
+        <property
+            name="previewFileSizeInBytes"
+            type="java.lang.Long"
+            column="PREVIEW_FILE_SIZE_IN_BYTES"
+            length="22"
+        />
+        <property
+            name="documentFileSizeInBytes"
+            type="java.lang.Long"
+            column="DOCUMENT_FILE_SIZE_IN_BYTES"
+            length="22"
+        />
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsVZAppBinaryFirmware" 
+    table="AIMS_VZAPP_BINARY_FIRMWARE"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="binaryFirmwareId"
+        type="java.lang.Long"
+        column="BINARY_FIRMWARE_ID"
+    >
+			<generator class="sequence">
+				<param name="sequence">SEQ_PK_VZAPP_BINARY_FIRMWARE</param>
+			</generator>
+    </id>    
+	
+	<property
+		name="vzAppZoneAppsId"
+		type="java.lang.Long"
+		column="VZAPPZONE_APPS_ID"
+		length="22"
+		>
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+		name="binaryId"
+		type="java.lang.Long"
+		column="BINARY_ID"
+		length="22"
+		>
+			<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+		name="firmwareId"
+		type="java.lang.Long"
+		column="FIRMWARE_ID"
+		length="22"
+		>
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+		name="isPaid"
+		type="java.lang.String"
+		column="IS_PAID"
+		length="1"
+		>
+        <meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="datePaid"
+        type="java.sql.Timestamp"
+        column="DATE_PAID"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+		name="isActive"
+		type="java.lang.String"
+		column="IS_ACTIVE"
+		length="1"
+		>
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+		name="underTestingDate"
+		type="java.sql.Timestamp"
+		column="UNDER_TESTING_DATE"
+		length="7"
+		>
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+		name="status"
+		type="java.lang.Long"
+		column="STATUS"
+		length="22"
+	>
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+        name="baseTestedDate"
+        type="java.sql.Timestamp"
+        column="BASE_TESTED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+        name="baseTestStatus"
+        type="java.lang.String"
+        column="BASE_TEST_STATUS"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+        name="baseResultsFileFileName"
+        type="java.lang.String"
+        column="BASE_RESULTS_FILE_FILE_NAME"
+        length="150"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="baseResultsFileContentType"
+        type="java.lang.String"
+        column="BASE_RESULTS_FILE_CONTENT_TYPE"
+        length="100"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="baseComments"
+        type="java.lang.String"
+        column="BASE_COMMENTS"
+        length="4000"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+        name="otaMoved"
+        type="java.lang.String"
+        column="OTA_MOVED"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="otaMovedDate"
+        type="java.sql.Timestamp"
+        column="OTA_MOVED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="otaTestedDate"
+        type="java.sql.Timestamp"
+        column="OTA_TESTED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="otaTestStatus"
+        type="java.lang.String"
+        column="OTA_TEST_STATUS"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="otaResultsFileFileName"
+        type="java.lang.String"
+        column="OTA_RESULTS_FILE_FILE_NAME"
+        length="150"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="otaResultsFileContentType"
+        type="java.lang.String"
+        column="OTA_RESULTS_FILE_CONTENT_TYPE"
+        length="100"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="otaComments"
+        type="java.lang.String"
+        column="OTA_COMMENTS"
+        length="4000"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+        name="stageMoved"
+        type="java.lang.String"
+        column="STAGE_MOVED"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="stageMovedDate"
+        type="java.sql.Timestamp"
+        column="STAGE_MOVED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+        name="prodMoved"
+        type="java.lang.String"
+        column="PROD_MOVED"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+	<property
+        name="prodMovedDate"
+        type="java.sql.Timestamp"
+        column="PROD_MOVED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+    <property
+        name="otaDeleted"
+        type="java.lang.String"
+        column="OTA_DELETED"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="stageDeleted"
+        type="java.lang.String"
+        column="STAGE_DELETED"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="prodDeleted"
+        type="java.lang.String"
+        column="PROD_DELETED"
+        length="1"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+    <!-- associations -->
+</class>
+</hibernate-mapping>

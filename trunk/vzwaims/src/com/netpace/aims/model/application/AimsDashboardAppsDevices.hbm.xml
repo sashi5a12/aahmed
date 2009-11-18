@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.netpace.aims.model.application.AimsDashboardAppsDevices" table="AIMS_DASHBOARD_APPS_DEVICES">
+    	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+        <composite-id>
+        	<key-property name="dashboardAppsId" column="DASHBOARD_APPS_ID"/>
+            <key-many-to-one name="aimsDevices" class="com.netpace.aims.model.masters.AimsDevic" column="DEVICE_ID" />
+        </composite-id>
+        <property name="dashboardAppsId" type="java.lang.Long" column="DASHBOARD_APPS_ID" insert="false" update="false"/>
+    </class>
+</hibernate-mapping>

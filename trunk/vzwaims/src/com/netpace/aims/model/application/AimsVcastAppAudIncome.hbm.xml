@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsVcastAppAudIncome" 
+    table="AIMS_VCAST_APPS_J_INCOMES"
+>
+
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+    <composite-id>
+      <key-property name="vcastAppsId" column="VCAST_APPS_ID"/>
+      <key-many-to-one name="audIncomes" class="com.netpace.aims.model.application.AimsVcastAudIncome" column="AUD_INCOME_ID"/>
+    </composite-id>
+
+    <property name="vcastAppsId" type="java.lang.Long" column="VCAST_APPS_ID" insert="false" update="false" /> 
+
+</class>
+</hibernate-mapping>

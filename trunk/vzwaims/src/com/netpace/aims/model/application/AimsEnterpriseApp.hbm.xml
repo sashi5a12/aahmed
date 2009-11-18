@@ -1,0 +1,436 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping>
+
+<!--
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.netpace.aims.model.application.AimsEnterpriseApp"
+    table="AIMS_ENTERPRISE_APPS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+    <id
+        name="enterpriseAppsId"
+        type="java.lang.Long"
+        column="ENTERPRISE_APPS_ID"
+    >
+        <generator class="assigned"/>
+
+    </id>
+
+    <property
+        name="allianceSponsor"
+        type="java.lang.Long"
+        column="ALLIANCE_SPONSOR"
+        length="22"
+    />
+    <property
+        name="numWirelessUsers"
+        type="java.lang.Long"
+        column="NUM_WIRELESS_USERS"
+        length="22"
+    />
+    <property
+        name="numAllUsers"
+        type="java.lang.Long"
+        column="NUM_ALL_USERS"
+        length="22"
+    />
+    <property
+        name="platformDepMode"
+        type="java.lang.String"
+        column="PLATFORM_DEP_MODE"
+        length="20"
+    />
+    <property
+        name="briefDesc"
+        type="java.lang.String"
+        column="BRIEF_DESC"
+        length="200"
+    />
+    <property
+        name="custSupportPhone"
+        type="java.lang.String"
+        column="CUST_SUPPORT_PHONE"
+        length="50"
+    />
+    <property
+        name="custSupportEmail"
+        type="java.lang.String"
+        column="CUST_SUPPORT_EMAIL"
+        length="50"
+    />
+    <property
+        name="custSupportHours"
+        type="java.lang.String"
+        column="CUST_SUPPORT_HOURS"
+        length="100"
+    />
+
+    <property
+        name="presentationFileName"
+        type="java.lang.String"
+        column="PRESENTATION_FILE_NAME"
+        length="100"
+    />
+    <property
+        name="presentationFileType"
+        type="java.lang.String"
+        column="PRESENTATION_FILE_TYPE"
+        length="50"
+    />
+    <property
+        name="fortuneCustomers"
+        type="java.lang.String"
+        column="FORTUNE_CUSTOMERS"
+        length="200"
+    />
+    <property
+        name="otherIndFocusValue"
+        type="java.lang.String"
+        column="OTHER_IND_FOCUS_VALUE"
+        length="50"
+    />
+    <property
+        name="customerBenefits"
+        type="java.lang.String"
+        column="CUSTOMER_BENEFITS"
+        length="500"
+    />
+     <!-- New fields -->
+     <property
+        name="isInterestedInBOBO"
+        type="java.lang.String"
+        column="IS_INTERESTED_IN_BOBO"
+        length="1"
+    />
+    <property
+        name="isInterestedInLBS"
+        type="java.lang.String"
+        column="IS_INTERESTED_IN_LBS"
+        length="1"
+    /> 
+    <property
+        name="boboLetterOfAuthFileName"
+        type="java.lang.String"
+        column="BOBO_LETTER_AUTH_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="boboLeterOfAuthContentType"
+        type="java.lang.String"
+        column="BOBO_LETTER_AUTH_CONTENT_TYPE "
+        length="100"
+    />
+    <property
+        name="isBoboAccept"
+        type="java.lang.String"
+        column="IS_BOBO_ACCEPT"
+        length="1"
+    />
+     <property
+        name="lbsContractFileName"
+        type="java.lang.String"
+        column="LBS_CONTRACT_FILE_NAME"
+        length="150"
+    />
+     <property
+        name="lbsContractContentType"
+        type="java.lang.String"
+        column="LBS_CONTRACT_CONTENT_TYPE"
+        length="100"
+    />
+     <property
+        name="isLbsAccept"
+        type="java.lang.String"
+        column="IS_LBS_ACCEPT"
+        length="1"
+    />
+     <property
+        name="acceptDeclineDate"
+        type="java.sql.Timestamp"
+        column="ACCEPT_DECLINE_DATE"
+        length="7"
+    />
+     <property
+        name="acceptDelineUserId"
+        type="java.lang.Long"
+        column="ACCEPT_DECLINE_USER_ID "
+        length="22"
+    />
+     <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+     <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+     <property
+        name="lastUpdatedBy"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_BY"
+        length="7"
+    />
+     <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+     <property
+        name="isProductExeclusiveToVZW"
+        type="java.lang.String"
+        column="IS_PRODUCT_EXCLUSIVE_TO_VZW"
+        length="1"
+    />
+     <property
+        name="productExclusiveToVzw"
+        type="java.lang.String"
+        column="PRODUCT_EXCLUSIVE_TO_VZW"
+        length="4000"
+    />
+     <property
+        name="isGoExclusiveWithVZW"
+        type="java.lang.String"
+        column="IS_GO_EXCLUSIVE_WITH_VZW "
+        length="1"
+    />
+     <property
+        name="isProductUseVzwVzNt"
+        type="java.lang.String"
+        column="IS_PRODUCT_USE_VZW_VZ_NT"
+        length="1"
+    />
+     <property
+        name="isProductCertifiedVZW"
+        type="java.lang.String"
+        column="IS_PRODUCT_CERTIFIED_VZW"
+        length="1"
+    />
+     <property
+        name="productCerifiedPhase"
+        type="java.lang.String"
+        column="PRODUCT_CERTIFIED_PHASE"
+        length="4000"
+    />
+     <property
+        name="isProductCertifiedODIProcess"
+        type="java.lang.String"
+        column="IS_PRODUCT_CERTIFIED_ODI_PRO"
+        length="1"
+    />
+     <property
+        name="productInformation"
+        type="java.lang.String"
+        column="PRODUCT_INFORMATION"
+        length="1"
+    />
+     <property
+        name="isProductRequiedLBS"
+        type="java.lang.String"
+        column="IS_PRODUCT_REQUIED_LBS"
+        length="1"
+    />
+     <property
+        name="isOfferBoboServices"
+        type="java.lang.String"
+        column="IS_OFFER_BOBO_SERVIES"
+        length="1"
+    />
+     <property
+        name="briefDescription"
+        type="java.lang.String"
+        column="BRIEF_DESCRIPTION"
+        length="4000"
+    />
+     <property
+        name="solutionReside"
+        type="java.lang.String"
+        column="SOLUTION_RESIDE"
+        length="10"
+    />
+    <property
+        name="additionalInformation"
+        type="java.lang.String"
+        column="ADDITIONAL_INFORMATION"
+        length="4000"
+    />
+    <property
+        name="devices"
+        type="java.lang.String"
+        column="DEVICES"
+        length="4000"
+    />
+    
+    <property
+        name="boboPresentDate"
+        type="java.sql.Timestamp"
+        column="BOBO_PRESENT_DATE"
+        length="7"
+    />
+    <property
+        name="boboAcceptDeclineDate"
+        type="java.sql.Timestamp"
+        column="BOBO_ACCEPT_DECLINE_DATE"
+        length="7"
+    />
+    <property
+        name="boboAcceptDeclineByEmailId"
+        type="java.lang.String"
+        column="BOBO_ACCEPT_DECLINE_EMAIL_ID"
+        length="50"
+    />
+    <property
+        name="isLbsAcceptByAlliance"
+        type="java.lang.String"
+        column="IS_LBS_ACCEPT_BY_ALLIANCE"
+        length="1"
+    />
+    <property
+        name="lbsPresentDate"
+        type="java.sql.Timestamp"
+        column="LBS_PRESENT_DATE"
+        length="7"
+    />
+    <property
+        name="lbsAcceptDeclineDate"
+        type="java.sql.Timestamp"
+        column="LBS_ACCEPT_DECLINE_DATE"
+        length="7"
+    />
+    <property
+        name="lbsAcceptDeclineByEmailId"
+        type="java.lang.String"
+        column="LBS_ACCEPT_DECLINE_EMAIL_ID"
+        length="50"
+    />
+     <property
+        name="isPublished"
+        type="java.lang.String"
+        column="IS_PUBLISHED"
+        length="1"
+    />
+     <property
+        name="isFeatured"
+        type="java.lang.String"
+        column="IS_FEATURED"
+        length="1"
+    />
+    
+     
+     
+
+    <!-- associations -->
+    <!-- bi-directional one-to-one association to AimsApp -->
+    <!--
+    <many-to-one
+        name="aimsApp"
+        class="com.netpace.aims.model.application.AimsApp"
+    >
+        <column name="ENTERPRISE_APPS_ID" />
+    </many-to-one>
+    -->
+    <!-- bi-directional one-to-many association to AimsEntAppsVm -->
+
+    <set
+        name="aimsEntAppsVms"
+        table="AIMS_ENT_APPS_VMS"
+    >
+        <key>
+            <column name="ENTERPRISE_APPS_ID" />
+        </key>
+        <many-to-many
+            class="com.netpace.aims.model.application.AimsVerticalMarket">
+            <column name="VERTICAL_MARKET_ID" not-null="true"/>
+        </many-to-many>
+    </set>
+		
+		
+		<!-- bi-directional one-to-many association to AimsEntAppsRegion -->
+		<set
+        name="aimsEntAppsRegion"
+        table="AIMS_ENT_APPS_REGION"
+    >
+        <key>
+            <column name="ENTERPRISE_APPS_ID" />
+        </key>
+        <many-to-many
+            class="com.netpace.aims.model.masters.AimsRegion">
+            <column name="REGION_ID" not-null="true"/>
+        </many-to-many>
+    </set>
+		
+		
+		<!-- bi-directional one-to-many association to AimsEntAppsIndFocus -->
+		<set
+        name="aimsEntAppsIndFocus"
+        table="AIMS_ENT_APPS_IND_FOCUS"
+    >
+        <key>
+            <column name="ENTERPRISE_APPS_ID" />
+        </key>
+        <many-to-many
+            class="com.netpace.aims.model.masters.AimsIndustryFocu">
+            <column name="INDUSTRY_ID" not-null="true"/>
+        </many-to-many>
+    </set>
+    
+    <!-- bi-directional one-to-many association to AimsEntAppsSubCategories -->
+		<set
+        name="aimsEntAppsSubCategories"
+        table="AIMS_ENT_APPS_SUB_CATEGORIES"
+    >
+        <key>
+            <column name="ENTERPRISE_APPS_ID" />
+        </key>
+        <many-to-many
+            class="com.netpace.aims.model.application.AimsAppSubCategory">
+            <column name="SUB_CATEGORY_ID" not-null="true"/>
+        </many-to-many>
+    </set>
+    
+    <!-- bi-directional one-to-many association to AimsEntAppsSolComp -->
+    <set name="aimsEntAppsSolComp" table="AIMS_ENT_APPS_SOL_COMP" order-by="solution_component_id asc">
+        <key>
+            <column name="ENTERPRISE_APPS_ID" not-null="true"/>
+        </key>
+        <one-to-many 
+            class="com.netpace.aims.model.application.AimsEntAppSolComp"
+        /> 
+    </set>
+    
+    <!-- bi-directional one-to-many association to AimsEntAppsPlatform -->
+    <set
+        name="aimsEntAppsPlatforms"
+        table="AIMS_ENT_APPS_PLATFORMS"
+    >
+        <key>
+            <column name="ENTERPRISE_APPS_ID" />
+        </key>
+        <many-to-many
+            class="com.netpace.aims.model.core.AimsPlatform" >
+            <column name="PLATFORM_ID" not-null="true"/>
+        </many-to-many>
+    </set>
+    <!-- -->
+	<set name="aimsAppsCaseStudies" inverse="true" cascade="all-delete-orphan">
+		<key column="ENTERPRISE_APPS_ID"/>
+		<one-to-many class="com.netpace.aims.model.application.AimsAppsCaseStudy"/>
+	</set>
+
+</class>
+</hibernate-mapping>

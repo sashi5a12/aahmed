@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+	<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+	<class name="com.netpace.aims.model.core.AimsContact" table="AIMS_CONTACTS">
+		<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+		<id name="contactId" type="java.lang.Long" column="CONTACT_ID" >
+			<generator class="sequence">
+				<param name="sequence">SEQ_PK_CONTACTS</param>
+			</generator>
+		</id>
+		<property name="type" type="java.lang.String" column="TYPE" not-null="true" length="50"/>
+		<property name="firstName" type="java.lang.String" column="FIRST_NAME" not-null="true" length="50">
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property name="lastName" type="java.lang.String" column="LAST_NAME" not-null="true" length="50">
+			<meta attribute="use-in-tostring">true</meta>
+		</property>
+		<property name="title" type="java.lang.String" column="TITLE" not-null="true" length="50"/>
+		<property name="emailAddress" type="java.lang.String" column="EMAIL_ADDRESS" not-null="true" length="50"/>
+		<property name="phone" type="java.lang.String" column="PHONE" length="50"/>
+		<property name="fax" type="java.lang.String" column="FAX" length="50"/>
+		<property name="mobile" type="java.lang.String" column="MOBILE" length="50"/>
+		<property name="createdBy" type="java.lang.String" column="CREATED_BY" length="50"/>
+		<property name="createdDate" type="java.sql.Timestamp" column="CREATED_DATE" length="7"/>
+		<property name="lastUpdatedBy" type="java.lang.String" column="LAST_UPDATED_BY" length="50"/>
+		<property name="lastUpdatedDate" type="java.sql.Timestamp" column="LAST_UPDATED_DATE" length="7"/>
+		
+		<!-- associations -->
+        <many-to-one name="alliance" class="com.netpace.aims.model.core.AimsAllianc" >
+			<column name="ALLIANCE_ID"/>
+		</many-to-one>
+        <!-- associations -->
+
+		<!-- Sub class -->
+		<!--
+		<joined-subclass name="com.netpace.aims.model.core.AimsUser"  table="AIMS_USERS" dynamic-update="false">
+		       <key column="USER_ID" />
+			<property name="username" type="java.lang.String" column="USERNAME" not-null="true" length="20">
+			<meta attribute="use-in-tostring">true</meta>
+			</property>
+			<property name="password" type="java.lang.String" column="PASSWORD" not-null="true" length="20"/>
+			<property name="userType" type="java.lang.String" column="USER_TYPE" not-null="true" length="20"/>
+			<property name="motherMaidenName" type="java.lang.String" column="MOTHER_MAIDEN_NAME" length="20"/>
+			<property name="managerId" type="java.math.BigDecimal" column="MANAGER_ID" length="22"/>
+			<property name="ifHq" type="java.lang.String" column="IF_HQ" length="1"/>
+			<property name="userAccountStatus" type="java.lang.String" column="USER_ACCOUNT_STATUS" length="10"/>
+			<property name="userSessionStatus" type="java.lang.String" column="USER_SESSION_STATUS" length="10"/>
+			<property name="ifBlocked" type="java.lang.String" column="IF_BLOCKED" length="1"/>
+			<property name="lastLoginDate" type="java.sql.Timestamp" column="LAST_LOGIN_DATE" length="7"/>
+             </joined-subclass>
+             -->
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.masters.AimsRegion" 
+    table="AIMS_REGIONS"
+>
+<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="regionId"
+        type="java.lang.Long"
+        column="REGION_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_REGIONS</param>
+        </generator>
+    </id>
+    <property
+        name="regionName"
+        type="java.lang.String"
+        column="REGION_NAME"
+        length="50"
+    />
+    <property
+        name="regionDescription"
+        type="java.lang.String"
+        column="REGION_DESCRIPTION"
+        length="500"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to AimsAllianceRegion 
+    <set
+        name="aimsAllianceRegions"
+        lazy="true"
+        inverse="true"
+    >
+        <key>
+            <column name="REGION_ID" />
+        </key>
+        <one-to-many 
+            class="com.netpace.aims.model.AimsAllianceRegion"
+        />
+    </set>
+	-->
+</class>
+</hibernate-mapping>

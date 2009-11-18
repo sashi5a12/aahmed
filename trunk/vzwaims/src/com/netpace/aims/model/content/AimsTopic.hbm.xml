@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.content.AimsTopic" 
+    table="AIMS_TOPICS"
+    dynamic-update="true"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="topicId"
+        type="java.lang.Long"
+        column="TOPIC_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_TOPICS</param>
+        </generator>
+    </id>
+	
+    <property
+        name="topicType"
+        type="java.lang.String"
+        column="TOPIC_TYPE"
+        length="20"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+	
+    <property
+        name="topicDesc"
+        type="java.lang.String"
+        column="TOPIC_DESC"
+        length="1000"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="topicUrl"
+        type="java.lang.String"
+        column="TOPIC_URL"
+        length="100"
+    />
+    <property
+        name="topicDocument"
+        type="java.sql.Blob"
+        column="TOPIC_DOCUMENT"
+        length="4000"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="20"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="phaseOutDate"
+        type="java.sql.Date"
+        column="PHASE_OUT_DATE"
+        length="7"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+	
+	<property
+        name="topicDocumentContentType"
+        type="java.lang.String"
+        column="TOPIC_DOCUMENT_CONTENT_TYPE"
+        length="50"
+    />
+	
+	<property
+        name="topicDocumentFileName"
+        type="java.lang.String"
+        column="TOPIC_DOCUMENT_FILE_NAME"
+        length="150"
+    />
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

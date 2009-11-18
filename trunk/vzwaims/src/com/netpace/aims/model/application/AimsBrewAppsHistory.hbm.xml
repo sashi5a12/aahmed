@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsBrewAppsHistory" 
+    table="AIMS_BREW_APPS_HISTORY"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+		name="historyId"
+		type="java.lang.Long"
+		column="history_id"
+	>
+		<generator class="sequence">
+			<param name="sequence">SEQ_PK_BREW_APPS_HISTORY</param>
+		</generator>
+	</id>    
+	
+	<property
+		name="brewAppsId"
+		type="java.lang.Long"
+		column="brew_apps_id"
+		length="22"
+	>
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+		name="columnName"
+		type="java.lang.String"
+		column="column_name"
+		length="100"
+	>
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+
+	<property
+		name="columnValue"
+		type="java.lang.String"
+		column="column_value"
+		length="200"
+	/>
+
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    >
+		<meta attribute="use-in-tostring">true</meta>
+	</property>
+    
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

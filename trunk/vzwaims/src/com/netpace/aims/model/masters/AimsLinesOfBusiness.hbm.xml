@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.masters.AimsLinesOfBusiness" 
+    table="AIMS_LINES_OF_BUSINESS"
+>
+<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="lineOfBusinessId"
+        type="java.lang.Long"
+        column="LINE_OF_BUSINESS_ID"
+    >
+		<generator class="sequence">
+			<param name="sequence">SEQ_PK_LINES_OF_BUSINESS</param>
+		</generator>
+    </id>
+    <property
+        name="lineOfBusinessName"
+        type="java.lang.String"
+        column="LINE_OF_BUSINESS_NAME"
+        not-null="true"
+        length="200"
+    />
+    <property
+        name="lineOfBusinessDesc"
+        type="java.lang.String"
+        column="LINE_OF_BUSINESS_DESC"
+        length="500"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to AimsAllianceLinesOfBu -->
+	<!--
+    <set
+        name="aimsAllianceLinesOfBus"
+        lazy="true"
+        inverse="true"
+    >
+        <key>
+            <column name="LINE_OF_BUSINESS_ID" />
+        </key>
+        <one-to-many 
+            class="com.netpace.aims.model.AimsAllianceLinesOfBu"
+        />
+    </set>
+	-->
+
+</class>
+</hibernate-mapping>

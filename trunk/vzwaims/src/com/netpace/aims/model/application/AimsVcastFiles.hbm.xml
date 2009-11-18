@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsVcastFiles" 
+    table="AIMS_VCAST_APPS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="vcastAppsId"
+        type="java.lang.Long"
+        column="VCAST_APPS_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="sampleClip1"
+        type="java.sql.Blob"
+        column="SAMPLE_CLIP_1"
+        length="4000"
+    />
+    <property
+        name="sampleClip1FileName"
+        type="java.lang.String"
+        column="SAMPLE_CLIP_1_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="sampleClip1ContentType"
+        type="java.lang.String"
+        column="SAMPLE_CLIP_1_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="sampleClip2"
+        type="java.sql.Blob"
+        column="SAMPLE_CLIP_2"
+        length="4000"
+    />
+    <property
+        name="sampleClip2FileName"
+        type="java.lang.String"
+        column="SAMPLE_CLIP_2_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="sampleClip2ContentType"
+        type="java.lang.String"
+        column="SAMPLE_CLIP_2_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="sampleClip3"
+        type="java.sql.Blob"
+        column="SAMPLE_CLIP_3"
+        length="4000"
+    />
+    <property
+        name="sampleClip3FileName"
+        type="java.lang.String"
+        column="SAMPLE_CLIP_3_FILE_NAME"
+        length="150"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+    <property
+        name="sampleClip3ContentType"
+        type="java.lang.String"
+        column="SAMPLE_CLIP_3_CONTENT_TYPE"
+        length="100"
+    >
+        <meta attribute="use-in-tostring">true</meta>
+    </property>
+
+
+</class>
+</hibernate-mapping>

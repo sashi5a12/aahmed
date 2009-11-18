@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsVcastAudGender" 
+    table="AIMS_VCAST_AUD_GENDERS"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="audGenderId"
+        type="java.lang.Long"
+        column="AUD_GENDER_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="audGenderName"
+        type="java.lang.String"
+        column="AUD_GENDER_NAME"
+        length="50"
+    />
+
+</class>
+</hibernate-mapping>

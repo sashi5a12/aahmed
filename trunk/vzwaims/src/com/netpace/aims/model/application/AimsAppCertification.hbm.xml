@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsAppCertification" 
+    table="AIMS_APP_CERTIFICATIONS"
+>
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+    
+    <!--id
+        name="appCertificationId"
+        type="java.lang.Long"
+        column="APP_CERTIFICATION_ID"
+    >
+        <generator class="sequence">
+			<param name="sequence">SEQ_PK_APP_CERTIFICATIONS</param>
+		</generator>
+    </id-->
+    
+ 		<composite-id>
+      <key-property name="appsId" column="APPS_ID"/>
+      <key-many-to-one name="aimsCertification" class="com.netpace.aims.model.application.AimsCertification" column="CERTIFICATION_ID"/>
+    </composite-id>
+    
+    <property name="appsId" type="java.lang.Long" column="APPS_ID" insert="false" update="false" /> 
+
+   
+    <property
+        name="certificationDate"
+        type="java.sql.Timestamp"
+        column="CERTIFICATION_DATE"
+        length="7"
+    />
+    <property
+        name="comments"
+        type="java.lang.String"
+        column="COMMENTS"
+        length="200"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="20"
+    />
+
+		<!--property name="appsId" type="java.lang.Long" column="APPS_ID" insert="false" update="false" /> 
+		
+    <many-to-one
+        name="aimsCertification"
+        class="com.netpace.aims.model.application.AimsCertification"
+    >
+        <column name="CERTIFICATION_ID" />
+    </many-to-one-->   
+    
+    
+
+
+</class>
+</hibernate-mapping>
+
+

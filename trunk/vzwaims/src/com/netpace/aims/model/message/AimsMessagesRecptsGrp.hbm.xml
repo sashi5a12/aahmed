@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.message.AimsMessagesRecptsGrp" 
+    table="AIMS_MESSAGES_RECPTS_GRPS"
+>
+ <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+    <composite-id>
+      <key-property name="messageId" column="MESSAGE_ID"/>
+      <key-many-to-one name="recipientId" class="com.netpace.aims.model.core.AimsContact" column="RECIPIENT_ID"/>
+    </composite-id>
+
+    <property name="messageId" type="java.lang.Long" column="MESSAGE_ID" insert="false" update="false" /> 
+
+ 
+    <property
+        name="groupId"
+        type="java.lang.Long"
+        column="GROUP_ID"
+        length="22"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="1"
+    />
+    <property
+        name="viewedDate"
+        type="java.sql.Timestamp"
+        column="VIEWED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

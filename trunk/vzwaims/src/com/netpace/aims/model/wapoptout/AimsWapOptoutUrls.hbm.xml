@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.netpace.aims.model.wapoptout.AimsWapOptoutUrls" table="AIMS_WAP_OPTOUT_URLS">
+    	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+        <id name="urlId" type="java.lang.Long">
+            <column name="URL_ID"/>
+	        <generator class="sequence">
+				<param name="sequence">SEQ_PK_WAP_OPTOUT_URLS</param>
+			</generator>
+        </id>
+        <many-to-one name="aimsWapOptout" class="com.netpace.aims.model.wapoptout.AimsWapOptout">
+            <column name="WAP_OPTOUT_ID"/>
+        </many-to-one>
+        <property name="bypassUrl" type="java.lang.String">
+        	<meta attribute="use-in-tostring">true</meta>
+            <column name="BYPASS_URL" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

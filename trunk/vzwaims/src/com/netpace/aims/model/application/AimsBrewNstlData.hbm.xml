@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsBrewNstlData" 
+    table="AIMS_BREW_NSTL_DATA"
+>
+<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>  
+    <id
+        name="dataEntryId"
+        type="java.lang.Long"
+        column="DATA_ENTRY_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_BREW_NSTL_DATA</param>
+        </generator>
+    </id>
+    
+    <property
+        name="brewNstlId"
+        type="java.lang.Long"
+        column="BREW_NSTL_ID"
+        update="false"
+        insert="false"
+    />
+            
+    <property
+        name="developerName"
+        type="java.lang.String"
+        column="DEVELOPER_NAME"
+        length="200"
+    />
+    <property
+        name="applicationName"
+        type="java.lang.String"
+        column="APPLICATION_NAME"
+        length="200"
+    />
+    <property
+        name="handset"
+        type="java.lang.String"
+        column="HANDSET"
+        length="30"
+    />
+    <property
+        name="partnum"
+        type="java.lang.String"
+        column="PARTNUM"
+        length="50"
+    />
+    <property
+        name="version"
+        type="java.lang.String"
+        column="VERSION"
+        length="10"
+    />
+    <property
+        name="platformId"
+        type="java.lang.String"
+        column="PLATFORM_ID"
+        length="200"
+    />
+    <property
+        name="toWcDate"
+        type="java.sql.Timestamp"
+        column="TO_WC_DATE"
+        length="7"
+    />
+    <property
+        name="bdsAcceptanceDate"
+        type="java.sql.Timestamp"
+        column="BDS_ACCEPTANCE_DATE"
+        length="7"
+    />
+    <property
+        name="ginNumber"
+        type="java.lang.String"
+        column="GIN_NUMBER"
+        length="100"
+    />
+    
+    <property 
+    	  name="brewAppsId" 
+    	  type="java.lang.Long" 
+    	  column="BREW_APPS_ID" 
+    /> 
+    
+    <property 
+    	  name="deviceId" 
+    	  type="java.lang.Long" 
+    	  column="DEVICE_ID" 
+    /> 
+    
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsBrewNstlUpload -->
+    <many-to-one
+        name="aimsBrewNstlUpload"
+        class="com.netpace.aims.model.application.AimsBrewNstlUpload"
+        not-null="true" cascade="all"
+    >
+        <column name="BREW_NSTL_ID" />
+    </many-to-one>   
+
+</class>
+</hibernate-mapping>

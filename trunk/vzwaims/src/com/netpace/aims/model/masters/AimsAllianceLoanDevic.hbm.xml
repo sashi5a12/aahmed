@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.masters.AimsAllianceLoanDevic" 
+    table="AIMS_ALLIANCE_LOAN_DEVICES"
+>
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="loanDeviceId"
+        type="java.lang.Long"
+        column="LOAN_DEVICE_ID"
+    >
+        <generator class="sequence">
+             <param name="sequence">SEQ_PK_ALLIANCE_LOAN_DEVICES</param>
+        </generator>
+    </id>
+
+    <property
+        name="deviceId"
+        type="java.lang.Long"
+        column="DEVICE_ID"
+        length="22"
+    />
+    <property
+        name="allianceId"
+        type="java.lang.Long"
+        column="ALLIANCE_ID"
+        length="22"
+    />
+    
+    <property
+        name="deviceToLoanId"
+        type="java.lang.Long"
+        column="DEVICE_TO_LOAN_ID"
+        length="22"
+    />
+
+    <property
+        name="shippedDate"
+        type="java.sql.Timestamp"
+        column="SHIPPED_DATE"
+        length="7"
+    />
+    <property
+        name="dueDate"
+        type="java.sql.Timestamp"
+        column="DUE_DATE"
+        length="7"
+    />
+    <property
+        name="mtn"
+        type="java.lang.String"
+        column="MTN"
+        length="50"
+    />
+    <property
+        name="trackingNumber"
+        type="java.lang.String"
+        column="TRACKING_NUMBER"
+        length="50"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+    <property
+        name="allianceMemberName"
+        type="java.lang.String"
+        column="ALLIANCE_MEMBER_NAME"
+        length="50"
+    />
+    <property
+        name="allianceMemberAddress"
+        type="java.lang.String"
+        column="ALLIANCE_MEMBER_ADDRESS"
+        length="800"
+    />
+    <property
+        name="allianceMemberTelephone"
+        type="java.lang.String"
+        column="ALLIANCE_MEMBER_TELEPHONE"
+        length="50"
+    />
+    <property
+        name="appsId"
+        type="java.lang.Long"
+        column="APPS_ID"
+        length="22"
+    />
+    <property
+        name="allianceMemberEmail"
+        type="java.lang.String"
+        column="ALLIANCE_MEMBER_EMAIL"
+        length="50"
+    />
+    <property
+        name="esnDec"
+        type="java.lang.String"
+        column="ESN_DEC"
+        length="200"
+    />
+    <property
+        name="esn"
+        type="java.lang.String"
+        column="ESN"
+        length="200"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="50"
+    />
+    <property
+        name="trackDevice"
+        type="java.lang.String"
+        column="TRACK_DEVICE"
+        length="1"
+    />
+    <property
+        name="trackDataCable"
+        type="java.lang.String"
+        column="TRACK_DATA_CABLE"
+        length="1"
+    />
+    <property
+        name="trackCharger"
+        type="java.lang.String"
+        column="TRACK_CHARGER"
+        length="1"
+    />
+    <property
+        name="trackBattery"
+        type="java.lang.String"
+        column="TRACK_BATTERY"
+        length="1"
+    />
+    <property
+        name="retDevice"
+        type="java.lang.String"
+        column="RET_DEVICE"
+        length="1"
+    />
+    <property
+        name="retDataCable"
+        type="java.lang.String"
+        column="RET_DATA_CABLE"
+        length="1"
+    />
+    <property
+        name="retCharger"
+        type="java.lang.String"
+        column="RET_CHARGER"
+        length="1"
+    />
+    <property
+        name="retBattery"
+        type="java.lang.String"
+        column="RET_BATTERY"
+        length="1"
+    />
+    <property
+        name="comments"
+        type="java.lang.String"
+        column="COMMENTS"
+        length="4000"
+    />
+
+    <property
+        name="emailSent"
+        type="java.lang.String"
+        column="EMAIL_SENT"
+        length="1"
+    />
+
+    <property
+        name="allianceCompanyName"
+        type="java.lang.String"
+        column="ALLIANCE_COMPANY_NAME"
+        length="255"
+    />
+
+    <property
+        name="allianceAllianceId"
+        type="java.lang.Long"
+        column="ALLIANCE_ALLIANCE_ID"
+    />
+    
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsAllianc -->
+    <many-to-one name="aimsAllianc" class="com.netpace.aims.model.core.AimsAllianc" not-null="true" column="ALLIANCE_ID" insert="false" update="false"/>
+    <many-to-one name="aimsDevic" class="com.netpace.aims.model.masters.AimsDevic" not-null="true" column="DEVICE_ID" insert="false" update="false"/>
+    
+</class>
+</hibernate-mapping>

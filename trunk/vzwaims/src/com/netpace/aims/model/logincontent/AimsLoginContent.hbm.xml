@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.logincontent.AimsLoginContent" 
+    table="AIMS_LOGIN_CONTENT"
+>
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="loginContentId"
+        type="java.lang.Long"
+        column="LOGIN_CONTENT_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    
+	<property
+        name="loginContentType"
+        type="java.lang.Long"
+        column="LOGIN_CONTENT_TYPE"
+    />
+	<property
+        name="isActive"
+        type="java.lang.String"
+        column="IS_ACTIVE"
+        length="1"
+    />
+    <property
+        name="loginContentAction"
+        type="java.lang.String"
+        column="LOGIN_CONTENT_ACTION"
+        length="200"
+    />
+	<property
+        name="loginContentDescription"
+        type="java.lang.String"
+        column="LOGIN_CONTENT_DESCRIPTION "
+        length="500"
+    />
+    <property
+        name="errorMessage"
+        type="java.lang.String"
+        column="ERROR_MESSAGE"
+        length="500"
+    />
+    <property
+        name="successMessage"
+        type="java.lang.String"
+        column="SUCCESS_MESSAGE"
+        length="500"
+    />
+    <property
+        name="ignoredPath"
+        type="java.lang.String"
+        column="IGNORED_PATH"
+        length="500"
+    />
+    
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="100"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="100"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

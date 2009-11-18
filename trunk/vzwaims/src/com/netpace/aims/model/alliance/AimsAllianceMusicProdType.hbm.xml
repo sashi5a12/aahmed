@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.alliance.AimsAllianceMusicProdType" 
+    table="AIMS_ALLIANCE_MUSIC_PROD_TYPES"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+    
+    <composite-id>
+        <key-property name="allianceId" column="ALLIANCE_ID" type="java.lang.Long"/>
+        <key-many-to-one name="productTypeId" class="com.netpace.aims.model.alliance.AimsMusicProductType" column="PRODUCT_TYPE_ID"/>
+    </composite-id>    
+    
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsAllianceMusic -->
+    
+    <property
+        name="sizeTotalCatalog"
+        type="java.lang.String"
+        column="SIZE_TOTAL_CATALOG"
+        length="50"
+    />
+    <property
+        name="sizeMobileCatalog"
+        type="java.lang.String"
+        column="SIZE_MOBILE_CATALOG"
+        length="50"
+    />
+    <property
+        name="incomeNonMobile"
+        type="java.lang.String"
+        column="INCOME_NON_MOBILE"
+        length="50"
+    />
+    <property
+        name="incomeMobile"
+        type="java.lang.String"
+        column="INCOME_MOBILE"
+        length="50"
+    />
+    <property
+        name="topSellingArtists"
+        type="java.lang.String"
+        column="TOP_SELLING_ARTISTS"
+        length="3000"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="200"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="200"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+    <property
+        name="isSelected"
+        type="java.lang.String"
+        column="IS_SELECTED"
+        length="1"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to AimsMusicProductTyp -->
+
+</class>
+</hibernate-mapping>

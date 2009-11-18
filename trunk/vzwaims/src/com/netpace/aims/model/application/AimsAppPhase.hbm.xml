@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsAppPhase" 
+    table="AIMS_APP_PHASES"
+>
+	<meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>    
+
+		<composite-id>
+      <key-property name="appsId" column="APPS_ID"/>
+      <key-many-to-one name="aimsVzwTestingPhase" class="com.netpace.aims.model.application.AimsVzwTestingPhase" column="TESTING_PHASE_ID"/>
+      <key-many-to-one name="aimsDevice" class="com.netpace.aims.model.masters.AimsDevic" column="DEVICE_ID"/>
+    </composite-id>
+    
+    <property name="appsId" type="java.lang.Long" column="APPS_ID" insert="false" update="false" /> 
+
+
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="1"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="CREATED_BY"
+        length="50"
+    />
+    <property
+        name="createdDate"
+        type="java.sql.Timestamp"
+        column="CREATED_DATE"
+        length="7"
+    />
+    <property
+        name="lastUpdatedBy"
+        type="java.lang.String"
+        column="LAST_UPDATED_BY"
+        length="50"
+    />
+    <property
+        name="lastUpdatedDate"
+        type="java.sql.Timestamp"
+        column="LAST_UPDATED_DATE"
+        length="7"
+    />
+    <property
+        name="comments"
+        type="java.lang.String"
+        column="COMMENTS"
+        length="200"
+    />
+    <property
+        name="testedDate"
+        type="java.sql.Timestamp"
+        column="TESTED_DATE"
+        length="7"
+    />
+    <!--property
+        name="results"
+        type="java.sql.Blob"
+        column="RESULTS"
+        length="4000"
+    /-->
+    <property
+        name="resultsFileName"
+        type="java.lang.String"
+        column="RESULTS_FILE_NAME"
+        length="150"
+    />
+    <property
+        name="resultsContentType"
+        type="java.lang.String"
+        column="RESULTS_CONTENT_TYPE"
+        length="100"
+    />
+
+    <property
+        name="tempFileId"
+        type="java.lang.String"
+        column="TEMP_FILE_ID"
+        length="50"
+    />
+
+
+
+</class>
+</hibernate-mapping>
+
+

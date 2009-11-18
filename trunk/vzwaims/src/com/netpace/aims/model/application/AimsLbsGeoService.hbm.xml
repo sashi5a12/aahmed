@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.application.AimsLbsGeoService" 
+    table="AIMS_LBS_GEO_SERVICES"
+>
+    <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+    <id
+        name="geoServiceId"
+        type="java.lang.Long"
+        column="GEO_SERVICE_ID"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="geoServiceName"
+        type="java.lang.String"
+        column="GEO_SERVICE_NAME"
+        length="100"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="STATUS"
+        length="1"
+    />
+
+    <property
+        name="initiatedFrom"
+        type="java.lang.String"
+        column="INITIATED_FROM"
+        length="30"
+    />
+
+    <property
+        name="autodeskInterface"
+        type="java.lang.String"
+        column="AUTODESK_INTERFACE"
+        length="70"
+    />
+  
+</class>
+</hibernate-mapping>

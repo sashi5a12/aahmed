@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+
+<!-- 
+    Created by Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.netpace.aims.model.tools.AimsToolContract" 
+    table="AIMS_TOOL_CONTRACTS"
+>
+  <meta attribute="extends">com.netpace.aims.model.BaseValueObject</meta>
+
+    <composite-id>
+      <key-property name="toolId" column="TOOL_ID"/>
+      <key-many-to-one name="aimsContract" class="com.netpace.aims.model.core.AimsContract" column="CONTRACT_ID"/>
+    </composite-id>
+
+
+    <property
+        name="toolId"
+        type="java.lang.Long"
+        column="TOOL_ID"
+        insert="false"
+        update="false"
+    /> 
+
+</class>
+</hibernate-mapping>
