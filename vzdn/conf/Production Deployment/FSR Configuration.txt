@@ -1,0 +1,22 @@
+Steps for configure the FSR
+
+•	Go to https://network.alfresco.com/ and give the userId and password
+•	Click on Downloads 
+•	Select following values from dropdown
+•	Version: 3.1 SP1
+•	OS: Linux
+•	Now click on GO button                
+•	Find out and download "AlfrescoDeployEnterprise-3.1.1-Linux-x86-Install" file 
+•	Install this file where vzdnsite will be deployed. When you execute this file. Give the path where FSR will be installed.  E.g. /usr/java/FSR
+•	Now go to <FSR_INSTALLED> folder
+•	Open deployment.properties
+•	Change the value of dep.datadir with "<FSR_INSTALLED>/depdata"
+•	Change the value of dep.logdir with "<FSR_INSTALLED>/deplog"
+•	Change the value of dp.metadatadir with "<FSR_INSTALLED>/depmeta"
+•	Open deploy_start.sh file
+•	Append space and ampersand ' &' at the end of the line. E.g. nohup java -server -Djava.ext.dirs=. org.alfresco.deployment.Main application-context.xml &
+•	Open application-context.xml file
+•	Find out "/opt/Alfresco/Deployment/www" and replace it with the tomcat webapps folder where you want to deploy the vzdnsite. E.g. /usr/java/tomcat_vzdnsite/webapps
+•	Change the password value with "12657alcosts"
+•	Now execute the service using deploy_start.sh E.g. ./deploy_start.sh
+•	To check the service is running type ps -aef | grep context. This will show the FSR related process.

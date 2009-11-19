@@ -1,0 +1,1 @@
+This folder is where all the vzdncore related WAR files (already deployed) are backed up to

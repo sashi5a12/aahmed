@@ -1,0 +1,1 @@
+This folder is where all the WAR files (to be deployed) will be copied to

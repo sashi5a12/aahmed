@@ -1,0 +1,198 @@
+									PRODUCTION TOMCAT AND POLICY AGENT SETUP FOR VZDN - II
+
+Objective: This document refers to the setup of tomcat servers and policy agent folders and related stuff. It does not contain installation of policy agents  with tomcat.
+
+Downloads and Installations
+This document refers to the tools and there setup required for Production Setup
+
+1. Install JDK
+Java(TM) SE Runtime Environment (build 1.6.0_12-b04).
+
+2. Tomcat 6.0.14
+Download
+http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.14/bin/apache-tomcat-6.0.14.tar.gz
+
+3. Policy Agent for TOMCAT
+Download 
+http://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_SMI-Site/en_US/-/USD/VerifyItem-Start/tomcat-v6-agent-3.zip?BundledLineItemUUID=g6BIBe.oVQ8AAAEi0E4Lnlfj&OrderID=at5IBe.olUUAAAEiuk4Lnlfj&ProductID=xhBIBe.prNkAAAEgdw4P59nl&FileName=/tomcat-v6-agent-3.zip
+
+Folders creation
+
+1. create folder /usr/java/downloads
+a. Un archive Policy agent in /usr/java/downloads folder with the name policyagent_tomcat. Hint : The folder hierarchy should appear like policyagent_tomcat/j2ee_agents/tomcat_v6_agent
+
+b. Similary unarchive apache-tomcat-6.0.14.tar.gz to tomcat in /usr/java/downloads. It will be unarchived to apache-tomcat-6.0.14 folder.
+
+
+2. Create folder /usr/java/vzdn
+	i. Copy and rename tomcat folder to this location multiple times with the names as follows
+	 	a. tomcat_vzdncore
+		b. tomcat_vzdnsite
+		c. tomcat_forum
+		d. tomcat_blogs
+		e. tomcat_global
+	ii. Similary copy and rename  policyagent_tomcat folder to the same location '/usr/java/vzdn' multiple times as 		    follows:
+        a. agent_vzdncore
+        b. agent_vzdnsite
+		c. agent_forum
+		d. agent_blogs
+		
+
+3. Update Tomcat ports:
+     Update <tomcat>/conf/server.xml file of each tomcat as follows:
+
+ 	i. shutdown port:
+        Locate  '<Server port="<xxx_shutdown_port>" shutdown="SHUTDOWN">' tag in each   
+        server.xml and update it with the described shutdown port of each tomcat.
+ 	ii. Connector port:
+    	Locate Non-SSL connector port as mentioned in the code snippet below and replace the complete tag with the one provided below with corresponding port and proxyName as described for each tomcat.
+ 
+		<Connector port="<xxx_startup_port>" protocol="HTTP/1.1" URIEncoding="UTF-8"  proxyName="<production_app_load_balancer>" proxyPort="80" connectionTimeout="20000"  redirectPort="8443" />
+
+    
+
+ 
+Tomcat	Shutdown ports
+
+tomcat_vzdncore_shutdown_port	8024
+tomcat_vzdnsite_shutdown_port	8023
+tomcat_forum_shutdown_port		8022
+tomcat_blogs_shutdown_port		8021
+tomcat_global_shutdown_port		8025
+
+
+Tomcat	Startup ports
+
+tomcat_vzdncore_startup_port	8094
+tomcat_vzdnsite_startup_port	8093
+tomcat_forum_startup_port		8092
+tomcat_blogs_startup_port		8091
+tomcat_global_startup_port		8095
+
+
+where,
+<production_app_load_balancer> = developer.verizon.com
+
+
+	iii. Update tomcat_vzdncore/conf/context.xml.
+    	This action is required for tomcat_vzdncore only. Open file /usr/java/vzdn/tomcat_vzdncore/conf/content.xml. 
+    	Paste following code before the '</context>' ending tag of the file.
+
+	<Resource
+	    name="jdbc/vzdn"
+	    auth="Container"
+	    type="javax.sql.DataSource"
+	    factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+	    maxActive="100"
+	    maxIdle="30"
+	    maxWait="10000"
+	    username="<username>"
+	    password="<password>"
+	    driverClassName="com.mysql.jdbc.Driver"
+	    defaultAutoCommit="true"
+	    url="jdbc:mysql://<db_ip>:3306/vzdn?zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;characterEncoding=utf8"
+	    validationQuery="SELECT 1"
+	    removeAbandoned="true"
+	    removeAbandonedTimeout="60"
+	    logAbandoned="true"
+    />
+ 
+
+	Update <username>, <password> and <db_ip> with the production database.
+
+	iv. update tomcat_forum/conf/context.xml. Add following attribute in top level context tag  allowLinking="true" 
+
+	v. Update catalina.sh for all tomcats located in tomcat_xxx/bin folder. Add 
+
+		CATALINA_OPTS="-Dfile.encoding=UTF-8"
+
+		after the starting comments in the file.
+
+
+
+Apache Configuration
+	i. Open file /etc/httpd/conf/httpd.conf and copy the code below 
+
+	<VirtualHost *:80>
+  	
+	#ProxyPass /vzdnsite/ http://localhost:8100/vzdnsite/
+        #ProxyPassReverse /vzdnsite/ http://localhost:8100/vzdnsite/
+
+   	
+	ProxyPass /agentappvzdncore<x>/ http://localhost:8094/agentappvzdncore<x>/
+        ProxyPassReverse /agentappvzdncore<x>/ http://localhost:8094/agentappvzdncore<x>/
+
+        ProxyPass /vzdncore/ http://localhost:8094/vzdncore/
+        ProxyPassReverse /vzdncore/ http://localhost:8094/vzdncore/
+
+
+	ProxyPass /agentappblogs<x>/ http://localhost:8091/agentappblogs<x>/
+        ProxyPassReverse /agentappblogs<x>/ http://localhost:8091/agentappblogs<x>/
+
+        ProxyPass /blogs/ http://localhost:8091/blogs/
+        ProxyPassReverse /blogs/ http://localhost:8091/blogs/
+
+	
+	 ProxyPass /agentappforum<x>/ http://localhost:8092/agentappforum<x>/
+        ProxyPassReverse /agentappforum<x>/ http://localhost:8092/agentappforum<x>/
+
+        ProxyPass /forum/ http://localhost:8092/forum/
+        ProxyPassReverse /forum/ http://localhost:8092/forum/
+
+	
+        ProxyPass /global/ http://localhost:8095/global/
+        ProxyPassReverse /global/ http://localhost:8095/global/
+
+        ProxyPass /alfresco/ http://localhost:8080/alfresco/
+        ProxyPassReverse /alfresco/ http://localhost:8080/alfresco/
+
+	ProxyPass /agentappvzdnsite<x>/ http://localhost:8093/agentappvzdnsite<x>/
+        ProxyPassReverse /agentappvzdnsite<x>/ http://localhost:8093/agentappvzdnsite<x>/
+
+	
+        ProxyPass / http://localhost:8093/
+        ProxyPassReverse / http://localhost:8093/
+
+
+        ServerAdmin amakda@netpace.com
+        ServerName <load_balancer_name>
+	ServerAlias <app_server_name> 
+        CustomLog logs/<app_server_name>.log combined
+
+       RewriteEngine On
+       RewriteRule ^/alfresco$ /alfresco/ [R]
+       RewriteRule ^/vzdncore/includes/header.jsp /global/includes/header.jsp [R]
+       RewriteRule ^/vzdncore/includes/footer.jsp /global/includes/footer.jsp [R]
+
+
+</VirtualHost>
+
+
+where <x> is different for each application server
+For sjpvzdnapp1, <x>=1 and <app_server_name>= sjpvzdnapp1
+For sjpvzdnapp2, <x>=2 and <app_server_name>= sjpvzdnapp2
+For phpvzdnapp1, <x>=3 and <app_server_name>= phpvzdnapp1
+For phpvzdnapp2, <x>=4 and <app_server_name>= phpvzdnapp2
+
+<load_balancer_name>=developer.verizon.com
+
+
+DeployWAR folder setup
+
+	Unarchive deployWAR.zip to /usr/java/ folder. This archive will be provided with this documentation.
+
+
+Replication and Logs Directory
+
+Create folders:
+/usr/java/vzdn/rfs/vzdncore
+/usr/java/vzdn/rfs/vzdnsite
+/usr/java/vzdn/rfs/forum/images
+/usr/java/vzdn/rfs/blogs/uploads
+
+/usr/java/vzdn/fs/vzdncore
+/usr/java/vzdn/fs/vzdnsite/index
+/usr/java/vzdn/fs/forum/jforumLuceneIndex
+/usr/java/vzdn/fs/blogs/search-index
+/usr/java/vzdn/fs/blogs/logs
+

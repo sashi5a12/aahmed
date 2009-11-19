@@ -1,0 +1,8 @@
+Following are the steps to configure the functionality of vzdnsite search:
+	Open VzndCore/conf/createIndex/create_index.sh file and give paths for indexes  
+	java org.apache.lucene.search.IndexHTML <LOCATION_TO_SAVE_INDEX> <VZDN_SITE_FOLDER>
+	E.g. java org.apache.lucene.search.IndexHTML /usr/java/index /usr/java/tomcat/webapps/ROOT
+	Open Vzdncore/conf/environment/stage/envProps.properties and give index directory path
+	dir.index=/usr/java/index
+	Now deploy vzdncore war and start tomcat.
+	Go to vzndcore classes folder (/usr/java/tomcat_vzdncore/webapps/vzdncore/WEB-INF/classes) and execute the shell script. This will create the indexes.
