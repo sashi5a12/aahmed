@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+
+	<filter>
+	      <filter-name>Authentication Filter</filter-name>
+	      <filter-class>com.netpace.vzdn.filter.AuthenticationFilter</filter-class>
+	</filter>  	
+ 	<filter>
+ 		<description>Set far future expiry to public resources</description>
+ 		<filter-name>FarFutureExpiryFilter</filter-name>
+ 		<filter-class>com.netpace.vzdn.filter.FarFutureExpiryFilter</filter-class>
+ 		<init-param> 		
+  			<description>expires header in days</description>
+  			<param-name>expires</param-name>
+  			<param-value>365</param-value>
+  		</init-param>
+  	</filter>
+	<filter>
+    	<filter-name>NoCacheFilter</filter-name>
+    	<filter-class>com.netpace.vzdn.filter.NoCacheFilter</filter-class>
+    	<init-param>
+        	<param-name>cacheControl</param-name>
+        	<param-value>private, no-cache, no-store, max-age=0, must-revalidate</param-value>
+    	</init-param>
+    	<init-param>
+        	<param-name>Expires</param-name>
+        	<param-value>-1</param-value>
+    	</init-param>
+  	</filter>  	
+	<filter-mapping>
+	   <filter-name>Authentication Filter</filter-name>
+	   <url-pattern>/*</url-pattern>
+	</filter-mapping>  	
+	<filter-mapping>
+		<filter-name>FarFutureExpiryFilter</filter-name>
+  		<url-pattern>*.js</url-pattern>
+  	</filter-mapping> 
+  	<filter-mapping>
+  		<filter-name>FarFutureExpiryFilter</filter-name>
+  		<url-pattern>*.gif</url-pattern>
+  	</filter-mapping>
+  	<filter-mapping>
+  		<filter-name>FarFutureExpiryFilter</filter-name>
+  		<url-pattern>*.jpg</url-pattern>
+  	</filter-mapping>
+  	<filter-mapping>
+  		<filter-name>FarFutureExpiryFilter</filter-name>
+  		<url-pattern>*.css</url-pattern>
+  	</filter-mapping>
+  	<filter-mapping>
+  		<filter-name>FarFutureExpiryFilter</filter-name>
+  		<url-pattern>*.png</url-pattern>
+  	</filter-mapping>  
+  	<filter-mapping>
+	    <filter-name>NoCacheFilter</filter-name>
+    	<url-pattern>*.jsp</url-pattern>
+  	</filter-mapping>  		
+	<welcome-file-list>
+	  <welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsps/errorPages/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403.1</error-code>
+		<location>/jsps/errorPages/403.jsp</location>		
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/jsps/errorPages/500.jsp</location>		
+	</error-page>
+	<error-page>
+		<error-code>java.lang.Exception</error-code>
+		<location>/jsps/errorPages/VZDNexceptionHandling.jsp</location>
+	</error-page>	
+</web-app>
