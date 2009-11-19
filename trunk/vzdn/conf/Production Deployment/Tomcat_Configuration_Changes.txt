@@ -1,0 +1,24 @@
+For all Tomcats do the following:
+--------------------------------
+
+- Add the following in <tomcat>/bin/catalina.sh:
+  CATALINA_OPTS="-Dfile.encoding=UTF-8"
+
+
+- Add the following in <tomcat>/conf/server.xml:
+  <Connector port="8080" maxHttpHeaderSize="8192" URIEncoding="UTF-8" ....
+
+
+For Forum Tomcat, do the following:
+---------------------------------------------
+
+- Add the following in <tomcat>/conf/context.xml:
+  <Context allowLinking="true">        .... Add attribute "allowLinking="true" "
+  
+For VZDNCore Tomcat, do the following:
+---------------------------------------------
+
+- Add the following file in <tomcat>/conf/:
+  context.xml
+  
+   

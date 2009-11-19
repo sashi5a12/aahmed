@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources,errors" />
+	<!-- setting up 100gb value in bytes-->
+	
+	<constant name="struts.multipart.maxSize" value="107374182400" />
+	<constant name="struts.multipart.saveDir" value="uploads" />
+
+	<!-- Configuration for the default package. -->
+
+	<package name="default" extends="struts-default">
+	
+			
+	<interceptors>
+			<interceptor name="cacheHandlingInterceptor" class="com.netpace.vzdn.webapp.vzdninterceptors.CacheHandlingInterceptor"/>
+			<interceptor name="securityInterceptor" class="com.netpace.vzdn.webapp.vzdninterceptors.SecurityInterceptor"/>
+		
+		<interceptor-stack name="defaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servlet-config"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="profiling"/>
+                <interceptor-ref name="scoped-model-driven"/>
+                <interceptor-ref name="model-driven"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="static-params"/>
+                <!-- <interceptor-ref name="component"/> -->                
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="params"/>                
+                <interceptor-ref name="validation"/>
+                                  
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="cacheHandlingInterceptor"/>                
+                <interceptor-ref name="workflow"/> 
+                <interceptor-ref name="securityInterceptor"/>                 
+            </interceptor-stack>
+		
+		</interceptors>	
+		
+		<global-results>
+            <result name="SecurityException">/errorpages/403.jsp</result>
+            <result name="NotLoggedInException">/errorpages/VZDNexceptionHandling.jsp</result>            
+            <result name="login-first" type="redirectAction">login</result>
+        </global-results>
+
+        <global-exception-mappings>
+            
+            <exception-mapping exception="com.netpace.vzdn.security.VzdnSecurityException" result="SecurityException"/>
+            <exception-mapping exception="com.netpace.vzdn.exceptions.NotLoggedInException" result="NotLoggedInException"/>            
+            
+        </global-exception-mappings>	
+		
+		<!-- Login Related Actions -->
+
+		<action name="home" class="homeAction" method="execute">			
+			<result name="input">/errorpages/VZDNexceptionHandling.jsp</result>
+			<result name="success">/pages/devCenter/home.jsp</result>			
+		</action>
+
+		<action name="login" class="loginAction" method="processLogin">
+			<result name="input">/errorpages/VZDNexceptionHandling.jsp</result>
+			<result name="success">/pages/devCenter/home.jsp</result>
+			<result name="redirect" type="redirect">${redirectURL}</result>
+		</action>		
+ 
+		<action name="logout" class="logoutAction" method="logout">
+		<!-- 
+			<result name="input" type="redirect-action">/pages/devCenter/home.jsp</result>
+			<result name="success" type="redirect-action">/pages/devCenter/home.jsp</result>
+		 -->	
+		</action>
+		
+		
+		<!-- User Management Related Actions -->
+	
+		 
+		<action name="edituser" class="userMgmtAction" method="edit">
+			<result name="success">/pages/usermgmt/userEdit.jsp</result>
+			<result name="input">/pages/usermgmt/userEdit.jsp</result>			
+		</action>
+		
+		
+		
+		<action name="editsaveuser" class="userMgmtAction" method="editSave">
+			<result name="success" type="redirect-action">searchUsersAction</result>
+			<result name="input">/pages/usermgmt/userEdit.jsp</result>
+						
+		</action>
+		
+		<action name="changeusertype" class="userMgmtAction" method="toggleUserType">
+			<result name="success">/pages/usermgmt/userEdit.jsp</result>
+			<result name="input">/pages/usermgmt/userEdit.jsp</result>			
+		</action>
+		
+		 
+		  
+		 
+		 <!--
+		 The following three actions are placed for the same of testing.		 
+		 At times, struts2 behaves awkward when multipe actions point to the same class;		 
+		 The actions will help detect the issue.
+		 -->
+		 
+		 <!--
+		 		 
+		<action name="editUser" class="editUserAction" method="edit">
+			<result name="success">/pages/usermgmt/userEdit.jsp</result>
+			<result name="input">/pages/usermgmt/userEdit.jsp</result>			
+		</action>
+		
+		<action name="editSaveUser" class="editSaveUserAction" method="editSave">
+			<result name="success" type="redirect-action">searchUsersAction</result>
+			<result name="input">/pages/usermgmt/userEdit.jsp</result>
+						
+		</action>
+		
+		<action name="changeUserType" class="changeUserTypeAction" method="toggleUserType">
+			<result name="success">/pages/usermgmt/userEdit.jsp</result>
+			<result name="input">/pages/usermgmt/userEdit.jsp</result>			
+		</action>		 
+		 -->
+		
+		<action name="searchUsersAction" class="searchUsersAction" method="search">
+			<result name="success">/pages/usermgmt/usermgmt.jsp</result>			
+		</action>
+		
+		<!--  Notifications Related Action -->
+ 		
+		<action name="notifications" class="searchNotificationAction" method="list">			
+			<result name="success">/pages/notifications/listnotifications.jsp</result>			
+		</action>
+		
+		<action name="addNotification" class="addNotificationAction" method="add">
+			<result name="success">/pages/notifications/addnotification.jsp</result>			
+		</action>
+		
+		<action name="addSaveNotification" class="addSaveNotificationAction" method="addSave">
+			<result name="input">/pages/notifications/addnotification.jsp</result>
+			<result name="success" type="redirect-action">notifications</result>			
+		</action>
+		 		
+		<action name="editNotification" class="editNotificationAction" method="edit">			
+			<result name="success">/pages/notifications/editnotification.jsp</result>			
+		</action>
+		
+		<action name="editSaveNotification" class="editSaveNotificationAction" method="editSave">		
+			<result name="input">/pages/notifications/editnotification.jsp</result>
+			<result name="success" type="redirect-action">notifications</result>
+		</action>
+
+
+		<action name="changeEvent" class="addNotificationAction" method="changeEvent">
+			<result name="success">/pages/notifications/addnotification.jsp</result>			
+			<result name="input">/pages/notifications/addnotification.jsp</result>
+		</action>
+		
+		<action name="changeEventOnUpdate" class="editSaveNotificationAction" method="changeEvent">			
+			<result name="success">/pages/notifications/editnotification.jsp</result>			
+			<result name="input">/pages/notifications/editnotification.jsp</result>
+		</action>
+		
+		<action name="deleteNotification" class="deleteNotificationAction" method="deleteNotification">			
+			<result name="input" type="redirect-action">notifications</result>			
+			<result name="success" type="redirect-action">notifications</result>
+		</action>
+	
+		<action name="deleteNotification" class="deleteNotificationAction" method="deleteNotification">			
+			<result name="input" type="redirect-action">notifications</result>			
+			<result name="success" type="redirect-action">notifications</result>
+		</action>
+		
+		<action name="removeAttachment" class="removeAttachmentAction" method="remove">			
+			<result name="success" type="redirect-action">
+				<param name="actionName">editNotification</param>
+				<param name="namespace"></param>				
+				<param name="id">${id}</param>
+			</result>			
+			<result name="input" type="redirect-action">editNotification</result>
+		</action>
+		
+		<action name="myNotification" class="myNotificationsAction" method="view">			
+			<result name="input">/pages/notifications/mynotifications.jsp</result>			
+			<result name="success">/pages/notifications/mynotifications.jsp</result>
+		</action>
+		
+		<action name="saveMyNotification" class="saveMyNotificationsAction" method="save">			
+			<result name="input">/pages/notifications/mynotifications.jsp</result>						
+			<result name="success" type="redirect-action">myNotification</result>
+		</action>
+
+		<action name="deviceAnyWhere" class="deviceAnyWhereAction" method="forward">			
+			<result name="success">/pages/deviceanywhere/deviceanywhere.jsp</result>						
+		</action>
+		
+		<action name="downloadFile" class="downloadFile" method="execute">
+			<result name="download" type="stream">			  
+			  <param name="inputName">inputStream</param>
+			  <param name="contentType">${contentType}</param>
+			  	<param name="contentDisposition">${contentDisposition}</param>			  
+			</result>
+		</action>
+		
+		<!--  NewsLetter Email Related Action -->
+		
+		<action name="newsLetter!*" method="{1}" class="newsLetter" >
+			<result name="input">/pages/newsletter/ComposeNewsletter.jsp</result>
+			<result name="SEND">/pages/newsletter/NewsLetterSend.jsp</result>
+			<result name="CANCEL" type="redirect-action">			
+				<param name="actionName">home</param>
+			</result>
+		</action>
+		
+		<action name="uploadAttachmentFile" class="uploadAttachmentFile" method="execute">
+			<result name="success" type="redirect-action">			
+				<param name="actionName">newsLetter</param>
+				<param name="parse">true</param>
+				<param name="redirectTo">Home</param>
+			</result>
+			<result name="input" type="redirect-action">			
+				<param name="actionName">newsLetter</param>
+				<param name="parse">true</param>
+				<param name="redirectTo">Home</param>
+			</result>
+		</action>
+		
+		<action name="attachmentDownload" class="attachmentDownload" method="execute">
+			<result name="download" type="stream">			  
+			  <param name="inputName">inputStream</param>
+			  <param name="contentType">${contentType}</param>
+			  <param name="contentDisposition">${contentDisposition}</param>			  
+			</result>
+			<result name="input" type="redirect-action">			
+				<param name="actionName">newsLetter</param>
+				<param name="parse">true</param>
+				<param name="redirectTo">Home</param>
+			</result>		
+		</action>
+		
+		<action name="attachmentRemove" class="attachmentRemove" method="execute">
+			<result name="success" type="redirect-action">			
+				<param name="actionName">newsLetter</param>
+				<param name="parse">true</param>
+				<param name="redirectTo">Home</param>
+			</result>
+			<result name="input" type="redirect-action">			
+				<param name="actionName">newsLetter</param>
+				<param name="parse">true</param>
+				<param name="redirectTo">Home</param>
+			</result>
+		</action>
+		
+		<action name="uploadCSVFile" class="uploadCSVFile" method="execute">			
+			<result name="success" type="redirect-action">			
+				<param name="actionName">newsLetter</param>
+				<param name="parse">true</param>
+				<param name="redirectTo">Home_CSV</param>
+			</result>
+			<result name="input" type="redirect-action">			
+				<param name="actionName">newsLetter</param>
+				<param name="parse">true</param>
+				<param name="redirectTo">Home</param>
+			</result>
+		</action>
+		<action name="reports" class="reportsAction" method="showReports">
+			<result name="success">/WEB-INF/reports/reportsview.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+		
+		<action name="rolereport" class="reportsAction" method="showRoleReport">
+			<result name="success">/WEB-INF/reports/rolereport/rolereportinput.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+			
+		</action>
+		
+		<action name="userreport" class="userReportAction" method="showUserReport">
+			<result name="success">/WEB-INF/reports/userreport/userreportinput.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+		
+		<action name="loadrolereport" class="reportsAction" method="loadRoleReport">
+			<result name="success">/WEB-INF/reports/rolereport/rolereport-multiparams.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+		<action name="loaduserreport" class="userReportAction" method="loadUserReport">
+			<result name="success">/WEB-INF/reports/userreport/userreport.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+		
+		<action name="devreport" class="ldapUsersReportAction">
+			<result name="success">/WEB-INF/reports/ldapusersreport/ldapusersreportinput.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+
+		<action name="loaddeveloperreport" class="loadLdapUsersReportAction">
+			<result name="success">/WEB-INF/reports/ldapusersreport/ldapusersreport.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+
+	
+	</package>
+
+	<package  name="reports" extends="default" namespace="/verizon/reports/admin/"  >
+	
+
+	
+		<action name="loadrolereport" class="reportsAction" method="loadRoleReport">
+			<result name="success">/WEB-INF/reports/rolereport/rolereport-multiparams.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+		<action name="loaduserreport" class="userReportAction" method="loadUserReport">
+			<result name="success">/WEB-INF/reports/userreport/userreport.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+	
+				<action name="loaddeveloperreport" class="loadLdapUsersReportAction">
+			<result name="success">/WEB-INF/reports/ldapusersreport/ldapusersreport.jsp</result>
+			<result name="error">/pages/devCenter/home.jsp</result>
+		</action>
+	
+	</package>
+</struts>

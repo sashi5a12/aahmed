@@ -1,0 +1,10 @@
+
+This document is required to implement Replication of required files/folders of Forum Application
+
+1. update tomcat/conf/context.xml. Add following attribute in top level context tag "allowLinking="true" "
+
+2. When deploying Forum for the first time, copy  "/usr/java/vzdn/tomcat_forum/webapps/forum/images/*" to 
+   "/usr/java/vzdn/rfs/forum/images".
+
+3. Run script ~/forumPostDeployment.sh.This script will run every time after deployment and tomcat startup
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!--  
+		This is an applicationContext and Spring Inversion of Control (IOC) file. All dao objects must be
+		defined here.
+	-->
+
+	<bean id="userDao"	class="com.netpace.vzdn.dao.impl.UserDAO"/>
+	<bean id="roleDao"	class="com.netpace.vzdn.dao.impl.SysRoleDAO"/>
+	<bean id="notificationsDao"	class="com.netpace.vzdn.dao.impl.NotificationDAO"/>
+	
+	<bean id="eventsDao"	class="com.netpace.vzdn.dao.impl.EventsDAO"/>
+	<bean id="placeHolderDao"	class="com.netpace.vzdn.dao.impl.PlaceHoldersDAO"/>	
+	<bean id="messagesDao"	class="com.netpace.vzdn.dao.impl.EmailMessagesDAO"/>
+	
+	<bean id="typesDao"	class="com.netpace.vzdn.dao.impl.TypesDAO"/>
+	<bean id="deviceAnyWhereDao"	class="com.netpace.vzdn.dao.impl.DeviceAnyWhereDAO"/>
+	<bean id="reportsDao"	class="com.netpace.vzdn.dao.impl.ReportsDAO"/>
+	<bean id="newsLetterDao" class="com.netpace.vzdn.dao.impl.NewsLetterDao" />
+	<bean id="newsLetterOptoutDao" class="com.netpace.vzdn.dao.impl.NewsLetterOptOutDaoImpl" />
+
+</beans>

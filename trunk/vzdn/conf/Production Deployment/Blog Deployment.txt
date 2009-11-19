@@ -1,0 +1,24 @@
+Steps to Activate Blogs after first Installation.
+
+To activate Blogs do the following changes 
+
+1. Update following properties in  Blogs/web/WEB-INF/classes/roller-custom.properties. Enter the credentials of a user who is already created in Opensso with Blog Super Admin '4003' role.
+
+blog.superadmin.userName=mshahabuddin@netpace.com
+blog.superadmin.password=colossal
+blog.superadmin.screenName=Mudassir
+blog.superadmin.fullName=Mudassir Shahabuddin
+blog.superadmin.emailAddress=mshahabuddin@netpace.com
+
+
+2. Log in to VZDN Core and go to My Account Page. Click on Blog Administration link e.g.; http://sjsvzdn.netpace.com/blogs/roller-ui/menu.rol
+
+3. Click on Theme Link
+4. In the theme selection page, select Custom Theme and press on Update Theme button.
+5. Now in the same page, under the Design tab, you’ll see the Template link. Click this link. This will open the Manage templates page that shows the list of all templates that you can customize for the theme  that you selected for customization.
+6. The templates for the theme that we want for the phoenix blog application is stored under the relative directory path vzdnthemes/basic in the root folder of the deployed web application folder or you can also find these templates in the folder web/vzdnthemes/basic in the blog project root folder. In these folders, you will find Velocity (.vm) files with same names as those templates that you see in the Manage templates page of the blog application.
+7. All the templates shown in the Manage templates page will need to be customized. So click on the template link to customize the template. This will open Edit template page. Now in the text area on the page replace the existing template code with the template code in the velocity (.vm) file with the same name as the template that you are editing and click the save button.
+8.Change each template in the same way and keep saving the changes. Anytime you change a template you can go to the blog page to check the changes affected.
+
+
+
