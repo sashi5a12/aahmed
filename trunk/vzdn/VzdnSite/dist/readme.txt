@@ -1,0 +1,1 @@
+Deploy this war file as structure in alfresco using bulk upload.

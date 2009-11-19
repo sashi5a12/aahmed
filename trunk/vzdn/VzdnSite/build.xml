@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<project name="vzdncore" default="war" basedir=".">
+
+	<!-- USER'S DEFINED PATH IS PICKED FROM THIS PROPERTY FILE -->
+	<property file="build.properties" />  
+
+	<property name="app.name" value="VZDN" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="webroot.dir" value="${basedir}/WebRoot" />
+	<property name="build.dir" value="${webroot.dir}/WEB-INF" />
+	<property name="lib.dir" value="${build.dir}/lib" />
+	<property name="deploy.dir" value="${basedir}/dist" />    
+	
+	<!-- =================================================================== -->
+	<!-- Define all the required paths here                                  -->
+	<!-- =================================================================== -->
+
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${build.dir}/classes" />
+	</path>
+
+	<path id="tomcat.classpath">
+		<fileset dir="${tomcat.home}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- =================================================================== -->
+	<!-- Cleans up                                                           -->
+	<!-- =================================================================== -->
+
+	<target name="clean">
+		<delete file="${deploy.dir}/${app.name}"/>
+		<delete dir="${build.dir}/classes"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compile the source                                                  -->
+	<!-- =================================================================== -->
+
+	<target name="compile">
+		<mkdir dir="${build.dir}/classes" />
+		<javac destdir="${build.dir}/classes" debug="on" deprecation="on">
+			<src path="${src.dir}" />
+			<classpath>
+				<path refid="project.classpath" />
+				<path refid="tomcat.classpath" />
+			</classpath>
+		</javac>
+	
+		<copy todir="${build.dir}/classes">
+			<fileset dir="${src.dir}">
+				 <include name="*.properties"/>  
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Package - create a war file                                         -->
+	<!-- =================================================================== -->
+
+	<target name="war" depends="clean, compile" description="Package WAR">
+		<war destfile="${deploy.dir}/${app.name}.war" webxml="${build.dir}/web.xml" >
+			<fileset dir="${webroot.dir}" />			
+			<!--<classes dir="${build.dir}/classes" />-->
+		</war>
+	</target>
+
+    <!-- Clean Deployment Folder -->
+    <target name="cleanDeployFolder">
+            	
+    </target>
+	
+
+	<!-- =================================================================== -->
+	<!-- Help - Ant Tasks                                                    -->
+	<!-- =================================================================== -->
+
+	<target name="help">
+		<echo message=" ****************************************************   " />
+		<echo message="                   VZDN-Site Help Menu                  " />
+		<echo message=" ****************************************************   " />
+		<echo message="                                                        " />
+		<echo message="                                                        " />
+		<echo message=" ant help    - Shows this vzdn site ant help menu       " />
+	</target>
+</project>
