@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="Page8-XSLT2-WildCards.xsl"?>
+<source>
+	<employee>
+		<firstName>Joe</firstName>
+		<surname>Smith</surname>
+	</employee>
+</source>
