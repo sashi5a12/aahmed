@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl' href="Page12-XSLT1-Attribute.xsl"?>
+<source>
+
+<dog name="Joe">
+     <data weight="18 kg" color="black"/>
+</dog>
+
+</source> 
