@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl' href="Page14-XSLT1-ContainAttribute.xsl"?>
+<source>
+
+<car id="a234" checked="yes"/>
+<car id="a111" checked="yes"/>
+<car id="a005"/>
+
+</source> 
