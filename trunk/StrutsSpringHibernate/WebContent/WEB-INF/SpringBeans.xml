@@ -7,6 +7,6 @@
 	<import resource="HibernateSessionFactory.xml" />
 
 	<!-- Beans Declaration -->
-	<import resource="CustomerBean.xml" />
+	<import resource="ServiceDaoBeans.xml" />
 
 </beans>
