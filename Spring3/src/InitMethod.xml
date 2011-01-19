@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="bean" class="net.roseindia.InitBean" init-method="init">
+    	<property name="name"><value>Adnan Ahmed</value> </property>
+    	<property name="address"><value>Fremont</value> </property>
+    	<property name="profession"><value>Software Engineer</value></property>
+    </bean>                            
+</beans>                
