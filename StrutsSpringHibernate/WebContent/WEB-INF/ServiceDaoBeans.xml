@@ -11,5 +11,4 @@
 	<bean id="customerDao" class="com.examples.dao.impl.CustomerDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
 </beans>
