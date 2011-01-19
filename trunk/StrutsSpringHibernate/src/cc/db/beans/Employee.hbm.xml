@@ -1,0 +1,36 @@
+<?xml version="1.0"?> 
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cc.db.beans">
+  <class name="Employee" table="EMPLOYEES" schema="EARTHLINGS">
+    <id name="id" type="integer">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="department" class="Department" column="DEPARTMENT_ID"/>
+    <one-to-one name="managedDepartment" property-ref="manager"/>
+    <many-to-one name="job" class="Job" column="JOB_ID" fetch="join"/>
+        
+    <property name="firstName" not-null="true" />
+    <property name="middleName" />
+    <property name="lastName" not-null="true" />
+    <property name="gender" type="string">
+      <column name="GENDER" length="1" />
+    </property>
+    <property name="email"/>
+    <property name="extension" type="string">
+      <column name="EXTENSION" sql-type="long" />
+    </property>
+    <property name="hireDate" type="string">
+      <column name="HIREDATE" sql-type="date" />
+    </property>
+    <property name="salary" type="double" />
+    <property name="commissionPct" type="double" column="COMMISSION_PCT" />
+        
+    <component name="address">
+      <property name="address" />
+      <property name="city" />
+      <property name="state" />
+      <property name="ZIPCode" />
+    </component>        
+  </class>
+</hibernate-mapping>

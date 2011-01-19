@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cc.db.beans">
+  <class name="Job" table="JOBS" schema="EARTHLINGS">
+    <id name="id" type="integer">
+      <generator class="identity" />
+    </id>
+    <property name="name" column="JOB_NAME"/>
+    <property name="minimumSalary" column="MINIMUM_SALARY" access="field"/>
+    <property name="maximumSalary" column="MAXIMUM_SALARY" />
+  </class>
+</hibernate-mapping>
