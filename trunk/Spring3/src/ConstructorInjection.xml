@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/util
+                http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="encyclopedia" name="mybean" class="net.roseindia.Configuration">
+		<constructor-arg>
+			<util:map>
+				<entry key="CompanyName" value="Cisco"/>
+				<entry key="Address" value="San Jose"/>
+			</util:map>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="company" class="net.roseindia.CompanyInformation">
+		<property name="encyclopedia" ref="mybean"></property>
+	</bean>
+</beans>                
