@@ -26,6 +26,27 @@
 		<property name="username" value="earthlings" />
 		<property name="password" value="earthlings" />
 
+		<property name="initialSize" value="10"/>
+		<property name="maxActive" value="50"/> 
+		<property name="maxIdle" value="10"/> 
+		<property name="minIdle" value="5"/>
+		<property name="maxWait" value="10000"/>  
+		<property name="validationQuery" value="select 1"/>
+		<property name="removeAbandoned" value="true"/>
+		<property name="removeAbandonedTimeout" value="60"/>
+		<property name="logAbandoned" value="true"/>
+		<property name="maxOpenPreparedStatements" value="10"/>
+<!-- 
+dbcp.testOnBorrow=true 
+dbcp.testOnReturn=true 
+dbcp.testWhileIdle=true 
+dbcp.timeBetweenEvictionRunsMillis=30000 
+dbcp.numTestsPerEvictionRun=3 
+dbcp.minEvictableIdleTimeMillis=900000 
+dbcp.poolPreparedStatements=false 
+dbcp.accessToUnderlyingConnectionAllowed=false 
+ -->	
+			
 		<!--<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
