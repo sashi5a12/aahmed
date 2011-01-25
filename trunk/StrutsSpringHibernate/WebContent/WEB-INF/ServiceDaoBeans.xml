@@ -16,16 +16,16 @@
 	</bean>
 
 	<bean id="empDAO" class="cc.db.dao.EmployeeDAO">
-		<property name="factory" ref="sessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="deptDAO" class="cc.db.dao.DepartmentDAO">
-		<property name="factory" ref="sessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="locDAO" class="cc.db.dao.LocationDAO">
-		<property name="factory" ref="sessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="jobDAO" class="cc.db.dao.JobDAO">
-		<property name="factory" ref="sessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="criteriaQueries" class="cc.db.hibernate.CriteriaQueries" autowire="byType" />
 
