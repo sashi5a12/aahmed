@@ -4,51 +4,48 @@ import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import cc.db.beans.Employee;
 
-//@Transactional
+@Transactional
 public class EmployeeDAO {
-  private SessionFactory factory;
-  
-  public SessionFactory getFactory() {
-    return factory;
-  }
+ private HibernateTemplate hibernateTemplate;
+
 
   public void setFactory(SessionFactory factory) {
-    this.factory = factory;
+	  this.hibernateTemplate = new HibernateTemplate(factory);
+
   }
 
   @SuppressWarnings("unchecked")
     public List<Employee> findAll() {
-        return factory.getCurrentSession().createCriteria(Employee.class).list();
+	  DetachedCriteria criteria = DetachedCriteria.forClass(Employee.class);		
+	  return  this.hibernateTemplate.findByCriteria(criteria);
     }
     
     public Employee makePersistent(Employee u) {
-        factory.getCurrentSession().saveOrUpdate(u);
+    	this.hibernateTemplate.saveOrUpdate(u);
         return u;
     }
     
     public void makeTransient(Employee u) {
-        factory.getCurrentSession().delete(u);
+    	this.hibernateTemplate.delete(u);
     }
     
     public Employee findById(Integer id) {
-        return (Employee) factory.getCurrentSession().get(Employee.class, id);
-    }
-    
+    	return this.hibernateTemplate.get(Employee.class, id);
+    }    
     public Employee findByLastName(String name) {
-        return (Employee) factory.getCurrentSession().createQuery("from Employee e where e.lastName = :name")
-            .setParameter("name", name)
-            .uniqueResult();
+    	
+        return (Employee) this.hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("from Employee e where e.lastName = :name").setParameter("name", name).uniqueResult();
     }
     
     @SuppressWarnings("unchecked")
   public Collection<Employee> findByDepartment(int deptID) {
-      return factory.getCurrentSession()
-        .createQuery("from Employee e where e.department.id = :id")
-        .setInteger("id", deptID)
-        .list();
+      return this.hibernateTemplate
+        .findByNamedQuery("from Employee e where e.department.id = :id", deptID);
     }
 }
