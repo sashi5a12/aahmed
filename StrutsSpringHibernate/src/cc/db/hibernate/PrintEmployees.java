@@ -9,7 +9,7 @@ import cc.db.beans.Employee;
 import cc.db.dao.EmployeeDAO;
 
 public class PrintEmployees {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		XmlBeanFactory context = new XmlBeanFactory(new FileSystemResource("WebContent/WEB-INF/SpringBeans.xml"));
 		EmployeeDAO eDAO = (EmployeeDAO) context.getBean("empDAO");		
@@ -18,5 +18,7 @@ public class PrintEmployees {
 			System.out.println(e.getLastName() + " has job "
 					+ e.getJob().getName());
 		}
+//		Thread.currentThread();
+		Thread.sleep(100000);
 	}
 }
