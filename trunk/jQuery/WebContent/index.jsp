@@ -41,5 +41,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul>
     	<li><a href="<%=request.getContextPath()%>/6/1.jsp">The toggle() and toggleClass() Methods</a></li>
     </ul>    
+   <h3>Get XML from server using AJAX</h3>
+    <ul>
+    	<li><a href="<%=request.getContextPath()%>/ch08/index.html">Get Finishers XML!!!</a></li>
+    </ul>   
+    <h3>Get JSON from server using AJAX</h3>
+    <ul>
+    	<li><a href="<%=request.getContextPath()%>/ch09/index.html">Get Finishers JSON!!!</a></li>
+    </ul> 
   </body>
 </html>
