@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+     
+     <!-- 2.1.2 Declaring a simple bean  -->
+     <bean id="duke" class="sia3.chap02.Juggler" />
+     
+     <bean id="sonnet29" class="sia3.chap02.Sonnet29"/>
+     
+     <!-- 2.1.3 Injecting through constructors -->
+     <bean id="poeticJuggler" class="sia3.chap02.PoeticJuggler">
+     	<constructor-arg name="beanBags" value="5" />
+     	<constructor-arg name="poem" ref="sonnet29" />
+     </bean>
+     <!-- Creating bean through factory method -->
+     <bean id="stage" class="sia3.chap02.Stage" factory-method="getInstance"/>
+     
+     <!-- 2.1.4 Bean scoping -->
+     <bean id="ticket" class="sia2.chap02.Ticket" scope="prototype" />
+ 	
+ 	 <!-- 2.1.5 Initializing and destroying bean -->	    
+     <bean id="auditorium" class="sia3.chap02.Auditorium" init-method="turnOnLights" destroy-method="turnOffLights"/>
+     
+     
+</beans>
