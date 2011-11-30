@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd" >
      
      <!-- 2.1.2 Declaring a simple bean  -->
      <bean id="duke" class="sia3.chap02.Juggler" />
@@ -23,5 +25,103 @@
  	 <!-- 2.1.5 Initializing and destroying bean -->	    
      <bean id="auditorium" class="sia3.chap02.Auditorium" init-method="turnOnLights" destroy-method="turnOffLights"/>
      
+     <!-- Injecting simple value and referencing bean -->
+     <bean id="saxophone" class="sia3.chap02.Saxophone"/>
+     <bean id="kenny" class="sia3.chap02.Instrumentalist">
+     	<property name="song" value="Jingle Bells"/>
+     	<property name="instrument" ref="saxophone"/>
+     </bean>
      
+     <!-- Inner Bean -->
+     <bean id="kenny2" class="sia3.chap02.Instrumentalist">
+     	<property name="song" value="Jingle Bells"/>
+     	<property name="instrument">
+     		<bean class="sia3.chap02.Piano"/>
+     	</property>
+     </bean>
+     
+     <!-- properties with p namespace -->
+     <bean id="kenny3" class="sia3.chap02.Instrumentalist" p:song="Jingle Bells" p:instrument-ref="saxophone"/>
+     
+     <!-- wiring collection -->
+     <bean id="piano" class="sia3.chap02.Piano"/>
+     <bean id="oneManBand" class="sia3.chap02.OneManBand">
+     	<property name="instruments">
+     		<set>
+     			<ref bean="saxophone"/>
+     			<ref bean="piano"/>
+     		</set>
+     	</property>
+     	<property name="mapInstruments">
+     		<map>
+     			<entry key="SAXOPHONE" value-ref="saxophone"></entry>
+     			<entry key="PIANO" value-ref="piano"></entry>
+     		</map>
+     	</property>
+     </bean>
+     <bean id="songSelector" class="sia3.chap02.SongBook">
+     	<constructor-arg name="songTitles">
+     		<array>
+     			<value>Song-1</value>
+     			<value>Song-2</value>
+     			<value>Song-3</value>
+     		</array>
+     	</constructor-arg>
+     </bean>
+     <!-- 
+		<bean id="hank" class="com.springinaction.springidol.OneManBand">
+			<property name="instruments">
+				<props>
+					<prop key="GUITAR">STRUM STRUM STRUM</prop>
+					<prop key="CYMBAL">CRASH CRASH CRASH</prop>
+					<prop key="HARMONICA">HUM HUM HUM</prop>
+				</props>
+			</property>
+		</bean>     
+      -->
+      
+      <!-- SpEL Examples -->
+      <bean id="spel" class="sia3.chap02.SpELExample">
+      	<property name="count" value="#{5}"/>
+      	<property name="message" value="This is value #{5}"/>
+      	<property name="frequency" value="#{89.7}"/>
+      	<property name="capacity" value="#{1e4}"/>
+      	<!-- <property name="instrument" value="#{saxophone}"/> -->
+      	<!-- <property name="song" value="#{kenny.song}"/> -->
+      	<property name="song2" value="#{songSelector.pickASong()?.toUpperCase()}"/>
+      	<property name="pi" value="#{T(java.lang.Math).PI}"/>
+      	<property name="random" value="#{T(java.lang.Math).random()}"/>
+      	<property name="instrument" value="#{songSelector.pickASong()=='Song-1'?piano:saxophone}"/>
+      	<!-- <property name="song" value="#{kenny.song != null ? kenny.song : 'Greensleeves'}"/> -->
+      	<property name="song" value="#{kenny.song ?: 'Greensleeves'}"/>
+      	<!-- <property name="validEmail" value="#{admin.email matches '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com'}"/> -->
+      	
+      	<property name="chosenCityFixed" value="#{cities[2]}"/>
+      	<property name="chosenCityRandom" value="#{cities[T(java.lang.Math).random() * cities.size()]}"/>
+      	<!-- if cities is a map
+      		<property name="chosenCity" value="#{cities['Dallas']}"/>
+      	 -->
+      	 <property name="name" value="#{settings['firstName']+' '+settings[lastName]}"/>
+      	 
+      	 <property name="bigCities" value="#{cities.?[population gt 100000]}"/>
+      	 <property name="firstCity" value="#{cities.^[population gt 100000]}"/>
+      	 <property name="lastCity" value="#{cities.$[population gt 100000]}"/>
+      	 
+      	 <property name="cityNames" value="#{cities.![name + ' ' + state]}"/>
+      	 <property name="bitCityNames" value="#{cities.?[population gt 10000].![name + ' ' + state]}"/>
+      </bean> 
+      
+      <!-- SpEL with Collection -->
+	<util:list id="cities">
+		<bean class="sia3.chap02.City" p:name="Chicago"    p:state="IL" p:population="2853114" />
+		<bean class="sia3.chap02.City" p:name="Atlanta"    p:state="GA" p:population="537958" />
+		<bean class="sia3.chap02.City" p:name="Dallas"     p:state="TX" p:population="1279910" />
+		<bean class="sia3.chap02.City" p:name="Houston"    p:state="TX" p:population="2242193" />
+		<bean class="sia3.chap02.City" p:name="Odessa"     p:state="TX" p:population="90943" />
+		<bean class="sia3.chap02.City" p:name="El Paso"    p:state="TX" p:population="613190" />
+		<bean class="sia3.chap02.City" p:name="Jal"        p:state="NM" p:population="1996" />
+		<bean class="sia3.chap02.City" p:name="Las Cruces" p:state="NM" p:population="91865" />
+	</util:list>
+	
+	<util:properties id="settings" location="classpath:sia3/chap02/settings.properties"/>    
 </beans>
