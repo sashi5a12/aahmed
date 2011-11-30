@@ -9,14 +9,24 @@ public class Main {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("sia3/chap02/chap02.xml");
 		
 		Juggler juggler=(Juggler)ctx.getBean("duke");
-		juggler.perform();
+//		juggler.perform();
 		
 		PoeticJuggler pJuggler=(PoeticJuggler)ctx.getBean("poeticJuggler");
 		//pJuggler.perform();
 		
-		Stage stage=(Stage)ctx.getBean("stage");
+//		Stage stage=(Stage)ctx.getBean("stage");
 		
-		Auditorium auditorium=(Auditorium)ctx.getBean("auditorium");
+//		Auditorium auditorium=(Auditorium)ctx.getBean("auditorium");
+		
+//		Performer kenny=(Performer)ctx.getBean("kenny3");
+//		kenny.perform();
+		
+		OneManBand band=(OneManBand)ctx.getBean("oneManBand");
+		band.perform();
+		band.mapPerform();
+		
+		SpELExample spel=(SpELExample)ctx.getBean("spel");
+		System.out.println(spel);
 	}
 
 }
