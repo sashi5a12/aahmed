@@ -3,23 +3,4 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <servlet-name>runnerServlet</servlet-name>
-    <servlet-class>servlets.AddRunnerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>runnerServlet</servlet-name>
-    <url-pattern>/runnerServlet</url-pattern>
-  </servlet-mapping>
-   <servlet>
-    <servlet-name>ActionBroker</servlet-name>
-    <servlet-class>org.bibeault.jqia2.control.ActionBroker</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>ActionBroker</servlet-name>
-    <url-pattern>/action/*</url-pattern>
-  </servlet-mapping>
 </web-app>
