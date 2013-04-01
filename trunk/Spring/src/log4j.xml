@@ -9,12 +9,15 @@
     </appender>
     
     <logger name="org.springframework">
-        <level value="INFO"/>
+        <level value="DEBUG"/>
     </logger>  
     <logger name="spring.by.example">
         <level value="ALL"/>
     </logger>  
-    <logger name="org.junit">
+    <logger name="org.apache.commons.dbcp">
+        <level value="DEBUG"/>
+    </logger>  
+    <logger name="org.hibernate">
         <level value="INFO"/>
     </logger>  
     <root>
