@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 30, 2013 8:43:10 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.packtpub.springhibernate.model.Student" table="student">
+        <id name="studentId" type="java.lang.Integer">
+            <column name="student_id" />
+            <generator class="native" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="50" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
