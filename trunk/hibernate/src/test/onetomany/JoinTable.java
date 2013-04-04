@@ -18,8 +18,8 @@ public class JoinTable {
 		ItemDAO itemDao=new ItemDAO();
 		
 		Users user=userDao.findById(2L);
-		Item item1=itemDao.findById(2L);
-		Item item2=itemDao.findById(3L);
+		Item item1=itemDao.findById(7L);
+		Item item2=itemDao.findById(10L);
 		
 		user.addItem(item1);
 		user.addItem(item2);

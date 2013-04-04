@@ -1,5 +1,6 @@
 package test.parentchild;
 
+import java.util.Iterator;
 import model.Bid;
 import model.Item;
 
@@ -24,13 +25,14 @@ public class Cascade {
 		dao.save(item);*/
 		
 		//Delete parent record with all children cascade="delete" in mapping file
-		/*Item item=dao.findById(new Long(1));
+		/*Item item=dao.findById(2L);
 		dao.delete(item);*/
 		
 		//Delete child record when deleting from collection. cascade="delete-orphan"
-		/*Item item=dao.findById(2L);
-		Bid bid =item.getBids().iterator().next();
-		item.getBids().remove(bid);*/
+		Item item=dao.findById(2L);
+		item.getBids();
+		Bid bid =(Bid) item.getBids().iterator().next();
+		item.getBids().remove(bid);
 		
 		trx.commit();
 	}
