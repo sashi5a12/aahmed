@@ -18,12 +18,13 @@ public class List {
 	public static void main(String[] args) {
 
 		Item item=new Item("Item-3");
-		java.util.List images=new ArrayList();
 		
-		images.add("Image-1");
-		images.add("Image-2");
+//		java.util.List images=new ArrayList();
+		
+//		images.add("Image-1");
+//		images.add("Image-2");
 				
-		item.setImages(images);
+//		item.setImages(images);
 		item.addBid(new Bid());
 		item.addBid(new Bid());
 		

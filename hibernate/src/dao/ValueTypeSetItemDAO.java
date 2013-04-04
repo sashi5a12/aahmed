@@ -96,6 +96,7 @@ public class ValueTypeSetItemDAO extends BaseHibernateDAO {
 		return findByProperty(ITEM_NAME, itemName);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ValueTypeSetItem> findAll() {
 		log.debug("finding all ValueTypeSetItem instances");
 		try {

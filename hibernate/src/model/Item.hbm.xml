@@ -77,8 +77,8 @@
 	        <key column="CATEGORY_ID"/>
 	        <one-to-many class="CategorizedItem"/>
 	    </set>        
-        <list name="bids" cascade="save-update, delete-orphan">
-        	<cache usage="read-only"/>
+        <list name="bids" cascade="save-update, delete, delete-orphan" >
+<!--         	<cache usage="read-only"/> -->
         	<key column="ITEM_ID"/>
         	<list-index column="BID_POSITION"/>
         	<one-to-many class="Bid"/>

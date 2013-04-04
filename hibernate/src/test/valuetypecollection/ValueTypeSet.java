@@ -23,7 +23,7 @@ public class ValueTypeSet {
 		images.add("Image-1");
 		images.add("Image-2");
 		item.setImages(images);
-//		dao.save(item);		
+		dao.save(item);		
 		trx.commit();
 
 		List<ValueTypeSetItem> list=dao.findAll();

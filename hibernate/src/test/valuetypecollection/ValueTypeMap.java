@@ -24,6 +24,7 @@ public class ValueTypeMap {
 		Session session=dao.getSession();
 		Transaction trx=session.beginTransaction();
 		ValueTypeMapItem item=new ValueTypeMapItem();
+		
 		SortedMap<String,String> images=new TreeMap<String, String>();
 		item.setItemName("Item-2");
 		images.put("C", "Image-1");
