@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2013 5:05:44 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="northwind.model.generated.Employees" table="employees" catalog="northwind">
+        <id name="employeeId" type="java.lang.Integer">
+            <column name="EmployeeID" />
+            <generator class="identity" />
+        </id>
+        <property name="lastName" type="string">
+            <column name="LastName" length="20" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="FirstName" length="10" />
+        </property>
+        <property name="title" type="string">
+            <column name="Title" length="30" />
+        </property>
+        <property name="titleOfCourtesy" type="string">
+            <column name="TitleOfCourtesy" length="25" />
+        </property>
+        <property name="birthDate" type="date">
+            <column name="BirthDate" length="10" />
+        </property>
+        <property name="hireDate" type="date">
+            <column name="HireDate" length="10" />
+        </property>
+        <property name="address" type="string">
+            <column name="Address" length="60" />
+        </property>
+        <property name="city" type="string">
+            <column name="City" length="15" />
+        </property>
+        <property name="region" type="string">
+            <column name="Region" length="15" />
+        </property>
+        <property name="postalCode" type="string">
+            <column name="PostalCode" length="10" />
+        </property>
+        <property name="country" type="string">
+            <column name="Country" length="15" />
+        </property>
+        <property name="homePhone" type="string">
+            <column name="HomePhone" length="24" />
+        </property>
+        <property name="extension" type="string">
+            <column name="Extension" length="4" />
+        </property>
+        <property name="photo" type="string">
+            <column name="Photo" length="40" />
+        </property>
+        <property name="notes" type="string">
+            <column name="Notes" length="65535" />
+        </property>
+        <property name="reportsTo" type="java.lang.Integer">
+            <column name="ReportsTo" />
+        </property>
+    </class>
+</hibernate-mapping>

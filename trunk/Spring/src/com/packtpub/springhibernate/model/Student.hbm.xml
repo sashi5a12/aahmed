@@ -14,5 +14,13 @@
         <property name="lastName" type="string">
             <column name="last_name" length="50" />
         </property>
+        <many-to-one name="address"
+                     class="com.packtpub.springhibernate.model.Address"
+                     column="ADDRESS_ID"
+                     cascade="save-update"/>
+        <bag name="courses" inverse="true" cascade="save-update">
+            <key column="STUDENT_ID"/>
+            <one-to-many class="com.packtpub.springhibernate.model.Course"/>
+        </bag>
     </class>
 </hibernate-mapping>

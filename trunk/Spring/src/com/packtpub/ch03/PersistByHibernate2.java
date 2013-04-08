@@ -1,5 +1,6 @@
 package com.packtpub.ch03;
 
+import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,12 +26,24 @@ public class PersistByHibernate2 {
 		SessionFactory factory = config.buildSessionFactory(serviceRegistryBuilder.buildServiceRegistry());
 		Session session = factory.openSession();
 		
+		Student std=(Student) session.get(Student.class, 1);
+		
+		session.close();
+		
+		std.setFirstName("Kashif");
+		std.setLastName("Farooq");
+		
+		session=factory.openSession();
 		// starting a transaction
 		Transaction tx = session.beginTransaction();
 		
+		Student std2=(Student) session.get(Student.class, 1);
+		//session.update(std);
+		std2=(Student) session.merge(std);
+		
 		// persisting...
-		Student student = new Student("Andrew", "White");
-		session.save(student);
+//		Student student = new Student("Andrew", "White");
+//		session.save(student);
 		
 		// commiting the transaction
 		tx.commit();

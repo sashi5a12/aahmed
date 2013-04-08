@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Listing 8-5-->
+<hibernate-mapping>
+    <class name="com.packtpub.springhibernate.model.Address" table="ADDRESS">
+        <id name="id" type="int" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="street" column="STREET" type="string"/>
+        <property name="city" column="CITY" type="string"/>
+        <property name="zipCode" column="ZIPCODE" type="string"/>
+    </class>
+</hibernate-mapping>
