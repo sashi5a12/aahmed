@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2013 5:05:44 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping package="northwind.model.generated">
+    <class name="Categories" table="categories">
+        <id name="categoryId" type="java.lang.Integer">
+            <column name="CategoryID" />
+            <generator class="identity" />
+        </id>
+        <property name="categoryName" type="string">
+            <column name="CategoryName" length="15" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="65535" />
+        </property>
+        <property name="picture" type="string">
+            <column name="Picture" length="40" />
+        </property>
+        <bag name="products" cascade="all, delete-orphan" inverse="true" lazy="true" fetch="join" >
+        	<key column="CategoryID" />
+        	<one-to-many class="Products"/>
+        </bag>
+    </class>
+</hibernate-mapping>

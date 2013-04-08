@@ -1,5 +1,7 @@
 package com.packtpub.springhibernate.model;
 
+import java.util.List;
+import com.packtpub.ch03.SetterInfoConsolePrinter;
 import com.packtpub.ch03.SetterInfoPrinter;
 
 // Generated Mar 30, 2013 8:43:10 PM by Hibernate Tools 4.0.0
@@ -13,8 +15,11 @@ public class Student implements java.io.Serializable {
 	private String firstName;
 	private String lastName;
 	private SetterInfoPrinter printer;
+	private Address address;
+    private List courses;
 	
 	public Student() {
+		printer=new SetterInfoConsolePrinter();
 	}
 
 	public Student(String firstName, String lastName) {
@@ -55,6 +60,22 @@ public class Student implements java.io.Serializable {
 
 	public void setPrinter(SetterInfoPrinter printer) {
 		this.printer = printer;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List courses) {
+		this.courses = courses;
 	}
 	
 
