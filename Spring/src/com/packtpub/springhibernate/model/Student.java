@@ -2,7 +2,7 @@ package com.packtpub.springhibernate.model;
 
 import java.util.List;
 import com.packtpub.ch03.SetterInfoConsolePrinter;
-import com.packtpub.ch03.SetterInfoPrinter;
+import com.packtpub.ch03.ISetterInfoPrinter;
 
 // Generated Mar 30, 2013 8:43:10 PM by Hibernate Tools 4.0.0
 
@@ -14,12 +14,12 @@ public class Student implements java.io.Serializable {
 	private Integer studentId;
 	private String firstName;
 	private String lastName;
-	private SetterInfoPrinter printer;
-	private Address address;
-    private List courses;
+	private ISetterInfoPrinter printer;
+//	private Address address;
+//    private List courses;
 	
 	public Student() {
-		printer=new SetterInfoConsolePrinter();
+//		printer=new SetterInfoConsolePrinter();
 	}
 
 	public Student(String firstName, String lastName) {
@@ -32,7 +32,7 @@ public class Student implements java.io.Serializable {
 	}
 
 	public void setStudentId(Integer studentId) {
-		printer.print("setId", this.studentId, studentId);
+//		printer.print("setId", this.studentId, studentId);
 		this.studentId = studentId;
 	}
 
@@ -41,7 +41,7 @@ public class Student implements java.io.Serializable {
 	}
 
 	public void setFirstName(String firstName) {
-		printer.print("setFirstName", this.firstName, firstName);
+//		printer.print("setFirstName", this.firstName, firstName);
 		this.firstName = firstName;
 	}
 
@@ -50,19 +50,19 @@ public class Student implements java.io.Serializable {
 	}
 
 	public void setLastName(String lastName) {
-		printer.print("setLastName", this.lastName, lastName);
+//		printer.print("setLastName", this.lastName, lastName);
 		this.lastName = lastName;
 	}
 
-	public SetterInfoPrinter getPrinter() {
+	public ISetterInfoPrinter getPrinter() {
 		return printer;
 	}
 
-	public void setPrinter(SetterInfoPrinter printer) {
+	public void setPrinter(ISetterInfoPrinter printer) {
 		this.printer = printer;
 	}
 
-	public Address getAddress() {
+	/*public Address getAddress() {
 		return address;
 	}
 
@@ -76,7 +76,7 @@ public class Student implements java.io.Serializable {
 
 	public void setCourses(List courses) {
 		this.courses = courses;
-	}
+	}*/
 	
 
 }
