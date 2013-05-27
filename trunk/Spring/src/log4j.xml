@@ -9,17 +9,20 @@
     </appender>
     
     <logger name="org.springframework">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
     </logger>  
     <logger name="spring.by.example">
         <level value="ALL"/>
     </logger>  
     <logger name="org.apache.commons.dbcp">
-        <level value="DEBUG"/>
+        <level value="ALL"/>
     </logger>  
     <logger name="org.hibernate">
         <level value="INFO"/>
     </logger>  
+    <logger name="com.packtpub">
+        <level value="DEBUG"/>
+    </logger> 
     <root>
         <level value="DEBUG"/>
         <appender-ref ref="CONSOLE"/>
