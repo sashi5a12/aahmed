@@ -10,6 +10,7 @@
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:component-scan base-package="com.mkyong.common.controller" />
+	<context:component-scan base-package="annotation.form.handler" />
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,15 +22,17 @@
 
 	<bean id="/helloworld.do" class="com.mkyong.common.controller.HelloWorldController" />
 	
-	<bean id="/customerForm.do" class="SimpleFormController.CustomerController">
+	<!-- <bean id="/customerForm.do" class="SimpleFormController.CustomerController">
 		<property name="formView" value="CustomerForm" />
 		<property name="successView" value="CustomerSuccess" />
 	 
-		<!-- Map a validator -->
+		Map a validator
 		<property name="validator">
 			<bean class="SimpleFormController.CustomerValidator" />
 		</property>
-  	</bean>
+  	</bean> -->
+  	
+  	<bean class="annotation.form.handler.CustomerValidator" />
   	
   	<!-- Register the Customer.properties -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
