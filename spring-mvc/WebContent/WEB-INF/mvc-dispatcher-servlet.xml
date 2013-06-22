@@ -38,4 +38,7 @@
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="SimpleFormController/Customer" />
 	</bean>
+	
+	<!-- <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+  	<bean class="com.mkyong.common.controller.CustomerController" /> -->
 </beans>
