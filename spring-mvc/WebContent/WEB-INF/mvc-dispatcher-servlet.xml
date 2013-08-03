@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:component-scan base-package="com.mkyong.common.controller" />
+	<context:component-scan base-package="annotation.form.handler" />
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/pages/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<bean id="/helloworld.do" class="com.mkyong.common.controller.HelloWorldController" />
+	
+	<!-- <bean id="/customerForm.do" class="SimpleFormController.CustomerController">
+		<property name="formView" value="CustomerForm" />
+		<property name="successView" value="CustomerSuccess" />
+	 
+		Map a validator
+		<property name="validator">
+			<bean class="SimpleFormController.CustomerValidator" />
+		</property>
+  	</bean> -->
+  	
+  	<bean class="annotation.form.handler.CustomerValidator" />
+  	
+  	<!-- Register the Customer.properties -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="SimpleFormController/Customer" />
+	</bean>
+	
+	<!-- <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+  	<bean class="com.mkyong.common.controller.CustomerController" /> -->
+</beans>
