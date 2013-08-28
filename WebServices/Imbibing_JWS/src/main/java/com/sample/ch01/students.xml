@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Students>
+    <Student>
+        <id>1</id>
+        <firstName>John</firstName>
+        <lastName>Smith</lastName>
+    </Student>
+<!--    <Student>
+        <id>2</id>
+        <firstName>Steve</firstName>
+        <lastName>Day</lastName>
+    </Student>
+    <Student>
+        <id>3</id>
+        <firstName>Joe</firstName>
+        <lastName>Liner</lastName>
+    </Student>-->
+</Students>
