@@ -41,65 +41,65 @@
 
 -->
 <html>
-<head>
-<title>Spring Helloworld WebApp Example</title>
-<style type="text/css"><!--
-  .figure { text-align:center;
-            margin: 20px}
-  .cliSample { background-color:lightgray }
---></style>
-</head>
+    <head>
+        <title>Spring Helloworld WebApp Example</title>
+        <style type="text/css"><!--
+            .figure { text-align:center;
+                      margin: 20px}
+            .cliSample { background-color:lightgray }
+            --></style>
+    </head>
 
 
-  <body>
-    <h1>Spring Helloworld WebApp Example</h1>
-    <p>This example demonstrates how to create simple Jersey application that utilises Spring 3 DI features,
-      packaged into WAR file.
-    </p>
-    <h2>Contents</h2>
-    <p>The mapping of the URI path space is presented in the following table:</p>
-	<table border="1">
-	<tr>
-	<th>URI path</th>
-	<th>Resource class</th>
-	<th>HTTP methods</th>
-	</tr>
+    <body>
+        <h1>Spring Helloworld WebApp Example</h1>
+        <p>This example demonstrates how to create simple Jersey application that utilises Spring 3 DI features,
+            packaged into WAR file.
+        </p>
+        <h2>Contents</h2>
+        <p>The mapping of the URI path space is presented in the following table:</p>
+        <table border="1">
+            <tr>
+                <th>URI path</th>
+                <th>Resource class</th>
+                <th>HTTP methods</th>
+            </tr>
 
-	<tr>
-	<td>/jersey-hello</td>
-	<td>JerseyResource</td>
-	<td>GET</td>
-	</tr>
+            <tr>
+                <td>/jersey-hello</td>
+                <td>JerseyResource</td>
+                <td>GET</td>
+            </tr>
 
-	<tr>
-	<td>/spring-hello</td>
-	<td>SpringRequestResource</td>
-	<td>GET</td>
-	</tr>
+            <tr>
+                <td>/spring-hello</td>
+                <td>SpringRequestResource</td>
+                <td>GET</td>
+            </tr>
 
-	<tr>
-	<td>/spring-singleton-hello</td>
-	<td>SpringSingletonResource</td>
-	<td>GET</td>
-	</tr>
+            <tr>
+                <td>/spring-singleton-hello</td>
+                <td>SpringSingletonResource</td>
+                <td>GET</td>
+            </tr>
 
-	</table>
+        </table>
 
-    <p>Application is configured by using web.xml, which registers
-        <a href="https://jax-rs-spec.java.net/nonav/2.0/apidocs/javax/ws/rs/core/Application.html">javax.ws.rs.core.Application</a> descendant to get
-       classes and singletons from it (see class MyApplication).</p>
+        <p>Application is configured by using web.xml, which registers
+            <a href="https://jax-rs-spec.java.net/nonav/2.0/apidocs/javax/ws/rs/core/Application.html">javax.ws.rs.core.Application</a> descendant to get
+            classes and singletons from it (see class MyApplication).</p>
 
-    <h2>Running the Example</h2>
-         <p>Run the example as follows:</p>
+        <h2>Running the Example</h2>
+        <p>Run the example as follows:</p>
         <blockquote><pre>
 mvn clean compile jetty:run</pre></blockquote>
         <p>This deploys current example using Jetty web server.
             Once deployed, the application is ready to serve the following resources:
-            <ul>
-             <li><a href="http://localhost:8080/helloworld-spring-webapp/jersey-hello">http://localhost:8080/helloworld-spring-webapp/jersey-hello</a></li>
-             <li><a href="http://localhost:8080/helloworld-spring-webapp/spring-hello">http://localhost:8080/helloworld-spring-webapp/spring-hello</a></li>
-             <li><a href="http://localhost:8080/helloworld-spring-webapp/spring-singleton-hello">http://localhost:8080/helloworld-spring-webapp/spring-singleton-hello</a></li>
-           </ul>
-        </p>
-  </body>
+        <ul>
+            <li><a href="http://localhost:8080/helloworld-spring-webapp/jersey-hello">http://localhost:8080/helloworld-spring-webapp/jersey-hello</a></li>
+            <li><a href="http://localhost:8080/helloworld-spring-webapp/spring-hello">http://localhost:8080/helloworld-spring-webapp/spring-hello</a></li>
+            <li><a href="http://localhost:8080/helloworld-spring-webapp/spring-singleton-hello">http://localhost:8080/helloworld-spring-webapp/spring-singleton-hello</a></li>
+        </ul>
+    </p>
+</body>
 </html>
