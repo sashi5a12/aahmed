@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sample.ch04;
+package com.sample.ch04.clients;
 
 import com.sample.utils.Utility;
 import java.util.HashMap;

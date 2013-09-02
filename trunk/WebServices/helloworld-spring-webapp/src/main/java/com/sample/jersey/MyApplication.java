@@ -1,5 +1,6 @@
 package com.sample.jersey;
 
+import com.sample.ch04.AccessManagerImpl;
 import com.sample.ch04.GradeManagerImpl;
 import com.sample.ch04.RestDataManagerImpl;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -24,5 +25,6 @@ public class MyApplication extends ResourceConfig {
 
         register(GradeManagerImpl.class);
         register(RestDataManagerImpl.class);
+        register(AccessManagerImpl.class);
     }
 }

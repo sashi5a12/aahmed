@@ -10,7 +10,7 @@ package com.sample.utils;
  */
 public class Utility {
 
-    public final static String SERVER_ADDRESS = "http://localhost:8080/jersey/services";
+    public final static String SERVER_ADDRESS = "http://localhost:9090/jersey/services";
     public final static String GET_GRADES = SERVER_ADDRESS + "/gradeservice/grades/";
     public final static String GET_GRADE = SERVER_ADDRESS + "/gradeservice/grade/{grade}";
     public final static String GET_SUBJECT = SERVER_ADDRESS + "/gradeservice/grade/{grade}/subject/{subject}";
