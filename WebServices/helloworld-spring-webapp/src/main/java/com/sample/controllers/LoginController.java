@@ -1,4 +1,4 @@
-package com.sample.ch04;
+package com.sample.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/singin.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public ModelAndView singIn() {
-        ModelAndView mv = new ModelAndView("singin");
+        ModelAndView mv = new ModelAndView("signin");
 
         return mv;
     }
