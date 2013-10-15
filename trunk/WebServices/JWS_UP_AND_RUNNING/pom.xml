@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jwsur</groupId>
-    <artifactId>JWS_UP_AND_RUNNING</artifactId>
+    <artifactId>jwsur</artifactId>
     <version>0.1</version>
     <packaging>war</packaging>
 
-    <name>JWS_UP_AND_RUNNING</name>
+    <name>Java web service up and running - Covers JAX-WS 2.1</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
