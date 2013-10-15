@@ -5,13 +5,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--<parent>
-        <groupId>org.glassfish.jersey.examples</groupId>
-        <artifactId>project</artifactId>
-        <version>2.2</version>
-    </parent>
-    -->
-    
     <groupId>com.sample.jersey</groupId>
     <artifactId>jersey-sample</artifactId>
     <version>2.2</version>  
@@ -25,8 +18,7 @@
     </properties>
 
     <description>Spring 3 Integration Jersey Example</description>
-    
-   
+
     <dependencies>
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
@@ -39,7 +31,7 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -55,6 +47,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
@@ -103,18 +96,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <!--    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>org.glassfish.jersey.examples.helloworld.jaxrs.App</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>-->
 
     <profiles>
         <profile>
