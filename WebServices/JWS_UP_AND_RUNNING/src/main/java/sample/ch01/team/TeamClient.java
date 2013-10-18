@@ -20,7 +20,7 @@ public class TeamClient {
         for (sample.ch01.team.client.Team team : teams) {
             System.out.println("Team name: " + team.getName()
                     + " (roster count: " + team.getRosterCount() + ")");
-            for (Player player : team.getPlayers()) {
+            for (sample.ch01.team.client.Player player : team.getPlayers()) {
                 System.out.println(" Player: " + player.getNickname());
             }
         }
