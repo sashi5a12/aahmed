@@ -13,42 +13,31 @@ import javax.xml.bind.annotation.XmlType;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="getTimeAsLongResponse">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * <complexType name="getTimeAsLongResponse">
+ *   <complexContent>
+ *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       <sequence>
+ *         <element name="return" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *       </sequence>
+ *     </restriction>
+ *   </complexContent>
+ * </complexType>
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getTimeAsLongResponse", propOrder = {
-    "_return"
-})
+@XmlType(name = "getTimeAsLongResponse", propOrder = {"_return"})
 public class GetTimeAsLongResponse {
 
     @XmlElement(name = "return")
     protected long _return;
 
-    /**
-     * Gets the value of the return property.
-     * 
-     */
     public long getReturn() {
         return _return;
     }
 
-    /**
-     * Sets the value of the return property.
-     * 
-     */
     public void setReturn(long value) {
         this._return = value;
     }
-
 }
