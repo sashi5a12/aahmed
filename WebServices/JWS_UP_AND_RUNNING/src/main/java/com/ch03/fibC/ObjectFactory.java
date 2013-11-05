@@ -24,9 +24,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _FibException_QNAME = new QName("http://ch03.com", "FibException");
-    private final static QName _CountRabbits_QNAME = new QName("http://ch03.com", "countRabbits");
-    private final static QName _CountRabbitsResponse_QNAME = new QName("http://ch03.com", "countRabbitsResponse");
+    private final static QName _CountRabbitsResponse_QNAME = new QName("http://ch03.com/", "countRabbitsResponse");
+    private final static QName _FibException_QNAME = new QName("http://ch03.com/", "FibException");
+    private final static QName _CountRabbits_QNAME = new QName("http://ch03.com/", "countRabbits");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.ch03.fibC
@@ -60,10 +60,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CountRabbitsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ch03.com/", name = "countRabbitsResponse")
+    public JAXBElement<CountRabbitsResponse> createCountRabbitsResponse(CountRabbitsResponse value) {
+        return new JAXBElement<CountRabbitsResponse>(_CountRabbitsResponse_QNAME, CountRabbitsResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FibException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ch03.com", name = "FibException")
+    @XmlElementDecl(namespace = "http://ch03.com/", name = "FibException")
     public JAXBElement<FibException> createFibException(FibException value) {
         return new JAXBElement<FibException>(_FibException_QNAME, FibException.class, null, value);
     }
@@ -72,18 +81,9 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link CountRabbits }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ch03.com", name = "countRabbits")
+    @XmlElementDecl(namespace = "http://ch03.com/", name = "countRabbits")
     public JAXBElement<CountRabbits> createCountRabbits(CountRabbits value) {
         return new JAXBElement<CountRabbits>(_CountRabbits_QNAME, CountRabbits.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CountRabbitsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ch03.com", name = "countRabbitsResponse")
-    public JAXBElement<CountRabbitsResponse> createCountRabbitsResponse(CountRabbitsResponse value) {
-        return new JAXBElement<CountRabbitsResponse>(_CountRabbitsResponse_QNAME, CountRabbitsResponse.class, null, value);
     }
 
 }

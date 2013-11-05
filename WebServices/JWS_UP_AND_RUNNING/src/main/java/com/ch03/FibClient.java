@@ -7,7 +7,7 @@ public class FibClient {
         RabbitCounterService service = new RabbitCounterService();
         com.ch03.fibC.RabbitCounter port = service.getRabbitCounterPort();
          try {
-            int n = 45;
+            int n = -999;
             System.out.println("fib(" + n + ") = " + port.countRabbits(n));
         }
         catch(Exception e) { e.printStackTrace(); System.err.println(e); }

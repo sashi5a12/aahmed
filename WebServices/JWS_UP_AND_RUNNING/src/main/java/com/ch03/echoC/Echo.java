@@ -1,5 +1,5 @@
 
-package com.ch03.fibC;
+package com.ch03.echoC;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -16,28 +16,25 @@ import javax.xml.ws.ResponseWrapper;
  * Generated source version: 2.1
  * 
  */
-@WebService(name = "RabbitCounter", targetNamespace = "http://ch03.com/")
+@WebService(name = "Echo", targetNamespace = "http://ch03.com/")
 @XmlSeeAlso({
     ObjectFactory.class
 })
-public interface RabbitCounter {
+public interface Echo {
 
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns int
-     * @throws FibException_Exception
+     *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "countRabbits", targetNamespace = "http://ch03.com/", className = "com.ch03.fibC.CountRabbits")
-    @ResponseWrapper(localName = "countRabbitsResponse", targetNamespace = "http://ch03.com/", className = "com.ch03.fibC.CountRabbitsResponse")
-    public int countRabbits(
+    @RequestWrapper(localName = "echo", targetNamespace = "http://ch03.com/", className = "com.ch03.echoC.Echo_Type")
+    @ResponseWrapper(localName = "echoResponse", targetNamespace = "http://ch03.com/", className = "com.ch03.echoC.EchoResponse")
+    public String echo(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0)
-        throws FibException_Exception
-    ;
+        String arg0);
 
 }
