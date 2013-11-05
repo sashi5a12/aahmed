@@ -18,7 +18,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "RabbitCounterService", targetNamespace = "http://ch03.com", wsdlLocation = "http://localhost:7003/fib?wsdl")
+@WebServiceClient(name = "RabbitCounterService", targetNamespace = "http://ch03.com/", wsdlLocation = "http://localhost:7003/fib?wsdl")
 @HandlerChain (file = "handler-chain.xml")
 public class RabbitCounterService
     extends Service
@@ -45,7 +45,7 @@ public class RabbitCounterService
     }
 
     public RabbitCounterService() {
-        super(RABBITCOUNTERSERVICE_WSDL_LOCATION, new QName("http://ch03.com", "RabbitCounterService"));
+        super(RABBITCOUNTERSERVICE_WSDL_LOCATION, new QName("http://ch03.com/", "RabbitCounterService"));
     }
 
     /**
@@ -55,7 +55,7 @@ public class RabbitCounterService
      */
     @WebEndpoint(name = "RabbitCounterPort")
     public RabbitCounter getRabbitCounterPort() {
-        return super.getPort(new QName("http://ch03.com", "RabbitCounterPort"), RabbitCounter.class);
+        return super.getPort(new QName("http://ch03.com/", "RabbitCounterPort"), RabbitCounter.class);
     }
 
     /**
@@ -67,7 +67,7 @@ public class RabbitCounterService
      */
     @WebEndpoint(name = "RabbitCounterPort")
     public RabbitCounter getRabbitCounterPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://ch03.com", "RabbitCounterPort"), RabbitCounter.class, features);
+        return super.getPort(new QName("http://ch03.com/", "RabbitCounterPort"), RabbitCounter.class, features);
     }
 
 }

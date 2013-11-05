@@ -3,11 +3,14 @@ package com.ch03;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.xml.ws.BindingType;
 
-@WebService(targetNamespace = "http://ch03.com")
+@WebService(targetNamespace = "http://ch03.com/")
+//@HandlerChain (file = "handler-chain.xml")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.WRAPPED,
         style = SOAPBinding.Style.DOCUMENT,
         use = SOAPBinding.Use.LITERAL)

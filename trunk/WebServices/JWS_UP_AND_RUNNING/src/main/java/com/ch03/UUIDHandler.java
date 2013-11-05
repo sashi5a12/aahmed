@@ -40,17 +40,18 @@ public class UUIDHandler implements SOAPHandler<SOAPMessageContext>{
                 SOAPHeader hrd = env.getHeader();
                 if (hrd==null) hrd=env.addHeader();
                 
-                QName qname = new QName("http://ch03.com", "uuid");
+                QName qname = new QName("http://ch03.com/", "uuid");
                 SOAPHeaderElement elem = hrd.addHeaderElement(qname);
                 
                 // In SOAP 1.2, setting the actor is equivalent to setting the role.
                 elem.setActor(SOAPConstants.URI_SOAP_ACTOR_NEXT);
-                elem.setMustUnderstand(true);
+                //elem.setMustUnderstand(true);
                 elem.addTextNode(uuid.toString());
                 msg.saveChanges();
                 
                 // For tracking, write to standard output.
 		msg.writeTo(System.out);
+                System.out.println();
 
             } catch (SOAPException ex) {
                 System.err.println(ex);
@@ -72,6 +73,7 @@ public class UUIDHandler implements SOAPHandler<SOAPMessageContext>{
         if (log_p) logger.info("handleFault");
         try {
             c.getMessage().writeTo(System.out);
+            System.out.println();
         } catch (SOAPException ex) {
             System.err.println(ex);
         } catch (IOException ex) {

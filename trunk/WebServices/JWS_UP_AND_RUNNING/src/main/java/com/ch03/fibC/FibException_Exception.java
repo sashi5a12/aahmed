@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.1
  * 
  */
-@WebFault(name = "FibException", targetNamespace = "http://ch03.com")
+@WebFault(name = "FibException", targetNamespace = "http://ch03.com/")
 public class FibException_Exception
     extends Exception
 {
