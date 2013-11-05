@@ -1,9 +1,9 @@
 
 package com.ch03.SkiImageC;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -37,8 +37,8 @@ import javax.xml.bind.annotation.XmlType;
 public class GetImagesResponse {
 
     @XmlElement(name = "return")
-    @XmlMimeType("image/jpeg")
-    protected List<Image> _return;
+    @XmlMimeType("application/octet-stream")
+    protected List<DataHandler> _return;
 
     /**
      * Gets the value of the return property.
@@ -58,13 +58,13 @@ public class GetImagesResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Image }
+     * {@link DataHandler }
      * 
      * 
      */
-    public List<Image> getReturn() {
+    public List<DataHandler> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<Image>();
+            _return = new ArrayList<DataHandler>();
         }
         return this._return;
     }

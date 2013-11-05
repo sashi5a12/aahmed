@@ -1,8 +1,8 @@
 
 package com.ch03.SkiImageC;
 
-import java.awt.Image;
 import java.util.List;
+import javax.activation.DataHandler;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -29,25 +29,25 @@ public interface SkiImageService {
      * 
      * @param arg0
      * @return
-     *     returns java.awt.Image
+     *     returns javax.activation.DataHandler
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getImage", targetNamespace = "http://ch03.com/", className = "com.ch03.SkiImageC.GetImage")
     @ResponseWrapper(localName = "getImageResponse", targetNamespace = "http://ch03.com/", className = "com.ch03.SkiImageC.GetImageResponse")
-    public Image getImage(
+    public DataHandler getImage(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 
     /**
      * 
      * @return
-     *     returns java.util.List<java.awt.Image>
+     *     returns java.util.List<javax.activation.DataHandler>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "getImages", targetNamespace = "http://ch03.com/", className = "com.ch03.SkiImageC.GetImages")
     @ResponseWrapper(localName = "getImagesResponse", targetNamespace = "http://ch03.com/", className = "com.ch03.SkiImageC.GetImagesResponse")
-    public List<Image> getImages();
+    public List<DataHandler> getImages();
 
 }

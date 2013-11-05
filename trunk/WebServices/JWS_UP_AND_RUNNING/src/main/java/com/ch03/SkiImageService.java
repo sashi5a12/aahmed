@@ -18,9 +18,10 @@ import javax.imageio.stream.ImageInputStream;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.BindingType;
+import javax.xml.ws.soap.SOAPBinding;
 
 @WebService(serviceName = "SkiImageService", wsdlLocation = "SkiImageService.wsdl")
-@BindingType
+@BindingType(value = SOAPBinding.SOAP11HTTP_MTOM_BINDING)
 public class SkiImageService {
     private Map<String, String> photos;
         
