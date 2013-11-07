@@ -10,6 +10,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +20,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.ws.BindingType;
 import javax.xml.ws.Provider;
@@ -27,6 +35,11 @@ import javax.xml.ws.WebServiceProvider;
 import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.http.HTTPBinding;
 import javax.xml.ws.http.HTTPException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import org.w3c.dom.NodeList;
 
 // A generic service provider rather than a SOAP-based service.
 @WebServiceProvider
@@ -102,7 +115,62 @@ public class RestfulTeams implements Provider<Source> {
         }
     }
     
-    
+    private Source doPost(MessageContext ctx){
+        // Extract the POST request from the message.
+        Map<String, List> headers = (Map<String, List>)ctx.get(MessageContext.HTTP_REQUEST_HEADERS);
+        
+        List<String> cargo = headers.get(put_post_key);
+        
+        if (cargo == null) {
+            throw new HTTPException(400); // bad request
+        }
+        
+        ByteArrayInputStream xml_stream = list_to_bytes(cargo);
+        String team_name = null;
+        
+        try{
+            // Set up the XPath object to search for the XML elements.
+            DOMResult dom = get_dom(xml_stream);
+            XPath xp = get_xpath();
+            
+            // Extract the team's name.
+            team_name = xp.evaluate("/create_team/name", dom.getNode());
+            
+            // Trying to create an already existing team is not allowed.
+            if (team_map.containsKey(team_name.trim())) {
+                throw new HTTPException(400); // bad request
+            }
+            
+            // Extract the players, names and nicknames
+            List<Player> team_players = new ArrayList<Player>();
+            NodeList players = (NodeList)xp.evaluate("player", dom.getNode(), XPathConstants.NODESET);
+            
+            for (int i = 1; i <= players.getLength(); i++) {
+                String name = xp.evaluate("name", dom.getNode());
+                String nickname = xp.evaluate("nickname", dom.getNode());
+                Player player = new Player(name, nickname);
+                team_players.add(player);
+            }
+
+            // Update the team list and map, persist the new list.
+            Team team = new Team(team_name, team_players);
+            teams.add(team);
+            team_map.put(team_name, team);
+            serialize();
+            
+        } catch (XPathExpressionException e) {
+            throw new HTTPException(400);   // bad request
+        }
+        // Send back a confirmation that the team has been created.
+        return send_response("Team " + team_name + " created.");
+    }
+    private StreamSource send_response(String msg) {
+        HttpResponse response = new HttpResponse();
+        response.setResponse(msg);
+        ByteArrayInputStream stream = encode_to_stream(response);
+        return new StreamSource(stream);
+    }
+
     private void read_teams_from_file() {
         try {
             String path = get_file_path();
@@ -113,7 +181,39 @@ public class RestfulTeams implements Provider<Source> {
             System.err.println(e);
         }
     }
-
+    private ByteArrayInputStream list_to_bytes(List<String> list) {
+        String xml = "";
+        for (String next : list) {
+            xml += next.trim();
+        }
+        return new ByteArrayInputStream(xml.getBytes());
+    }
+    private DOMResult get_dom(ByteArrayInputStream stream){
+        DOMResult dom_result=null;
+        try {
+            dom_result = new DOMResult();
+            Transformer trans= TransformerFactory.newInstance().newTransformer();
+            trans.transform(new StreamSource(stream), dom_result);
+        } catch (TransformerConfigurationException ex) {
+            new HTTPException(500);
+        } catch (TransformerException ex) {
+            new HTTPException(500);
+        }
+        return dom_result;
+    }
+    private XPath get_xpath(){
+        // Set up the XPath object to search for the XML elements.
+        XPath xpath=null;
+        try {
+            URI uri = new URI("create_team");
+            XPathFactory fact = XPathFactory.newInstance();
+            xpath = fact.newXPath();
+            xpath.setNamespaceContext(new NSResolver("",uri));
+        } catch (URISyntaxException ex) {
+            new HTTPException(500);
+        }
+        return xpath;
+    }
     private void serialize() {
         try {
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(get_file_path()));
