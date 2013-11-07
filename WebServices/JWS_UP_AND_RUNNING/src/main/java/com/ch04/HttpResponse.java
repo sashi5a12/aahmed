@@ -1,4 +1,4 @@
-package ch04.team;
+package com.ch04;
 
 import java.io.Serializable;
 

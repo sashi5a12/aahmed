@@ -164,6 +164,67 @@ public class RestfulTeams implements Provider<Source> {
         // Send back a confirmation that the team has been created.
         return send_response("Team " + team_name + " created.");
     }
+    private Source doPut(MessageContext msg_ctx) {
+        // Extract the PUT request from the message.
+        Map<String, List> request = (Map<String, List>) msg_ctx.get(MessageContext.HTTP_REQUEST_HEADERS);
+
+        List<String> cargo = request.get(put_post_key);
+        if (cargo == null) {
+            throw new HTTPException(400); // bad request
+        }
+        ByteArrayInputStream xml_stream = list_to_bytes(cargo);
+        String team_name = null;
+        String new_name = null;
+
+        try {
+            // Set up the XPath object to search for the XML elements.
+            // XPath works on a DOM (Document Object Model), basically
+            // an XML tree.
+            DOMResult dom = get_dom(xml_stream);
+            XPath xp = get_xpath();
+
+            // Extract the team's current and new names.
+            team_name = xp.evaluate("/change_team_name/name", dom.getNode());
+            if (team_name == null || !team_map.containsKey(team_name = team_name.trim())) {
+                throw new HTTPException(404); // no such team
+            }
+            new_name = xp.evaluate("/change_team_name/new", dom.getNode());
+            if (new_name == null) {
+                throw new HTTPException(400); // bad request
+            }
+            // Update the team list and map, persist the new list.
+            Team team = team_map.get(team_name);
+            team.setName(new_name.trim());
+            serialize();
+        } catch (XPathExpressionException e) {
+            throw new HTTPException(400);   // bad request
+        }
+
+        // Send back a confirmation that the team has been updated.
+        return send_response("Team " + team_name + " changed to " + new_name);
+    }
+    
+    private Source doDelete(MessageContext msg_ctx) {
+        String query_string = (String) msg_ctx.get(MessageContext.QUERY_STRING);
+
+        // Disallow the deletion of all teams at once.
+        // This must be done one at a time.
+        if (query_string == null) {
+            throw new HTTPException(403);     // illegal operation
+        } else {
+            String name = get_name_from_qs(query_string);
+            if (!team_map.containsKey(name)) {
+                throw new HTTPException(404); // not found
+            }
+            // Remove team from list and map.
+            team_map.remove(name);
+            teams.remove(name);
+            serialize();
+
+            // Send confirmation back to requester.
+            return send_response(name + " deleted");
+        }
+    }
     private StreamSource send_response(String msg) {
         HttpResponse response = new HttpResponse();
         response.setResponse(msg);
@@ -208,7 +269,7 @@ public class RestfulTeams implements Provider<Source> {
             URI uri = new URI("create_team");
             XPathFactory fact = XPathFactory.newInstance();
             xpath = fact.newXPath();
-            xpath.setNamespaceContext(new NSResolver("",uri));
+            xpath.setNamespaceContext(new NSResolver("", uri.toString()));
         } catch (URISyntaxException ex) {
             new HTTPException(500);
         }
