@@ -2,14 +2,14 @@
 <java version="1.6.0_06" class="java.beans.XMLDecoder"> 
  <object class="java.util.ArrayList"> 
   <void method="add"> 
-   <object class="ch04.team.Team"> 
+   <object class="com.ch04.Team"> 
     <void property="name"> 
      <string>BurnsAndAllen</string> 
     </void> 
     <void property="players"> 
      <object class="java.util.ArrayList"> 
       <void method="add"> 
-       <object class="ch04.team.Player"> 
+       <object class="com.ch04.Player"> 
         <void property="name"> 
          <string>George Burns</string> 
         </void> 
@@ -19,7 +19,7 @@
        </object> 
       </void> 
       <void method="add"> 
-       <object class="ch04.team.Player"> 
+       <object class="com.ch04.Player"> 
         <void property="name"> 
          <string>Gracie Allen</string> 
         </void> 
@@ -33,14 +33,14 @@
    </object> 
   </void> 
   <void method="add"> 
-   <object class="ch04.team.Team"> 
+   <object class="com.ch04.Team"> 
     <void property="name"> 
      <string>AbbottAndCostello</string> 
     </void> 
     <void property="players"> 
      <object class="java.util.ArrayList"> 
       <void method="add"> 
-       <object class="ch04.team.Player"> 
+       <object class="com.ch04.Player"> 
         <void property="name"> 
          <string>William Abbott</string> 
         </void> 
@@ -50,7 +50,7 @@
        </object> 
       </void> 
       <void method="add"> 
-       <object class="ch04.team.Player"> 
+       <object class="com.ch04.Player"> 
         <void property="name"> 
          <string>Louis Cristillo</string> 
         </void> 
@@ -64,14 +64,14 @@
    </object> 
   </void> 
   <void method="add"> 
-   <object class="ch04.team.Team"> 
+   <object class="com.ch04.Team"> 
     <void property="name"> 
      <string>MarxBrothers</string> 
     </void> 
     <void property="players"> 
      <object class="java.util.ArrayList"> 
       <void method="add"> 
-       <object class="ch04.team.Player"> 
+       <object class="com.ch04.Player"> 
         <void property="name"> 
          <string>Leonard Marx</string> 
         </void> 
@@ -81,7 +81,7 @@
        </object> 
       </void> 
       <void method="add"> 
-       <object class="ch04.team.Player"> 
+       <object class="com.ch04.Player"> 
         <void property="name"> 
          <string>Julius Marx</string> 
         </void> 
@@ -91,7 +91,7 @@
        </object> 
       </void> 
       <void method="add"> 
-       <object class="ch04.team.Player"> 
+       <object class="com.ch04.Player"> 
         <void property="name"> 
          <string>Adolph Marx</string> 
         </void> 
