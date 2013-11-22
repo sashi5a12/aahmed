@@ -10,7 +10,7 @@ import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
 @WebService
-@HandlerChain(file = "echo-handler.xml")
+//@HandlerChain(file = "echo-handler.xml")
 public class Echo {
     
     @Resource
