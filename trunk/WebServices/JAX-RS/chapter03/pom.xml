@@ -9,10 +9,10 @@
   </parent>
   
   <groupId>com.examples</groupId>
-  <artifactId>chapter03</artifactId>
+  <artifactId>oreilly-chapter03</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
-  <name>chapter03</name>
+  <name>oreilly-chapter3</name>
   
   <properties>
     <jersey.version>2.4.1</jersey.version>
