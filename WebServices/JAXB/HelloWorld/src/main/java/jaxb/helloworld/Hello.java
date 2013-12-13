@@ -1,9 +1,6 @@
 package jaxb.helloworld;
 
-import com.jaxb.helloword.GreetingListType;
-import com.jaxb.helloword.GreetingType;
-import com.jaxb.helloword.ObjectFactory;
-import java.util.logging.Level;
+import jaxb.schema.helloworld.*;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
