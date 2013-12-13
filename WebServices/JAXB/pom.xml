@@ -9,5 +9,6 @@
   
   <modules>
     <module>HelloWorld</module>
+	<module>JAXB-Examples</module>
   </modules>  
 </project>
