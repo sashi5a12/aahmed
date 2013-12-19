@@ -35,7 +35,35 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>1.5</version>
-
+                
+                <executions>
+                    <!--
+                    <execution>
+                        <id>order-schema</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaFiles>order.xsd</schemaFiles>
+                            <packageName>jaxb.schema.order</packageName>
+                            <staleFile>${project.build.directory}/jaxb2/.schema1XjcStaleFlag</staleFile>
+                        </configuration>
+                    </execution>  
+                    -->
+                    <execution>
+                        <id>customization-schema</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaFiles>customization-test.xsd</schemaFiles>
+                            <packageName>jaxb.schema.customization</packageName>
+                            <staleFile>${project.build.directory}/jaxb2/.schema1XjcStaleFlag</staleFile>
+                            <bindingFiles>customization-rules.xjb</bindingFiles>
+                        </configuration>
+                    </execution>                  
+                </executions>
+                <!--
                 <executions>
                     <execution>
                         <id>xjc</id>
@@ -47,6 +75,7 @@
                 <configuration>
                     <packageName>com.jaxb.helloword</packageName> 
                 </configuration>
+                -->
             </plugin>
         </plugins>
     </build>   
