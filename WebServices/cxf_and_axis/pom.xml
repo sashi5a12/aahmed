@@ -8,5 +8,6 @@
   <name>Developing Web Services with Apache CXF and Axis2</name>
   <modules>
 	<module>Chapter01</module>
+	<module>Chapter02</module>
   </modules>  
 </project>
