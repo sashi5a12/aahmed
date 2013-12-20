@@ -4,13 +4,13 @@
 
     <parent>
         <groupId>cxf_and_axis</groupId>
-		<artifactId>cxf_and_axis</artifactId>
+        <artifactId>cxf_and_axis</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>  
     
-    <groupId>Chapter01</groupId>
+    <groupId>com.example.ch01</groupId>
     <artifactId>Chapter01</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>cxf_and_axis_chapter01</name>
     <url>http://maven.apache.org</url>
