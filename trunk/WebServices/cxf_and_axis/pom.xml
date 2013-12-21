@@ -8,5 +8,6 @@
   <description>Developing Web Services with Apache CXF and Axis2</description>
   <modules>
   	<module>chapter02</module>
+  	<module>SimpleServiceClient</module>
   </modules>
 </project>
