@@ -9,5 +9,11 @@
 	<modules>
 		<module>1_SimpleService</module>
 		<module>2_SimpleClient</module>
+		<module>3_Axis2SimpleService</module>
+		<module>4_Axis2SimpleClient</module>
+		<module>5_WrappedService</module>
+		<module>6_WrappedClient</module>
+		<module>7_Axis2WrappedService</module>
+		<module>8_Axis2WrappedClient</module>
 	</modules>
 </project>
