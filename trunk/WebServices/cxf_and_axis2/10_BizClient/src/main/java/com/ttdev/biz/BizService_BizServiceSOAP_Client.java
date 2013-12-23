@@ -8,8 +8,10 @@ package com.ttdev.biz;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 import javax.xml.namespace.QName;
+import javax.xml.ws.BindingProvider;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -50,33 +52,41 @@ public final class BizService_BizServiceSOAP_Client {
 
 		BizService_Service ss = new BizService_Service(wsdlURL, SERVICE_NAME);
 		BizService port = ss.getBizServiceSOAP();
+		BindingProvider bp = (BindingProvider)port;
+		Map<String, Object> ctx = bp.getRequestContext();
+		ctx.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:1234/bizService");
 
 		{
 			System.out.println("Invoking query...");
-			
-			com.ttdev.biz.ProductQueryComplexType _query_parameters = new ProductQueryComplexType();
-			
-			QueryItem item = new QueryItem();
-			item.setProductId("p01");
-			item.setQty(100);
-			_query_parameters.getQueryItem().add(item);
-			
-			item = new QueryItem();
-			item.setProductId("p02");
-			item.setQty(200);
-			_query_parameters.getQueryItem().add(item);
-			
-			item = new QueryItem();
-			item.setProductId("p03");
-			item.setQty(500);
-			_query_parameters.getQueryItem().add(item);
-			
-			com.ttdev.biz.ProductQueryResultComplexType _query__return = port.query(_query_parameters);
-			
-			for (ResultItem resultItem : _query__return.getResultItem()) {
-				System.out.println(resultItem.getProductId() + ": "	+ resultItem.getPrice());
-			}
 
+			try {
+				com.ttdev.biz.ProductQueryComplexType _query_parameters = new ProductQueryComplexType();
+
+				QueryItem item = new QueryItem();
+				item.setProductId("p01");
+				item.setQty(100);
+				_query_parameters.getQueryItem().add(item);
+
+				item = new QueryItem();
+				item.setProductId("p02");
+				item.setQty(-200);
+				_query_parameters.getQueryItem().add(item);
+
+				item = new QueryItem();
+				item.setProductId("p03");
+				item.setQty(500);
+				_query_parameters.getQueryItem().add(item);
+
+				com.ttdev.biz.ProductQueryResultComplexType _query__return = port.query(_query_parameters);
+
+				for (ResultItem resultItem : _query__return.getResultItem()) {
+					System.out.println(resultItem.getProductId() + ": " + resultItem.getPrice());
+				}
+			} catch (QueryInvalidQty e) {
+				System.out.println("Invalid qty: " + e.getFaultInfo());
+			} catch (QueryInvalidProductId e) {
+				System.out.println("Invalid product Id: " + e.getFaultInfo());
+			}
 		}
 
 		System.exit(0);

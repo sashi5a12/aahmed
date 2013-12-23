@@ -24,6 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _InvalidQty_QNAME = new QName("http://foo.com", "invalidQty");
+    private final static QName _InvalidProductId_QNAME = new QName("http://foo.com", "invalidProductId");
     private final static QName _ProductQueryResult_QNAME = new QName("http://foo.com", "productQueryResult");
     private final static QName _ProductQuery_QNAME = new QName("http://foo.com", "productQuery");
 
@@ -35,19 +37,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ProductQueryComplexType }
-     * 
-     */
-    public ProductQueryComplexType createProductQueryComplexType() {
-        return new ProductQueryComplexType();
-    }
-
-    /**
      * Create an instance of {@link ProductQueryResultComplexType.ResultItem }
      * 
      */
     public ProductQueryResultComplexType.ResultItem createProductQueryResultComplexTypeResultItem() {
         return new ProductQueryResultComplexType.ResultItem();
+    }
+
+    /**
+     * Create an instance of {@link ProductQueryComplexType.QueryItem }
+     * 
+     */
+    public ProductQueryComplexType.QueryItem createProductQueryComplexTypeQueryItem() {
+        return new ProductQueryComplexType.QueryItem();
+    }
+
+    /**
+     * Create an instance of {@link ProductQueryComplexType }
+     * 
+     */
+    public ProductQueryComplexType createProductQueryComplexType() {
+        return new ProductQueryComplexType();
     }
 
     /**
@@ -59,11 +69,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ProductQueryComplexType.QueryItem }
+     * Create an instance of {@link JAXBElement }{@code <}{@link Integer }{@code >}}
      * 
      */
-    public ProductQueryComplexType.QueryItem createProductQueryComplexTypeQueryItem() {
-        return new ProductQueryComplexType.QueryItem();
+    @XmlElementDecl(namespace = "http://foo.com", name = "invalidQty")
+    public JAXBElement<Integer> createInvalidQty(Integer value) {
+        return new JAXBElement<Integer>(_InvalidQty_QNAME, Integer.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://foo.com", name = "invalidProductId")
+    public JAXBElement<String> createInvalidProductId(String value) {
+        return new JAXBElement<String>(_InvalidProductId_QNAME, String.class, null, value);
     }
 
     /**

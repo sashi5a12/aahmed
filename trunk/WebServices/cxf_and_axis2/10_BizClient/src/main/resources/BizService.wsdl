@@ -5,6 +5,7 @@
 	targetNamespace="http://foo.com">
 	<wsdl:types>
 		<xsd:schema targetNamespace="http://foo.com">
+			
 			<xsd:element name="productQuery" type="tns:productQueryComplexType"/>
 			<xsd:element name="productQueryResult" type="tns:productQueryResultComplexType"/>
 			
@@ -29,21 +30,36 @@
 					</xsd:element>
 				</xsd:sequence>
 			</xsd:complexType>
-			
+
+			<xsd:element name="invalidProductId" type="xsd:string"/>
+			<xsd:element name="invalidQty" type="xsd:int"></xsd:element>
+
 		</xsd:schema>
 	</wsdl:types>
+
 	<wsdl:message name="queryRequest">
 		<wsdl:part element="tns:productQuery" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="queryResponse">
 		<wsdl:part element="tns:productQueryResult" name="parameters" />
 	</wsdl:message>
+
+	<wsdl:message name="queryInvalidProductId">
+		<wsdl:part name="parameters" element="tns:invalidProductId"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="queryInvalidQty">
+		<wsdl:part name="parameters" element="tns:invalidQty"></wsdl:part>
+	</wsdl:message>
+	
 	<wsdl:portType name="BizService">
 		<wsdl:operation name="query">
 			<wsdl:input message="tns:queryRequest" />
 			<wsdl:output message="tns:queryResponse" />
-		</wsdl:operation>
+            <wsdl:fault name="f01" message="tns:queryInvalidProductId"></wsdl:fault>
+            <wsdl:fault name="f02" message="tns:queryInvalidQty"></wsdl:fault>
+        </wsdl:operation>
 	</wsdl:portType>
+
 	<wsdl:binding name="BizServiceSOAP" type="tns:BizService">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="query">
@@ -54,8 +70,15 @@
 			<wsdl:output>
 				<soap:body use="literal" />
 			</wsdl:output>
+			<wsdl:fault name="f01">
+				<soap:fault use="literal" name="f01" />
+			</wsdl:fault>
+			<wsdl:fault name="f02">
+				<soap:fault use="literal" name="f02" />
+			</wsdl:fault>
 		</wsdl:operation>
 	</wsdl:binding>
+
 	<wsdl:service name="BizService">
 		<wsdl:port binding="tns:BizServiceSOAP" name="BizServiceSOAP">
 			<soap:address location="http://localhost:8080/bizService" />
