@@ -15,5 +15,7 @@
 		<module>6_WrappedClient</module>
 		<module>7_Axis2WrappedService</module>
 		<module>8_Axis2WrappedClient</module>
+		<module>9_BizService</module>
+		<module>10_BizClient</module>
 	</modules>
 </project>
