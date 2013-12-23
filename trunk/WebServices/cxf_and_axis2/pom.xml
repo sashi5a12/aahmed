@@ -17,5 +17,9 @@
 		<module>8_Axis2WrappedClient</module>
 		<module>9_BizService</module>
 		<module>10_BizClient</module>
+		<module>11_ImageService</module>
+		<module>12_ImageClient</module>
+		<module>13_Axis2ImageService</module>
+		<module>14_Axis2ImageClient</module>
 	</modules>
 </project>
