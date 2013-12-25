@@ -21,5 +21,8 @@
 		<module>12_ImageClient</module>
 		<module>13_Axis2ImageService</module>
 		<module>14_Axis2ImageClient</module>
+		<module>15_StatService</module>
+		<module>16_StatClient</module>
+		<module>17_StatProducer</module>
 	</modules>
 </project>
