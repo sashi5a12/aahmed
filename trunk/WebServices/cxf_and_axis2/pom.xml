@@ -24,5 +24,7 @@
 		<module>15_StatService</module>
 		<module>16_StatClient</module>
 		<module>17_StatProducer</module>
+		<module>18_StatConsumer</module>
+		<module>19_BookService</module>
 	</modules>
 </project>
