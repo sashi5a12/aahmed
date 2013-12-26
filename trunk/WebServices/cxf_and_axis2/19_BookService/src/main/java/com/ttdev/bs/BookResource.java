@@ -5,5 +5,5 @@ import javax.ws.rs.Path;
 @Path("books/{isbn}")
 public class BookResource {
 
-	public Book getDetails()
+	//public Book getDetails()
 }
