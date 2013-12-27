@@ -14,6 +14,18 @@
 			<artifactId>cxf-bundle</artifactId>
 			<version>2.7.8</version>
 		</dependency>
+		<!-- 
+		<dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.7</version>
+        </dependency>
+         -->
 	</dependencies>
 	<repositories>
 		<repository>
@@ -23,6 +35,17 @@
 		</repository>
 	</repositories>
 	<build>
+		<!-- 
+		<pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+         -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -32,6 +55,27 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<!-- 
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>1.5</version>
+                                
+                <executions>
+                    <execution>
+                        <id>bookservice-schema</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaFiles>BookService.xsd</schemaFiles>
+                            <packageName>com.ttdev.jaxb</packageName>
+                            <staleFile>${project.build.directory}/jaxb2/.schema1XjcStaleFlag</staleFile>
+                        </configuration>
+                    </execution>                   
+                </executions>
+             </plugin> 
+              -->  
 		</plugins>
 	</build>
 </project>
