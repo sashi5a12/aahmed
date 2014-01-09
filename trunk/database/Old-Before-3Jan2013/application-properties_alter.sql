@@ -1,1 +1,0 @@
-alter table vap_application_properties add constraint uk_name unique (`name`);
