@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-mvn debug test</actionName>
+            <displayName>mvn debug test</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>test</goal>
+            </goals>
+            <properties>
+                <maven.surefire.debug>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000 -Xnoagent -Djava.compiler=NONE</maven.surefire.debug>
+            </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-CLEAN INSTALL W/O TEST</actionName>
+            <displayName>CLEAN INSTALL W/O TEST</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-tree</actionName>
+            <displayName>tree</displayName>
+            <goals>
+                <goal>dependency:tree</goal>
+            </goals>
+            <properties>
+                <output>d:/dependency.txt</output>
+            </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-Single Test</actionName>
+            <displayName>Single Test</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <test>UtilitiesServiceTest</test>
+            </properties>
+        </action>
+    </actions>

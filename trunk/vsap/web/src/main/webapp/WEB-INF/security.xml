@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+ 
+    <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+        <property name="providers">
+            <list>
+                <ref bean="authenticationProvider" />
+                <ref bean="anonymousProvider" />
+            </list>
+        </property>
+    </bean>
+ 
+    <bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <!--
+        <property name="passwordEncoder">
+            <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+        </property>
+        -->
+        <property name="passwordEncoder" ref="passwordEncoder"/>
+        <property name="userDetailsService" ref="userDetailsService" />
+    </bean>
+ 
+    <bean id="anonymousProvider" class="org.springframework.security.authentication.AnonymousAuthenticationProvider">
+        <property name="key" value="SomeUniqueKeyForThisApplication" />
+    </bean>
+ 
+ <!-- No need to do this as the UserServiceImpl is already tagged as @Service("userService")
+    <bean id="userService" class="com.netpace.device.services.impl.UserServiceImpl">
+    -->
+    <alias name="filterChainProxy" alias="springSecurityFilterChain"/>
+ 
+    <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+        <sec:filter-chain-map path-type="ant">
+            <!--<sec:filter-chain pattern="/images/*" filters="none"/>-->            
+            <sec:filter-chain pattern="/probe.jsp" filters="none"></sec:filter-chain>
+            <sec:filter-chain pattern="/**" filters="securityContextFilter, logoutFilter, formLoginFilter, requestCacheFilter,
+                 servletApiFilter, anonFilter, sessionMgmtFilter, exceptionTranslator, filterSecurityInterceptor" />
+            
+            <!-- Without anon filter 
+            <sec:filter-chain pattern="/**" filters="securityContextFilter, logoutFilter, formLoginFilter, requestCacheFilter,
+                 servletApiFilter, sessionMgmtFilter, exceptionTranslator, filterSecurityInterceptor" />
+                 -->
+        </sec:filter-chain-map>
+        
+    </bean>
+    
+    <bean id="securityContextFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter" >
+        <property name="securityContextRepository" ref="securityContextRepository" />
+    </bean>
+ 
+    <bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository" />
+ 
+    <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+        <constructor-arg value="/logged_out.html" />
+        <constructor-arg>
+            <list><bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" /></list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="formLoginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+        <property name="authenticationManager" ref="authenticationManager" />
+        <property name="authenticationSuccessHandler">            
+            <bean class="com.netpace.device.filters.AuthenticationSuccessByRoleHandler"/>
+        </property>        
+        <property name="authenticationFailureHandler">
+            <bean class="com.netpace.device.filters.VAPAuthenticationFailureHandler"/>
+        </property>        
+        <property name="sessionAuthenticationStrategy">
+            <bean class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy" />
+        </property>
+    </bean>
+ 
+    <bean id="requestCacheFilter" class="org.springframework.security.web.savedrequest.RequestCacheAwareFilter" />
+ 
+    <bean id="servletApiFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
+ 
+    <!-- Commenting out anon filter and its usage in filterchainproxu for now. Not familiar with its usage -->
+    <bean id="anonFilter" class="org.springframework.security.web.authentication.AnonymousAuthenticationFilter" >
+        <property name="key" value="SomeUniqueKeyForThisApplication" />
+        <property name="userAttribute" value="anonymousUser,ROLE_ANONYMOUS" />
+    </bean>    
+ 
+    <bean id="sessionMgmtFilter" class="org.springframework.security.web.session.SessionManagementFilter" >
+        <constructor-arg ref="securityContextRepository" />
+    </bean>
+ 
+    <!--<form-login login-page="/login.htm" default-target-url="/home.htm" />-->
+    <!--<security:form-login login-page="/signin.do" authentication-success-handler-ref="successHandler" authentication-failure-url="/signin.do?error=true"/>-->
+    <bean id="exceptionTranslator" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+        <property name="authenticationEntryPoint">
+            <bean class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+                <property name="loginFormUrl" value="/signin.do"/>
+            </bean>
+        </property>
+    </bean>
+ 
+    <bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <property name="objectDefinitionSource">
+            <bean class="com.netpace.device.filters.VAPSecurityMetadataSource"/>
+            <!--
+            <sec:filter-security-metadata-source>
+                <sec:intercept-url pattern="/signin.do" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+                <sec:intercept-url pattern="/company/**" access="ROLE_ACCOUNT"/>
+                <sec:intercept-url pattern="/secure/**" access="ROLE_USER"/>
+            </sec:filter-security-metadata-source>
+            -->
+        </property>
+        <property name="authenticationManager" ref="authenticationManager" />
+        <property name="accessDecisionManager" ref="accessDecisionManager" />
+    </bean>
+    
+    <bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <property name="decisionVoters">
+            <list>
+                <bean class="org.springframework.security.access.vote.RoleVoter"/>
+                <bean class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+            </list>
+        </property>
+    </bean>
+    
+    <!--
+        This bean isn't directly required (it may be used in some JSP tags). 
+        It allows to query whether the current user is allowed to invoke a particular URL. 
+        It can be useful in controller beans to establish what information or navigation links should be made available in a presented view.
+    -->
+    <bean id="webPrivilegeEvaluator" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+        <constructor-arg ref="filterSecurityInterceptor" />
+    </bean>
+</beans>
