@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+  <tlib-version>1.0</tlib-version>
+  <short-name>paging</short-name>
+  <uri>/tlds/paging</uri>
+<tag>
+      <name>display</name>
+      <tagclass></tagclass>
+      <info>paging tag</info>
+      <attribute>
+          <name>list</name>
+          <required>true</required>
+          <type>java.util.List</type>
+      </attribute>
+      <attribute>
+          <name>ajax</name>
+          <type>java.lang.Boolean</type>
+      </attribute>
+      <attribute>
+          <name>cssTableClass</name>
+          <required>true</required>
+      </attribute>
+      <attribute>
+          <name>cssTableHeaderClass</name>
+          <required>true</required>
+      </attribute>
+      <attribute>
+          <name>cssTableRowOddClass</name>
+          <required>true</required>
+      </attribute>
+      <attribute>
+          <name>cssTableRowEvenClass</name>
+      </attribute>
+  </tag>
+</taglib>

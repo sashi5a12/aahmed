@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!--    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    <property name="locations">
+        <list>
+            <value>classpath:jdbc.properties</value>
+        </list>
+    </property>
+</bean>
+    -->
+    <!-- Load the db properties from file server/conf/deviceportal/db.props -->
+    <bean id="propertiesBean" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>file:${tomcat.base}/conf/${dbprops.location}/db.props</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="properties">
+            <ref bean="propertiesBean"></ref>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+	
+	
+    <!-- Data source -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${db.jdbc.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <!--        <property name="defaultAutoCommit" value="false"/>
+        <property name="preferredTestQuery"  value="select 1"/>
+        <property name="testConnectionOnCheckin"  value="true"/>-->
+        
+        <property name="initialSize" value="10"/>
+        <property name="maxActive" value="50"/> 
+        <property name="maxIdle" value="10"/> 
+        <property name="minIdle" value="5"/>
+        <property name="maxWait" value="10000"/>  
+        <property name="validationQuery" value="select 1"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="maxOpenPreparedStatements" value="10"/>
+    </bean>
+    
+    <!-- EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitManager" ref="persistenceUnitManager"/>
+        <property name="jpaProperties">
+            <value>
+                hibernate.dialect=${hibernate.dialect}
+            </value>
+        </property>
+    </bean>
+
+    <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+        <property name="persistenceXmlLocations">
+            <list>
+                <value>classpath*:META-INF/persistence.xml</value>
+            </list>
+        </property>
+        <property name="defaultDataSource" value="#{T(net.bull.javamelody.JdbcWrapper).SINGLETON.createDataSourceProxy(dataSource)}"/>
+    </bean>
+    
+    <!-- Needed so the @PersistenceUnit annotation is recognized -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <context:component-scan base-package="com.netpace.device.dao.jpa"/>
+    <context:component-scan base-package="com.netpace.device.dao.query"/>
+    <context:component-scan base-package="com.netpace.device.config"/>
+    <context:component-scan base-package="com.netpace.notification.dao.jpa"/>
+</beans>

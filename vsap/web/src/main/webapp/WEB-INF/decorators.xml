@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<decorators defaultdir="/WEB-INF/sitemesh-decorators">
+    <excludes>
+        <pattern>*.html</pattern>
+        <pattern>*/tag-pages/*.jsp</pattern>	 
+        <pattern>*/tag-pages/*.jsp</pattern>
+        <pattern>*/json/*.do</pattern>
+        <pattern>*/report/*</pattern>
+        <pattern>*/registration/expired/activations/delete.do</pattern>
+        <pattern>*/probe.jsp</pattern>        
+    </excludes>
+	
+    <decorator name="secure" page="secure/layout.jsp">
+        <pattern>/secure/*</pattern>
+    </decorator>
+    <decorator name="company" page="company/layout.jsp">
+        <pattern>/company/*</pattern>
+    </decorator>
+    <decorator name="public" page="public/layout.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+</decorators>
