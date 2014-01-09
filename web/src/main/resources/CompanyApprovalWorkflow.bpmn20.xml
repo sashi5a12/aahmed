@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:activiti="http://activiti.org/bpmn" 
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" 
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" 
+             typeLanguage="http://www.w3.org/2001/XMLSchema" 
+             expressionLanguage="http://www.w3.org/1999/XPath" 
+             targetNamespace="http://www.activiti.org/test">
+    <process id="VAP_Company_Approval_Process" name="VAP Company Approval Process" isExecutable="true">
+        <startEvent id="Start" name="Start"></startEvent>
+        
+        
+        <!-- Device Marketing Flow -->
+        <sequenceFlow sourceRef="Start" targetRef="DeviceMarketingReview_ST"></sequenceFlow>
+        <serviceTask id="DeviceMarketingReview_ST" name="DeviceMarketingReview_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Device Marketing Review</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_DEVICE_MARKETING,ROLE_SUPER_ADMIN,ROLE_VERIZON_SYSTEM_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>Approve,Deny,RFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_DEVICE_MARKETING_PENDING</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="DeviceMarketingReview_ST" targetRef="DeviceMarketingReview"></sequenceFlow>
+        <userTask id="DeviceMarketingReview" name="DeviceMarketingReview">
+            <documentation>
+                Device Marketing
+                The Device Marketing team will review the company information and can either Approve or Deny  the registration request.
+                If Device Marketing has any questions they can also Request for Information (RFI).
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="DeviceMarketingReview" targetRef="MR_ExclusiveGateway"></sequenceFlow>
+        <exclusiveGateway id="MR_ExclusiveGateway" name="MR ExclusiveGateway"></exclusiveGateway>
+        
+        
+        <!-- Device Marketing Denied Flow -->
+        <sequenceFlow sourceRef="MR_ExclusiveGateway" targetRef="DeviceMarketingDenied_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "Deny"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="DeviceMarketingDenied_ST" name="DeviceMarketingDenied_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReviewDenied</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Device Marketing Review Denied</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_SUPER_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>UnDeny</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_DEVICE_MARKETING_DENIED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="DeviceMarketingDenied_ST" targetRef="DeviceMarketingReviewDenied"></sequenceFlow>
+        <userTask id="DeviceMarketingReviewDenied" name="DeviceMarketingReviewDenied">
+            <documentation>
+                Device Marketing Denied
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="DeviceMarketingReviewDenied" targetRef="DeviceMarketingUnDenied_ST"></sequenceFlow>
+        <serviceTask id="DeviceMarketingUnDenied_ST" name="DeviceMarketingUnDenied_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReviewDenied</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_DEVICE_MARKETING_UNDENY</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="DeviceMarketingUnDenied_ST" targetRef="DeviceMarketingReview_ST"></sequenceFlow>
+        
+        
+        <!-- Device Marketing RFI Flow -->
+        <sequenceFlow sourceRef="MR_ExclusiveGateway" targetRef="DeviceMarketingRFI_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "RFI"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="DeviceMarketingRFI_ST" name="DeviceMarketingRFI_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReviewRFI</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Device Marketing Review RFI</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_DEVICE_MARKETING,ROLE_SUPER_ADMIN,ROLE_VERIZON_SYSTEM_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>UnRFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_DEVICE_MARKETING_RFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="DeviceMarketingRFI_ST" targetRef="DeviceMarketingReviewRFI"></sequenceFlow>
+        <userTask id="DeviceMarketingReviewRFI" name="DeviceMarketingReviewRFI">
+            <documentation>
+                Device Marketing RFI
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="DeviceMarketingReviewRFI" targetRef="DeviceMarketingReviewUnRFI_ST"></sequenceFlow>
+        <serviceTask id="DeviceMarketingReviewUnRFI_ST" name="DeviceMarketingReviewUnRFI_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReviewRFI</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_DEVICE_MARKETING_UNRFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="DeviceMarketingReviewUnRFI_ST" targetRef="DeviceMarketingReview_ST"></sequenceFlow>
+        
+        
+        <!-- Device Marketing Approve Flow -->
+        <sequenceFlow sourceRef="MR_ExclusiveGateway" targetRef="MRApprove_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "Approve"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="MRApprove_ST" name="MRApprove_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>DeviceMarketingReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_DEVICE_MARKETING_APPROVED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="MRApprove_ST" targetRef="OFACReview_ST"></sequenceFlow>
+        
+        
+        <!-- OFACReview Flow -->
+        <serviceTask id="OFACReview_ST" name="OFACReview_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>OFAC Review</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_OFAC,ROLE_SUPER_ADMIN,ROLE_VERIZON_SYSTEM_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>Approve,Suspend,RFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFAC_REVIEW_PENDING</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OFACReview_ST" targetRef="OFACReview"></sequenceFlow>
+        <userTask id="OFACReview" name="OFACReview">
+            <documentation>
+                OFACReview
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="OFACReview" targetRef="OFAC_ExclusiveGateway"></sequenceFlow>
+        <exclusiveGateway id="OFAC_ExclusiveGateway" name="OFAC_ExclusiveGateway"></exclusiveGateway>
+        
+        
+        <!-- OFACReview RFI Flow -->
+        <sequenceFlow sourceRef="OFAC_ExclusiveGateway" targetRef="OFACReviewRFI_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "RFI"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="OFACReviewRFI_ST" name="OFACReviewRFI_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReviewRFI</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>OFAC Review RFI</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_OFAC,ROLE_SUPER_ADMIN,ROLE_VERIZON_SYSTEM_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>UnRFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFAC_REVIEW_RFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OFACReviewRFI_ST" targetRef="OFACReviewRFI"></sequenceFlow>
+        <userTask id="OFACReviewRFI" name="OFACReviewRFI">
+            <documentation>
+                OFAC Review RFI
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="OFACReviewRFI" targetRef="OFACReviewUnRFI_ST"></sequenceFlow>
+        <serviceTask id="OFACReviewUnRFI_ST" name="OFACReviewUnRFI_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReviewRFI</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFAC_REVIEW_UNRFI</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OFACReviewUnRFI_ST" targetRef="OFACReview_ST"></sequenceFlow>
+
+
+        <!-- OFACReview Suspend Flow -->
+        <sequenceFlow sourceRef="OFAC_ExclusiveGateway" targetRef="OFACReviewSuspend_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "Suspend"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="OFACReviewSuspend_ST" name="OFACReviewSuspend_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReviewSuspend</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>OFAC Review Suspended</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_OFAC,ROLE_SUPER_ADMIN,ROLE_VERIZON_SYSTEM_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>UnSuspend</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFAC_REVIEW_SUSPENDED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OFACReviewSuspend_ST" targetRef="OFACReviewSuspend"></sequenceFlow>
+        <userTask id="OFACReviewSuspend" name="OFACReviewSuspend">
+            <documentation>
+                OFAC Review Suspend
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="OFACReviewSuspend" targetRef="OFACReviewUnSuspend_ST"></sequenceFlow>
+        <serviceTask id="OFACReviewUnSuspend_ST" name="OFACReviewUnSuspend_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReviewSuspend</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFAC_REVIEW_UNSUSPEND</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OFACReviewUnSuspend_ST" targetRef="OFACReview_ST"></sequenceFlow>
+
+
+        <!-- OFACReview Approve Flow -->
+        <sequenceFlow sourceRef="OFAC_ExclusiveGateway" targetRef="OFACReviewApprove_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "Approve"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="OFACReviewApprove_ST" name="OFACReviewApprove_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OFACReview</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFAC_REVIEW_APPROVED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OFACReviewApprove_ST" targetRef="CertificationNDA_ParallelGateway"></sequenceFlow>
+        
+        <parallelGateway id="CertificationNDA_ParallelGateway" />
+        <sequenceFlow sourceRef="CertificationNDA_ParallelGateway" targetRef="CertificationNDA_ST"></sequenceFlow>
+        <sequenceFlow sourceRef="CertificationNDA_ParallelGateway" targetRef="OfflineCertificationNDA_ST"></sequenceFlow>
+
+                
+        <!-- Certification/NDA Flow -->
+        <serviceTask id="CertificationNDA_ST" name="CertificationNDA_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>CertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Certification Agreement &amp; Non-Disclosure Agreement</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_PARTNER_USER,ROLE_SUPER_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>true</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>Accept Agreement</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_CERT_AND_NDA_PENDING</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="CertificationNDA_ST" targetRef="CertificationNDA"></sequenceFlow>
+        <userTask id="CertificationNDA" name="CertificationNDA">
+            <documentation>
+                Certification/NDA
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="CertificationNDA" targetRef="CertNDA_ExclusiveGateway"></sequenceFlow>
+        <exclusiveGateway id="CertNDA_ExclusiveGateway" name="CertNDA_ExclusiveGateway"></exclusiveGateway>
+        
+        
+        <!-- Certification/NDA Accept Flow -->
+        <sequenceFlow sourceRef="CertNDA_ExclusiveGateway" targetRef="CertNDAApprove_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "Accept Agreement"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="CertNDAApprove_ST" name="CertNDAApprove_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>CertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OfflineCertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_CERT_AND_NDA_ACCEPTED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="CertNDAApprove_ST" targetRef="Approve_ST"></sequenceFlow>
+        
+
+        <!-- Offline Certification/NDA Flow -->
+        <serviceTask id="OfflineCertificationNDA_ST" name="OfflineCertificationNDA_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OfflineCertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Offline Certification Agreement</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_SUPER_ADMIN,ROLE_VERIZON_SYSTEM_ADMIN,ROLE_DEVICE_MARKETING</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>true</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>Submit Agreement &amp; Approve Partner,Deny</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFFLINE_PENDING</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OfflineCertificationNDA_ST" targetRef="OfflineCertificationNDA"></sequenceFlow>
+        <userTask id="OfflineCertificationNDA" name="OfflineCertificationNDA">
+            <documentation>
+                Certification/NDA
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="OfflineCertificationNDA" targetRef="OfflineCertificationNDA_ExclusiveGateway"></sequenceFlow>
+        <exclusiveGateway id="OfflineCertificationNDA_ExclusiveGateway" name="OfflineCertificationNDA_ExclusiveGateway"></exclusiveGateway>
+        
+        
+        <!-- Offline Certification Agreement Denied Flow -->
+        <sequenceFlow sourceRef="OfflineCertificationNDA_ExclusiveGateway" targetRef="OfflineCertificationNDADenied_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "Deny"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="OfflineCertificationNDADenied_ST" name="OfflineCertificationNDADenied_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OfflineCertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>CertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OfflineCertificationNDADenied</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Offline Certification Agreement Denied</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_SUPER_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>UnDeny</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFFLINE_REJECTED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OfflineCertificationNDADenied_ST" targetRef="OfflineCertificationNDADenied"></sequenceFlow>
+        <userTask id="OfflineCertificationNDADenied" name="OfflineCertificationNDADenied">
+            <documentation>
+                Offline Certification Agreement Denied
+            </documentation>
+        </userTask>
+        <sequenceFlow sourceRef="OfflineCertificationNDADenied" targetRef="OfflineCertificationNDAUnDenied_ST"></sequenceFlow>
+        <serviceTask id="OfflineCertificationNDAUnDenied_ST" name="OfflineCertificationNDAUnDenied_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OfflineCertificationNDADenied</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>CertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Certification Agreement &amp; Non-Disclosure Agreement</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>InProgress</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_PARTNER_USER,ROLE_SUPER_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>true</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string>Accept Agreement</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFFLINE_UNREJECT</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>      
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OfflineCertificationNDAUnDenied_ST" targetRef="OfflineCertificationNDA_ST"></sequenceFlow>
+        
+        
+        <!-- Offline Certification/NDA Accept Flow -->
+        <sequenceFlow sourceRef="OfflineCertificationNDA_ExclusiveGateway" targetRef="OfflineCertificationNDAApprove_ST">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${decision == "Submit Agreement & Approve Partner"}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <serviceTask id="OfflineCertificationNDAApprove_ST" name="OfflineCertificationNDAApprove_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>CertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.UpdateWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>OfflineCertificationNDA</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_OFFLINE_APPROVED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="OfflineCertificationNDAApprove_ST" targetRef="Approve_ST"></sequenceFlow>
+        
+        
+        <serviceTask id="Approve_ST" name="Approve_ST" activiti:delegateExpression="${companyApprovalHandler}">
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.AddWorkitemListener">
+                    <activiti:field name="step">
+                        <activiti:string>Approved</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="title">
+                        <activiti:string>Approved</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="status">
+                        <activiti:string>Processed</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="allowedRoles">
+                        <activiti:string>ROLE_SUPER_ADMIN</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="requireInput">
+                        <activiti:string>false</activiti:string>
+                    </activiti:field>
+                    <activiti:field name="nextActions">
+                        <activiti:string> </activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+                <activiti:executionListener event="start" class="com.netpace.device.listener.SendNotificationListener">
+                    <activiti:field name="event">
+                        <activiti:string>PARTNER_APPROVED</activiti:string>
+                    </activiti:field>
+                </activiti:executionListener>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow sourceRef="Approve_ST" targetRef="End"></sequenceFlow>
+        <endEvent id="End" name="End"></endEvent>
+        
+    </process>
+  
+</definitions>
