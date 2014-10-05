@@ -51,7 +51,7 @@ public class WordCount {
         conf.set("fs.defaultFS","hdfs://master:9000/");
 
 //        conf.set("mapreduce.framework.name", "yarn");
-//        conf.set("yarn.resourcemanager.address", "master:8040");
+//        conf.set("yarn.resourcemanager.address", "master:8032");
 //        conf.set("yarn.resourcemanager.resource-tracker.address", "master:8025");
 //        conf.set("yarn.resourcemanager.scheduler.address", "10.153.41.16:8030");
 
@@ -68,7 +68,7 @@ public class WordCount {
         //FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
         FileInputFormat.addInputPath(job, new Path("/user/aahmed/hello.txt"));
-        FileOutputFormat.setOutputPath(job, new Path("/user/aahmed/hello_output_1"));
+        FileOutputFormat.setOutputPath(job, new Path("/user/aahmed/output"));
 
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
