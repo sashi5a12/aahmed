@@ -3,7 +3,7 @@ package com.magikhelper.dao;
 import javax.persistence.Query;
 
 public class QueryAndCount {
-    
+
     private Query query;
     private Integer count;
 
@@ -19,7 +19,5 @@ public class QueryAndCount {
     public Query getQuery() {
         return query;
     }
-    
-    
-    
+
 }

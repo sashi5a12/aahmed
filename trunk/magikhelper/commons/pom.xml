@@ -6,7 +6,8 @@
         <artifactId>magikhelper</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>commons</artifactId>
+    <groupId>com.magikhelper</groupId>
+    <artifactId>magikhelper-commons</artifactId>
     <version>0.1-alpha</version>
     <packaging>jar</packaging>
     <name>Magik Helper Commons</name>

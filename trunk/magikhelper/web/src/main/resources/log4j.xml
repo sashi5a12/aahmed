@@ -11,7 +11,7 @@
     
     <!--FileAppender-->
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
-        <param name="File" value="target/logs/magikhelper.log"/>
+        <param name="File" value="${catalina.base}/logs/${dbprops.location}/magikhelper.log"/>
         <param name="MaxFileSize" value="1MB" />
         <param name="MaxBackupIndex" value="10" />
         <layout class="org.apache.log4j.PatternLayout">
@@ -20,7 +20,7 @@
     </appender>
 
     <logger name="org.springframework">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
     </logger>      
     <logger name="org.hibernate">
         <level value="INFO"/>
@@ -33,7 +33,7 @@
         <level value="trace"/>
     </logger> 
     -->
-    <logger name="com.magikhelper">
+    <logger name="com.netpace">
         <level value="ALL"/>
     </logger>
     

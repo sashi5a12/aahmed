@@ -6,7 +6,8 @@
         <artifactId>magikhelper</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>dataaccess</artifactId>
+    <groupId>com.magikhelper</groupId>
+    <artifactId>magikhelper-dataaccess</artifactId>
     <packaging>jar</packaging>
     <version>0.1-alpha</version>
     
@@ -15,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.magikhelper</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>magikhelper-commons</artifactId>
             <version>0.1-alpha</version>
         </dependency>
     </dependencies>

@@ -7,11 +7,6 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
 
-/**
- * 
- * @param <T>
- * @param <PK> 
- */
 public interface GenericReadOnlyDao<T extends BaseEntity, PK extends Serializable> {
 
     /**
@@ -31,8 +26,8 @@ public interface GenericReadOnlyDao<T extends BaseEntity, PK extends Serializabl
 
     /**
      * Generic method to get an object based on class and identifier. An
-     * ObjectRetrievalFailureException Runtime Exception is thrown if
-     * nothing is found.
+     * ObjectRetrievalFailureException Runtime Exception is thrown if nothing is
+     * found.
      *
      * @param id the identifier (primary key) of the object to get
      * @return a populated object
@@ -41,19 +36,22 @@ public interface GenericReadOnlyDao<T extends BaseEntity, PK extends Serializabl
     T get(PK id);
 
     T getReference(PK id);
+
     /**
-     * Generic method used to get all objects of a particular type. This
-     * is the same as lookup up all rows in a table.
+     * Generic method used to get all objects of a particular type. This is the
+     * same as lookup up all rows in a table.
+     *
      * @return List of populated objects
      */
     List<T> getAll();
-    
+
     /**
-     * Generic method used to get all objects of a particular type. This
-     * is the same as lookup up all rows in a table.
+     * Generic method used to get all objects of a particular type. This is the
+     * same as lookup up all rows in a table.
+     *
      * @param options PagingOptions<S extends Sort>
      * @return List of populated objects
      */
-    public QueryAndCount getPaggedData(String strquery , Sort<T> sort, boolean sortOrder, Integer startPosition, Integer pageSize);
-    
+    public QueryAndCount getPaggedData(String strquery, Sort<T> sort, boolean sortOrder, Integer startPosition, Integer pageSize);
+
 }
