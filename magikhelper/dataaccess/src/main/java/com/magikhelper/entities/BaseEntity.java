@@ -66,6 +66,7 @@ public class BaseEntity {
         setLastUpdatedDate(DateUtils.currentTimeStamp());
         setActive(true);
     }
+
     public void populatedAuditFieldsOnUpdate(String user) {
         setLastUpdatedBy(user);
         setLastUpdatedDate(DateUtils.currentTimeStamp());

@@ -33,7 +33,7 @@ public class GenericDaoJpaImpl<T extends BaseEntity, PK extends Serializable> ex
     public void remove(PK id) {
         entityManager.remove(this.get(id));
     }
-    
+
     @Override
     public void flush() {
         entityManager.flush();

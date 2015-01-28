@@ -5,9 +5,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-   
-    <!-- Load the db properties from file server/conf/magikhelper/db.props -->
-    <bean id="propertiesBean" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    
+<!--    <bean id="propertiesBean" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <list>
                 <value>file:${tomcat.base}/conf/${dbprops.location}/db.props</value>
@@ -20,15 +19,14 @@
             <ref bean="propertiesBean"></ref>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
-    </bean>
-	
-	
+    </bean>-->
+
     <!-- Data source -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${db.jdbc.url}"/>
-        <property name="username" value="${db.username}"/>
-        <property name="password" value="${db.password}"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="myadmin"/>
         
         <property name="initialSize" value="10"/>
         <property name="maxActive" value="50"/> 
@@ -44,21 +42,21 @@
     
     <!-- EntityManagerFactory -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitManager" ref="persistenceUnitManager"/>
+        <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" />
+        <property name="persistenceUnitName" value="magikhelper_pu" />
+        <property name="dataSource" ref="dataSource" />
         <property name="jpaProperties">
             <value>
-                hibernate.dialect=${hibernate.dialect}
+               hibernate.generate_statistics = false
             </value>
         </property>
-    </bean>
-
-    <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
-        <property name="persistenceXmlLocations">
-            <list>
-                <value>classpath*:META-INF/persistence.xml</value>
-            </list>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+                <property name="database" value="MYSQL"/>
+            </bean>
         </property>
-        <property name="defaultDataSource" value="#{T(net.bull.javamelody.JdbcWrapper).SINGLETON.createDataSourceProxy(dataSource)}"/>
     </bean>
     
     <!-- Needed so the @PersistenceUnit annotation is recognized -->
@@ -68,12 +66,11 @@
     
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
     </bean>
 
-<!--
-    <context:component-scan base-package="com.netpace.device.dao.jpa"/>
-    <context:component-scan base-package="com.netpace.device.dao.query"/>
-    <context:component-scan base-package="com.netpace.device.config"/>
-    <context:component-scan base-package="com.netpace.notification.dao.jpa"/>
--->
+    <context:component-scan base-package="com.magikhelper.dao.jpa"/>
+ 
 </beans>
