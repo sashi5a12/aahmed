@@ -47,7 +47,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="jpaProperties">
             <value>
-               hibernate.generate_statistics = false
+                hibernate.generate_statistics = false
             </value>
         </property>
         <property name="jpaVendorAdapter">
