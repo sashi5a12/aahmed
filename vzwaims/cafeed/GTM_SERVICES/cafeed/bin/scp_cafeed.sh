@@ -1,1 +1,0 @@
-scp ../feed/$1 vmftp@162.115.117.112:/var/app/vm/prd/var/vmdata/inputs/netpace/drop/$1

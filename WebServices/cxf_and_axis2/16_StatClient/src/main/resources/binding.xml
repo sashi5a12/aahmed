@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
-	wsdlLocation="StatService.wsdl"
-	node="wsdl:definitions/wsdl:portType/wsdl:operation[@name='getStatistics']">
-	<jaxws:enableAsyncMapping>true</jaxws:enableAsyncMapping>
-</jaxws:bindings>
