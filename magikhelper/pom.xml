@@ -12,21 +12,20 @@
     <description>Online Scheduling System</description>
     
     <properties>  
-        <tomcat.base>/usr/share/java/apache-tomcat-8.0.17</tomcat.base>
-        <dbprops.location>magikhelper</dbprops.location>
-        <slf4j.version>1.5.11</slf4j.version>
-<!--        <spring.version>3.2.13.RELEASE</spring.version>-->
-        <spring.version>4.1.0.RELEASE</spring.version>
+        <!--        <spring.version>3.2.13.RELEASE</spring.version>-->
+        <spring.version>4.1.4.RELEASE</spring.version>
         <aspectj.version>1.6.12</aspectj.version>
-        <jackson.version>1.9.10</jackson.version>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-asm</artifactId>
             <version>${spring.version}</version>
@@ -79,7 +78,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.6.4.Final</version>
+            <version>4.2.17.Final</version>
         </dependency>
         <dependency>
             <groupId>javax.transaction</groupId>
@@ -87,14 +86,19 @@
             <version>1.1</version>
         </dependency>
         <dependency>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <version>1.0.1.Final</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.10</version>
         </dependency>  
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.10</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -105,48 +109,39 @@
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
-        <dependency>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <version>1.0.0.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator-annotation-processor</artifactId>
-            <version>4.1.0.Final</version>
-        </dependency>
         
         <!-- Java Mail API -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
-            <version>1.4</version>
+            <version>1.4.7</version>
         </dependency>
-        
         <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
-            <version>2.1</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.4.4</version>
         </dependency>
-        <!-- Jackson JSON Mapper -->
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>		
-                    
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.4.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.4.4</version>
+        </dependency>    
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.14</version>
-            <scope>provided</scope>
+            <version>5.1.34</version>
         </dependency>
     </dependencies>
     <build>
@@ -167,6 +162,7 @@
         <module>commons</module>
         <module>dataaccess</module>
         <module>services</module>
+        <module>web-services</module>
         <module>web</module>
     </modules>  
 </project>
