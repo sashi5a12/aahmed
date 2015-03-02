@@ -1,16 +1,24 @@
 package com.examples
 
+import util.control.Breaks._
+
 object Test {
   def main(args: Array[String]) {
-    val array = Array.ofDim[Int](2, 2)
-    array(0)(0) = 0
-    array(0)(1) = 1
-    array(1)(0) = 2
-    array(1)(1) = 3
 
-    for {
-      i <- 0 until array.length
-      j <- 0 until array(i).length
-    } println(s"($i)($j) = ${array(i)(j)}")
+    breakable {
+      for (i <- 0 to 10) {
+        if (i > 5) break
+        else println(i)
+      }
+    }
+    
+    println("=================")
+    for (i <- 0 to 10){
+      breakable {
+        if (i ==0 || i==5 || i==10) break
+        else println(i)
+      }
+    }
   }
 }
+
