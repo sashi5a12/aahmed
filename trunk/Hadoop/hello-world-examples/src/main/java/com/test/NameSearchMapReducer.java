@@ -47,8 +47,11 @@ public class NameSearchMapReducer {
     
     public static void main (String args[]) throws IOException, InterruptedException, ClassNotFoundException{
         Configuration conf = new Configuration();
-        conf.set("fs.defaultFS","hdfs://master:9000/");
+        conf.set("fs.defaultFS","hdfs://hadoop-master:9000/");
 //        conf.set("mapreduce.framework.name", "yarn");
+//        conf.set("yarn.resourcemanager.address", "hadoop-master:8050");
+//        conf.set("yarn.resourcemanager.scheduler.addresss", "hadoop-master:8030");
+//        conf.set("yarn.resourcemanager.resource-tracker.address", "hadoop-master:8025");
         
         Job job = Job.getInstance(conf, "Search Name");
         
