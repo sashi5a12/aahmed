@@ -57,7 +57,7 @@ public class MaxTemperatureJob {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		Configuration conf = new Configuration();
         conf.set("fs.defaultFS","hdfs://master:9000/");
-//      conf.set("yarn.resourcemanager.address", "master:8032");
+//      conf.set("yarn.resourcemanager.address", "aahmed-mac.local:8032");
 
         Job job = Job.getInstance(conf,"Max Temperature");
         
@@ -70,7 +70,7 @@ public class MaxTemperatureJob {
         
         job.setCombinerClass(MaxTemperatureReducer.class);
         
-        FileInputFormat.addInputPath(job, new Path("1901"));
+        FileInputFormat.addInputPath(job, new Path("sample.txt"));
         FileOutputFormat.setOutputPath(job, new Path("output"));
         
         
