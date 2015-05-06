@@ -16,7 +16,7 @@ public class HDFSHelloWorld {
     public static void main(String[] args) throws IOException {
 
         Configuration conf = new Configuration();
-        conf.set("fs.defaultFS", "master:9000");
+        conf.set("fs.defaultFS", "hadoop-master:9000");
         //conf.set("fs.defaultFS", "test-2.domain.local:8020");
         
         FileSystem fs = FileSystem.get(conf);
