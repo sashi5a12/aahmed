@@ -1,1 +1,0 @@
-         <img height="5" width="1" border="0">

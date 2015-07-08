@@ -1,1 +1,0 @@
-0 23 * * * /etc/awstats/cron/webstat_cron.sh >> /root/cronoutput.file 2>&1

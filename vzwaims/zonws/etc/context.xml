@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context>
-	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory" maxActive="100" maxIdle="30" maxWait="60000" name="jdbc/vdswsDS" password="aims4" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:oracle:thin:@172.30.30.14:1521:vzw" username="aims4"/>
-	<WatchedResource>WEB-INF/web.xml</WatchedResource>
-	<WatchedResource>META-INF/context.xml</WatchedResource>
-</Context>

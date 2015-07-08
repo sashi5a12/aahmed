@@ -1,1 +1,0 @@
-This folder is where all the forum related WAR files (already deployed) are backed up to
