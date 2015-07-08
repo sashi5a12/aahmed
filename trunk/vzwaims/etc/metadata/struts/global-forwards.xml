@@ -1,8 +1,0 @@
-
-<global-forwards>
-        <forward name="spotlight" path="/allianceSpotlights.do?task=view"/>
-        <forward name="entApp" path="/entApplicationSetup.do?task=view"/>
-        <forward name="allianceView" path="/allianceSpotlights.do?task=view"/>
-</global-forwards>
-
-

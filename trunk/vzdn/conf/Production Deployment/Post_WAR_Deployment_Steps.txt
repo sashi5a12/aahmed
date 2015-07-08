@@ -1,7 +1,0 @@
-For Forum Run the Following Script:
-----------------------------------
-
-- forumPostDeployment.sh
-  This script deletes the image folder in the exploded WAR folder, and creates a soft link to our actual replication folder
-
-  
